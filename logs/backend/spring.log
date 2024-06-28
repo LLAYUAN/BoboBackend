@@ -1,0 +1,6 @@
+14:30:13:830  INFO 5312 --- [backend] [main] org.example.backend.BackendApplication   : Starting BackendApplication using Java 21.0.2 with PID 5312 (D:\livestream\backend\target\classes started by liang in D:\livestream\backend)
+14:30:13:831  INFO 5312 --- [backend] [main] org.example.backend.BackendApplication   : The following 1 profile is active: "dev"
+14:30:14:485  INFO 5312 --- [backend] [main] org.example.backend.BackendApplication   : Started BackendApplication in 1.217 seconds (process running for 2.136)
+14:31:18:079  INFO 4992 --- [backend] [main] org.example.backend.BackendApplication   : Starting BackendApplication using Java 21.0.2 with PID 4992 (D:\livestream\backend\target\classes started by liang in D:\livestream\backend)
+14:31:18:083  INFO 4992 --- [backend] [main] org.example.backend.BackendApplication   : The following 1 profile is active: "dev"
+14:31:18:583  INFO 4992 --- [backend] [main] org.example.backend.BackendApplication   : Started BackendApplication in 0.786 seconds (process running for 1.222)
