@@ -1,0 +1,47 @@
+package org.example.userservice.controller;
+
+import org.example.userservice.common.CommonResult;
+import org.example.userservice.service.UserInfoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+//@Api(tags = "UmsAdminController")
+//@Tag(name = "UmsAdminController", description = "后台用户管理")
+public class LoginController {
+
+    @Autowired
+    public UserInfoService userInfoService;
+
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
+
+    @PostMapping(value = "/login")
+    public CommonResult login(@Validated @RequestBody Map<String,Object> loginRequest) {
+        Logger log = LoggerFactory.getLogger(LoginController.class);
+        String email = (String) loginRequest.get("email");
+        String password = (String) loginRequest.get("password");
+        // 通过用户名和密码获取token
+        String token = userInfoService.login(email, password);
+        log.info("token: " + token);
+        // 如果token为空，返回错误信息
+        if (token == null) {
+            return CommonResult.failed("用户名或密码错误");
+        }
+        // 如果token不为空，返回token
+        Map<String, String> tokenMap = new HashMap<>();
+        tokenMap.put("token", token);
+        tokenMap.put("tokenHead", tokenHead);
+        return CommonResult.success(tokenMap);
+    }
+
+}
