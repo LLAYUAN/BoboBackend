@@ -30,11 +30,11 @@ public class JwtTokenUtil {
 
     // JWT 密钥
     @Value("${jwt.secret}")
-    private static String secret;
+    private String secret;
 
     // JWT 过期时间
     @Value("${jwt.expiration}")
-    private static Long expiration;
+    private Long expiration;
 
     // Authorization 请求头中的 token 字符串的开头部分（Bearer）
     @Value("${jwt.tokenHead}")
@@ -47,7 +47,7 @@ public class JwtTokenUtil {
      * @param claims 负载
      * @return JWT 的 token
      */
-    private static String generateToken(Map<String, Object> claims){
+    private String generateToken(Map<String, Object> claims){
         return Jwts.builder()
                 .setClaims(claims)  // 设置负载
                 .setExpiration(generateExpirationDate())    // 设置过期时间
@@ -59,7 +59,7 @@ public class JwtTokenUtil {
      * 生成 token 的过期时间
      * @return token 的过期时间
      */
-    private static Date generateExpirationDate(){
+    private Date generateExpirationDate(){
         /*
             Date 构造器接受格林威治时间，推荐使用 System.currentTimeMillis() 获取当前时间距离 1970-01-01 00:00:00 的毫秒数
             而我们在配置文件中配置的是秒数，所以需要乘以 1000。
@@ -164,7 +164,7 @@ public class JwtTokenUtil {
      * @param userDetails 用户信息（需要自定义 UserDetails）
      * @return token 字符串
      */
-    public static String generateToken(UserDetails userDetails){
+    public String generateToken(UserDetails userDetails){
         // 创建负载
         Map<String,Object> claims = new HashMap<>();
         // 设置负载中的用户名

@@ -1,6 +1,7 @@
 package org.example.userservice.controller;
 
 import org.example.userservice.common.CommonResult;
+import org.example.userservice.entity.UserInfo;
 import org.example.userservice.service.UserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,4 +45,19 @@ public class LoginController {
         return CommonResult.success(tokenMap);
     }
 
+    @PostMapping(value = "/register")
+    public CommonResult register(@Validated @RequestBody Map<String,Object> registerRequest) {
+        Logger log = LoggerFactory.getLogger(LoginController.class);
+        String email = (String) registerRequest.get("email");
+        String password = (String) registerRequest.get("password");
+        log.info("email: " + email+ " password: " + password+"is going to register");
+        // 通过用户名和密码获取token
+        UserInfo userInfo = userInfoService.register(email, password);
+        // 如果userInfo为空，返回错误信息
+        if (userInfo == null) {
+            return CommonResult.failed("注册失败");
+        }
+        // 如果userInfo不为空，返回userInfo
+        return CommonResult.success(userInfo);
+    }
 }

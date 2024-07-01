@@ -13,4 +13,8 @@ public class CompleteUserDao {
     public UserInfo findUserInfoByEmail(String email) {
         return userInfoRepo.findByEmail(email);
     }
+
+    public UserInfo save(UserInfo userInfo) {
+        return userInfoRepo.save(userInfo);
+    }
 }
