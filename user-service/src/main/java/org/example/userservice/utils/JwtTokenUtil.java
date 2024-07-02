@@ -144,6 +144,11 @@ public class JwtTokenUtil {
         return username;
     }
 
+    public Integer getUserIDFromHeader(String authorizedHeader){
+        authorizedHeader = authorizedHeader.substring(tokenHead.length());
+        return  Integer.parseInt(getUserNameFromToken(authorizedHeader));
+    }
+
     /**
      * 验证 token 是否有效
      * @param token JWT 的 token

@@ -30,7 +30,6 @@ public class UserInfoService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public UserDetails findUserByEmail(String email) {
-
         UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);
         if(userInfo == null){
             throw new UsernameNotFoundException("用户名或密码错误");
@@ -41,7 +40,22 @@ public class UserInfoService {
                 role = "ROLE_ADMIN"; // 管理员角色
             }
             List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(role));
-            return new User(userInfo.getEmail(), userInfo.getPassword(), authorities);
+                return new User(userInfo.getUserID().toString(), userInfo.getPassword(), authorities);
+        }
+    }
+
+    public UserDetails findUserByUserID(String userID) {
+        UserInfo userInfo = completeUserDao.findUserInfoByUserID(Integer.parseInt(userID));
+        if(userInfo == null){
+            throw new UsernameNotFoundException("用户名或密码错误");
+        }
+        else {
+            String role = "ROLE_USER"; // 默认角色
+            if (userInfo.getIsAdmin()) {
+                role = "ROLE_ADMIN"; // 管理员角色
+            }
+            List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(role));
+            return new User(userInfo.getUserID().toString(), userInfo.getPassword(), authorities);
         }
     }
 
