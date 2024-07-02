@@ -31,7 +31,7 @@ public class UserInfo {
     @Column(name = "birthday")
     private Date birthday;
 
-    @Column(name = "isAdmin")
+    @Column(name = "is_admin")
     private Boolean isAdmin;
 
     public UserInfo() {
