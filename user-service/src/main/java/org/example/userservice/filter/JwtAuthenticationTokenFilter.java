@@ -63,6 +63,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter{
             // 获取 JWT 令牌的内容（即：去掉 JWT 令牌前缀后的内容）
             String authToken = authHeader.substring(this.tokenHead.length());
             // 从 JWT 令牌中获取用户名
+            LOGGER.info("authToken:{}",authToken);
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
             // 记录日志
             LOGGER.info("checking username:{}", username);

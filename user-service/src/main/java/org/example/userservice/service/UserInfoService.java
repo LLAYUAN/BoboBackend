@@ -24,6 +24,9 @@ public class UserInfoService {
     private CompleteUserDao completeUserDao;
 
     @Autowired
+    private JwtTokenUtil JwtTokenUtil;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     public UserDetails findUserByEmail(String email) {
@@ -44,6 +47,7 @@ public class UserInfoService {
 
     public String login(String email, String password) {
         Logger log = Logger.getLogger(UserInfoService.class.getName());
+        log.info("用户"+email+"进行登录");
         String token = null;
         // 密码需要客户端加密后传递
         try{
@@ -68,5 +72,14 @@ public class UserInfoService {
             log.info("登录异常:"+e.getMessage());
         }
         return token;
+    }
+
+    public UserInfo register(String email, String password) {
+        // 先检查是否已经存在该用户，若存在则返回 null
+        if(completeUserDao.findUserInfoByEmail(email) != null){
+            return null;
+        }
+        UserInfo userInfo = new UserInfo(email,passwordEncoder.encode(password));
+        return completeUserDao.save(userInfo);
     }
 }

@@ -10,6 +10,7 @@
     <groupId>org.example</groupId>
     <artifactId>backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>backend</name>
     <description>backend</description>
     <url/>
@@ -93,6 +94,13 @@
             <artifactId>spring-boot</artifactId>
         </dependency>
     </dependencies>
+    <modules>
+        <module>liveVideo-service</module>
+        <module>message-service</module>
+        <module>recommend-service</module>
+        <module>recordVideo-service</module>
+        <module>user-service</module>
+    </modules>
 
     <build>
         <plugins>
