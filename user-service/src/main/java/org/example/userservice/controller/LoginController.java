@@ -8,15 +8,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@RefreshScope
 @RestController
-//@Api(tags = "UmsAdminController")
-//@Tag(name = "UmsAdminController", description = "后台用户管理")
+@RequestMapping(value = "/user")
 public class LoginController {
 
     @Autowired
@@ -25,8 +26,16 @@ public class LoginController {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
+    @Value("${rsa.publicKey}")
+    private String publicKey;
+
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @GetMapping(value = "/publicKey")
+    public CommonResult getPublicKey() {
+        return CommonResult.success(publicKey);
+    }
 
     @PostMapping(value = "/login")
     public CommonResult login(@Validated @RequestBody Map<String,Object> loginRequest) {
