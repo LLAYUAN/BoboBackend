@@ -26,7 +26,7 @@ public class MallSecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         // 获取登录用户信息
-        return userInfoService::findUserByEmail;
+        return userInfoService::findUserByUserID;
     }
 
     // ...

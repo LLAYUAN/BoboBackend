@@ -71,7 +71,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter{
             // 如果用户名不为空，并且 SecurityContextHolder 中的 Authentication 为空（表示该用户未登录）
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
                 // 从数据库中加载用户信息
-                UserDetails userDetails = userInfoService.findUserByEmail(username);
+                UserDetails userDetails = userInfoService.findUserByUserID(username);
 
                 // 如果 JWT 令牌有效
                 if (jwtTokenUtil.validateToken(authToken,userDetails)){

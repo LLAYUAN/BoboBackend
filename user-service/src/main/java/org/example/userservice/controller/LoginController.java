@@ -66,11 +66,8 @@ public class LoginController {
     @GetMapping(value = "/getUserInfo")
     public CommonResult getUserInfo(@RequestHeader("Authorization") String authorizationHeader) {
         // 获取token然后进行解析，得到用户名，再进一步获取用户信息
-        System.out.println("authorizationHeader: " + authorizationHeader);
-        String token = authorizationHeader.substring("Bearer ".length());
-        System.out.println("token: " + token);
-        String email = jwtTokenUtil.getUserNameFromToken(token);
-        System.out.println("email: " + email);
-        return CommonResult.success("email: " + email);
+        Integer userID = jwtTokenUtil.getUserIDFromHeader(authorizationHeader);
+        System.out.println("userID： " + userID.toString());
+        return CommonResult.success("userID " + userID.toString());
     }
 }
