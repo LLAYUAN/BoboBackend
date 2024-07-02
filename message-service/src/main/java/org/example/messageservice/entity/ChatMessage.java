@@ -1,9 +1,16 @@
 package org.example.messageservice.entity;
 
+import lombok.Data;
+
+//自动补充get set
+@Data
 public class ChatMessage {
     private MessageType type;
     private String content;
     private String sender;
+    private String timestamp;
+    private String roomID;
+
 
     public enum MessageType {
         CHAT,
@@ -15,23 +22,4 @@ public class ChatMessage {
         return type;
     }
 
-    public void setType(MessageType type) {
-        this.type = type;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
 }
