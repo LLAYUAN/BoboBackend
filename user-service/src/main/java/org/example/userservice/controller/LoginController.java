@@ -3,14 +3,13 @@ package org.example.userservice.controller;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.entity.UserInfo;
 import org.example.userservice.service.UserInfoService;
+import org.example.userservice.utils.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +24,9 @@ public class LoginController {
 
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping(value = "/login")
     public CommonResult login(@Validated @RequestBody Map<String,Object> loginRequest) {
@@ -59,5 +61,16 @@ public class LoginController {
         }
         // 如果userInfo不为空，返回userInfo
         return CommonResult.success(userInfo);
+    }
+
+    @GetMapping(value = "/getUserInfo")
+    public CommonResult getUserInfo(@RequestHeader("Authorization") String authorizationHeader) {
+        // 获取token然后进行解析，得到用户名，再进一步获取用户信息
+        System.out.println("authorizationHeader: " + authorizationHeader);
+        String token = authorizationHeader.substring("Bearer ".length());
+        System.out.println("token: " + token);
+        String email = jwtTokenUtil.getUserNameFromToken(token);
+        System.out.println("email: " + email);
+        return CommonResult.success("email: " + email);
     }
 }
