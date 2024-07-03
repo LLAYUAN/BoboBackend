@@ -7,6 +7,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ChatController {
@@ -16,6 +17,11 @@ public class ChatController {
     @Autowired
     public ChatController(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
+    }
+
+    @GetMapping(value = "/test")
+    public String test() {
+        return "test";
     }
 
     @MessageMapping("/chat.sendMessage/{roomID}")
