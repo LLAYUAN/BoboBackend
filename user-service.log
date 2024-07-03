@@ -1,0 +1,659 @@
+2024-07-03T12:20:29.373+08:00  INFO 1772 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-03T12:20:29.375+08:00  INFO 1772 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-03T12:20:29.375+08:00  INFO 1772 --- [user-service] [Thread-1] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-03T12:20:29.376+08:00  INFO 1772 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-03T12:20:29.402+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-03T12:20:29.405+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-03T12:20:29.405+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-03T12:20:29.406+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-03T12:20:29.406+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-03T12:20:29.406+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-03T12:20:29.406+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-03T12:20:29.406+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-03T12:20:29.406+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-03T12:20:29.413+08:00  INFO 1772 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T12:20:29.413+08:00  INFO 1772 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T12:20:29.519+08:00  INFO 1772 --- [user-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-03T12:20:29.523+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0
+2024-07-03T12:20:29.541+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x00000294a23296c8
+2024-07-03T12:20:29.541+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x00000294a2329ae8
+2024-07-03T12:20:29.542+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-03T12:20:29.543+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-03T12:20:29.548+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-03T12:20:29.578+08:00  INFO 1772 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T12:20:30.102+08:00  INFO 1772 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-03T12:20:30.104+08:00  INFO 1772 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-03T12:20:30.105+08:00  INFO 1772 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-03T12:20:30.105+08:00  INFO 1772 --- [user-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-03T12:20:30.126+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1719980430018_127.0.0.1_56059
+2024-07-03T12:20:30.126+08:00  INFO 1772 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Notify connected event to listeners.
+2024-07-03T12:20:30.127+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T12:20:30.127+08:00  INFO 1772 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Connected,notify listen context...
+2024-07-03T12:20:30.127+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [bd88edf9-37ef-4034-94bf-dc6d13b279f7_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x00000294a247e440
+2024-07-03T12:20:30.172+08:00  INFO 1772 --- [user-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-03T12:20:30.188+08:00  WARN 1772 --- [user-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2024-07-03T12:20:30.197+08:00  INFO 1772 --- [user-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-03T12:20:30.236+08:00  INFO 1772 --- [user-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}]
+2024-07-03T12:20:30.248+08:00  INFO 1772 --- [user-service] [main] o.e.userservice.UserServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-03T12:20:30.587+08:00  INFO 2980 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-03T12:20:30.589+08:00  INFO 2980 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-03T12:20:30.590+08:00  INFO 2980 --- [user-service] [Thread-1] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-03T12:20:30.590+08:00  INFO 2980 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-03T12:20:30.615+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-03T12:20:30.615+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-03T12:20:30.615+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-03T12:20:30.616+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-03T12:20:30.617+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-03T12:20:30.617+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-03T12:20:30.617+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-03T12:20:30.617+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-03T12:20:30.617+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-03T12:20:30.629+08:00  INFO 2980 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T12:20:30.629+08:00  INFO 2980 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T12:20:30.722+08:00  INFO 2980 --- [user-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-03T12:20:30.726+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 2910e384-cd57-4baa-81db-835e446d4e79_config-0
+2024-07-03T12:20:30.738+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001f22e311188
+2024-07-03T12:20:30.739+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001f22e3115a8
+2024-07-03T12:20:30.739+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-03T12:20:30.740+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-03T12:20:30.745+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-03T12:20:30.764+08:00  INFO 1772 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03T12:20:30.770+08:00  INFO 2980 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T12:20:30.800+08:00  INFO 1772 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+2024-07-03T12:20:31.024+08:00  INFO 1772 --- [user-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=429f135e-c62f-3818-9e78-92ae7922205e
+2024-07-03T12:20:31.268+08:00  INFO 2980 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-03T12:20:31.270+08:00  INFO 2980 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-03T12:20:31.270+08:00  INFO 2980 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-03T12:20:31.271+08:00  INFO 2980 --- [user-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-03T12:20:31.288+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1719980431190_127.0.0.1_56061
+2024-07-03T12:20:31.288+08:00  INFO 2980 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Notify connected event to listeners.
+2024-07-03T12:20:31.289+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T12:20:31.289+08:00  INFO 2980 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Connected,notify listen context...
+2024-07-03T12:20:31.289+08:00  INFO 2980 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [2910e384-cd57-4baa-81db-835e446d4e79_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001f22e4a28b0
+2024-07-03T12:20:31.302+08:00  INFO 1772 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-07-03T12:20:31.314+08:00  INFO 1772 --- [user-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-03T12:20:31.314+08:00  INFO 1772 --- [user-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-03T12:20:31.325+08:00  INFO 2980 --- [user-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-03T12:20:31.340+08:00  WARN 2980 --- [user-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2024-07-03T12:20:31.347+08:00  INFO 2980 --- [user-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-03T12:20:31.374+08:00  INFO 2980 --- [user-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}]
+2024-07-03T12:20:31.381+08:00  INFO 1772 --- [user-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-03T12:20:31.382+08:00  INFO 1772 --- [user-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1111 ms
+2024-07-03T12:20:31.386+08:00  INFO 2980 --- [user-service] [main] o.e.userservice.UserServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-03T12:20:31.482+08:00  INFO 1772 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-03T12:20:31.639+08:00  INFO 1772 --- [user-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b56d8a7
+2024-07-03T12:20:31.641+08:00  INFO 1772 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-03T12:20:31.674+08:00  INFO 1772 --- [user-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03T12:20:31.719+08:00  INFO 1772 --- [user-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-03T12:20:31.748+08:00  INFO 1772 --- [user-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-03T12:20:31.830+08:00  INFO 2980 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03T12:20:31.865+08:00  INFO 2980 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 1 JPA repository interface.
+2024-07-03T12:20:32.021+08:00  INFO 1772 --- [user-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03T12:20:32.031+08:00  INFO 2980 --- [user-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=429f135e-c62f-3818-9e78-92ae7922205e
+2024-07-03T12:20:32.363+08:00  INFO 2980 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-07-03T12:20:32.377+08:00  INFO 2980 --- [user-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-03T12:20:32.377+08:00  INFO 2980 --- [user-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-03T12:20:32.508+08:00  INFO 2980 --- [user-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-03T12:20:32.509+08:00  INFO 2980 --- [user-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1110 ms
+2024-07-03T12:20:32.623+08:00  INFO 2980 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-03T12:20:32.738+08:00  INFO 2980 --- [user-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64eeddd8
+2024-07-03T12:20:32.739+08:00  INFO 2980 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-03T12:20:32.768+08:00  INFO 2980 --- [user-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03T12:20:32.806+08:00  INFO 2980 --- [user-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-03T12:20:32.834+08:00  INFO 2980 --- [user-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-03T12:20:32.999+08:00  INFO 1772 --- [user-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03T12:20:33.002+08:00  INFO 1772 --- [user-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T12:20:33.077+08:00  INFO 2980 --- [user-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03T12:20:33.349+08:00  WARN 1772 --- [user-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03T12:20:33.367+08:00  INFO 1772 --- [user-service] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-07-03T12:20:33.757+08:00  INFO 2980 --- [user-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03T12:20:33.760+08:00  INFO 2980 --- [user-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T12:20:33.807+08:00  INFO 1772 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2024-07-03T12:20:33.811+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ans.namespace attribute : null
+2024-07-03T12:20:33.811+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ALIBABA_ALIWARE_NAMESPACE attribute :null
+2024-07-03T12:20:33.812+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from namespace attribute :null
+2024-07-03T12:20:33.817+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.client.naming          : FailoverDataSource type is class com.alibaba.nacos.client.naming.backups.datasource.DiskFailoverDataSource
+2024-07-03T12:20:33.820+08:00  INFO 1772 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T12:20:33.820+08:00  INFO 1772 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T12:20:33.823+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 66cce6c9-7809-4ab7-8bfd-90dacd85496c
+2024-07-03T12:20:33.827+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.client.naming          : Create naming rpc client for uuid->66cce6c9-7809-4ab7-8bfd-90dacd85496c
+2024-07-03T12:20:33.827+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+2024-07-03T12:20:33.827+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+2024-07-03T12:20:33.827+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+2024-07-03T12:20:33.828+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] Try to connect to server on start up, server: {serverIp = 'localhost', server main port = 8848}
+2024-07-03T12:20:33.828+08:00  INFO 1772 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:localhost ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T12:20:33.839+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] Success to connect to server [localhost:8848] on start up, connectionId = 1719980433833_127.0.0.1_56085
+2024-07-03T12:20:33.839+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T12:20:33.839+08:00  INFO 1772 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] Notify connected event to listeners.
+2024-07-03T12:20:33.839+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [66cce6c9-7809-4ab7-8bfd-90dacd85496c] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x00000294a247e440
+2024-07-03T12:20:33.839+08:00  INFO 1772 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.client.naming          : Grpc connection connect
+2024-07-03T12:20:33.840+08:00  INFO 1772 --- [user-service] [main] com.alibaba.nacos.client.naming          : [REGISTER-SERVICE] public registering service user-service with instance Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={IPv6=[2403:d400:1000:12:a4cb:66cf:c3ba:a5dd], preserved.register.source=SPRING_CLOUD}}
+2024-07-03T12:20:33.850+08:00  INFO 1772 --- [user-service] [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, DEFAULT_GROUP user-service 2.0.0.1:8082 register finished
+2024-07-03T12:20:33.863+08:00  INFO 1772 --- [user-service] [main] o.e.userservice.UserServiceApplication   : Started UserServiceApplication in 5.131 seconds (process running for 5.85)
+2024-07-03T12:20:33.866+08:00  INFO 1772 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : config listener notify warn timeout millis use default 60000 millis 
+2024-07-03T12:20:33.867+08:00  INFO 1772 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2024-07-03T12:20:33.870+08:00  INFO 1772 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service.yaml+DEFAULT_GROUP
+2024-07-03T12:20:33.876+08:00  INFO 1772 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service.yaml, group=DEFAULT_GROUP, cnt=1
+2024-07-03T12:20:33.877+08:00  INFO 1772 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service.yaml, group=DEFAULT_GROUP
+2024-07-03T12:20:33.877+08:00  INFO 1772 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service+DEFAULT_GROUP
+2024-07-03T12:20:33.877+08:00  INFO 1772 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service, group=DEFAULT_GROUP, cnt=1
+2024-07-03T12:20:33.877+08:00  INFO 1772 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2024-07-03T12:20:34.053+08:00  WARN 2980 --- [user-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03T12:20:34.073+08:00  INFO 2980 --- [user-service] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-07-03T12:20:34.454+08:00  WARN 2980 --- [user-service] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-07-03T12:20:34.457+08:00  INFO 2980 --- [user-service] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T12:20:34.459+08:00  INFO 2980 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-03T12:20:34.464+08:00  INFO 2980 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-03T12:20:34.465+08:00  INFO 2980 --- [user-service] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-07-03T12:20:34.473+08:00  INFO 2980 --- [user-service] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-07-03T12:20:34.484+08:00 ERROR 2980 --- [user-service] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8082 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8082 or configure this application to listen on another port.
+
+2024-07-03T12:20:34.485+08:00  WARN 2980 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2024-07-03T12:20:34.485+08:00  WARN 2980 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2024-07-03T12:20:34.485+08:00  WARN 2980 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2024-07-03T12:20:34.486+08:00  WARN 2980 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2024-07-03T12:20:49.328+08:00  WARN 1772 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2024-07-03T12:20:49.328+08:00  WARN 1772 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2024-07-03T12:20:49.328+08:00  WARN 1772 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2024-07-03T12:20:49.329+08:00  WARN 1772 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2024-07-03T12:20:49.335+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+2024-07-03T12:20:49.336+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service user-service with instance: Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={}}
+2024-07-03T12:20:49.340+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+2024-07-03T12:20:49.340+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+2024-07-03T12:20:49.340+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown begin
+2024-07-03T12:20:49.341+08:00  WARN 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T12:20:49.341+08:00  WARN 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown stop
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+2024-07-03T12:20:49.341+08:00  WARN 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T12:20:49.341+08:00  WARN 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->66cce6c9-7809-4ab7-8bfd-90dacd85496c
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@5876cd86[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 3]
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@147c00c7[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+2024-07-03T12:20:49.341+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1719980433833_127.0.0.1_56085
+2024-07-03T12:20:49.342+08:00  INFO 1772 --- [user-service] [nacos-grpc-client-executor-localhost-9] c.a.n.c.remote.client.grpc.GrpcClient    : [1719980433833_127.0.0.1_56085]Ignore complete event,isRunning:false,isAbandon=false
+2024-07-03T12:20:49.345+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@fb69ab1[Running, pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 12]
+2024-07-03T12:20:49.346+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->66cce6c9-7809-4ab7-8bfd-90dacd85496c
+2024-07-03T12:20:49.346+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialWatcher   : [null] CredentialWatcher is stopped
+2024-07-03T12:20:49.346+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialService   : [null] CredentialService is freed
+2024-07-03T12:20:49.346+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown stop
+2024-07-03T12:20:49.347+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T12:20:49.348+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-03T12:20:49.353+08:00  INFO 1772 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-03T12:20:51.723+08:00  INFO 7072 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-03T12:20:51.725+08:00  INFO 7072 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-03T12:20:51.725+08:00  INFO 7072 --- [user-service] [Thread-1] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-03T12:20:51.726+08:00  INFO 7072 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-03T12:20:51.743+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-03T12:20:51.743+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-03T12:20:51.743+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-03T12:20:51.743+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-03T12:20:51.743+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-03T12:20:51.743+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-03T12:20:51.744+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-03T12:20:51.744+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-03T12:20:51.744+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-03T12:20:51.749+08:00  INFO 7072 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T12:20:51.749+08:00  INFO 7072 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T12:20:51.825+08:00  INFO 7072 --- [user-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-03T12:20:51.828+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0
+2024-07-03T12:20:51.843+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001f9013314d0
+2024-07-03T12:20:51.844+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001f9013318f0
+2024-07-03T12:20:51.844+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-03T12:20:51.844+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-03T12:20:51.849+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-03T12:20:51.875+08:00  INFO 7072 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T12:20:52.345+08:00  INFO 7072 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-03T12:20:52.346+08:00  INFO 7072 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-03T12:20:52.347+08:00  INFO 7072 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-03T12:20:52.348+08:00  INFO 7072 --- [user-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-03T12:20:52.366+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1719980452275_127.0.0.1_56108
+2024-07-03T12:20:52.367+08:00  INFO 7072 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Notify connected event to listeners.
+2024-07-03T12:20:52.367+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T12:20:52.367+08:00  INFO 7072 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Connected,notify listen context...
+2024-07-03T12:20:52.368+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [78a6c8be-6f7b-4c51-a57a-5ece68849657_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001f901483628
+2024-07-03T12:20:52.409+08:00  INFO 7072 --- [user-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-03T12:20:52.424+08:00  WARN 7072 --- [user-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2024-07-03T12:20:52.429+08:00  INFO 7072 --- [user-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-03T12:20:52.477+08:00  INFO 7072 --- [user-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}]
+2024-07-03T12:20:52.493+08:00  INFO 7072 --- [user-service] [main] o.e.userservice.UserServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-03T12:20:52.955+08:00  INFO 7072 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03T12:20:52.993+08:00  INFO 7072 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+2024-07-03T12:20:53.160+08:00  INFO 7072 --- [user-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=429f135e-c62f-3818-9e78-92ae7922205e
+2024-07-03T12:20:53.406+08:00  INFO 7072 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-07-03T12:20:53.416+08:00  INFO 7072 --- [user-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-03T12:20:53.416+08:00  INFO 7072 --- [user-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-03T12:20:53.484+08:00  INFO 7072 --- [user-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-03T12:20:53.485+08:00  INFO 7072 --- [user-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 978 ms
+2024-07-03T12:20:53.573+08:00  INFO 7072 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-03T12:20:53.695+08:00  INFO 7072 --- [user-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b56d8a7
+2024-07-03T12:20:53.696+08:00  INFO 7072 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-03T12:20:53.727+08:00  INFO 7072 --- [user-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03T12:20:53.768+08:00  INFO 7072 --- [user-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-03T12:20:53.796+08:00  INFO 7072 --- [user-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-03T12:20:54.025+08:00  INFO 7072 --- [user-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03T12:20:54.732+08:00  INFO 7072 --- [user-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03T12:20:54.734+08:00  INFO 7072 --- [user-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T12:20:55.049+08:00  WARN 7072 --- [user-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03T12:20:55.067+08:00  INFO 7072 --- [user-service] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-07-03T12:20:55.508+08:00  INFO 7072 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2024-07-03T12:20:55.512+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ans.namespace attribute : null
+2024-07-03T12:20:55.512+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ALIBABA_ALIWARE_NAMESPACE attribute :null
+2024-07-03T12:20:55.513+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from namespace attribute :null
+2024-07-03T12:20:55.518+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.client.naming          : FailoverDataSource type is class com.alibaba.nacos.client.naming.backups.datasource.DiskFailoverDataSource
+2024-07-03T12:20:55.522+08:00  INFO 7072 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T12:20:55.522+08:00  INFO 7072 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T12:20:55.525+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 232901ff-6a47-43b2-93e2-0d5b6d2fb1de
+2024-07-03T12:20:55.528+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.client.naming          : Create naming rpc client for uuid->232901ff-6a47-43b2-93e2-0d5b6d2fb1de
+2024-07-03T12:20:55.528+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+2024-07-03T12:20:55.528+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+2024-07-03T12:20:55.528+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+2024-07-03T12:20:55.529+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] Try to connect to server on start up, server: {serverIp = 'localhost', server main port = 8848}
+2024-07-03T12:20:55.529+08:00  INFO 7072 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:localhost ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T12:20:55.539+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] Success to connect to server [localhost:8848] on start up, connectionId = 1719980455532_127.0.0.1_56121
+2024-07-03T12:20:55.539+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T12:20:55.539+08:00  INFO 7072 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] Notify connected event to listeners.
+2024-07-03T12:20:55.539+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [232901ff-6a47-43b2-93e2-0d5b6d2fb1de] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001f901483628
+2024-07-03T12:20:55.539+08:00  INFO 7072 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.client.naming          : Grpc connection connect
+2024-07-03T12:20:55.540+08:00  INFO 7072 --- [user-service] [main] com.alibaba.nacos.client.naming          : [REGISTER-SERVICE] public registering service user-service with instance Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={IPv6=[2403:d400:1000:12:a4cb:66cf:c3ba:a5dd], preserved.register.source=SPRING_CLOUD}}
+2024-07-03T12:20:55.550+08:00  INFO 7072 --- [user-service] [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, DEFAULT_GROUP user-service 2.0.0.1:8082 register finished
+2024-07-03T12:20:55.562+08:00  INFO 7072 --- [user-service] [main] o.e.userservice.UserServiceApplication   : Started UserServiceApplication in 4.46 seconds (process running for 5.227)
+2024-07-03T12:20:55.565+08:00  INFO 7072 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : config listener notify warn timeout millis use default 60000 millis 
+2024-07-03T12:20:55.565+08:00  INFO 7072 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2024-07-03T12:20:55.568+08:00  INFO 7072 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service.yaml+DEFAULT_GROUP
+2024-07-03T12:20:55.574+08:00  INFO 7072 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service.yaml, group=DEFAULT_GROUP, cnt=1
+2024-07-03T12:20:55.574+08:00  INFO 7072 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service.yaml, group=DEFAULT_GROUP
+2024-07-03T12:20:55.574+08:00  INFO 7072 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service+DEFAULT_GROUP
+2024-07-03T12:20:55.574+08:00  INFO 7072 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service, group=DEFAULT_GROUP, cnt=1
+2024-07-03T12:20:55.575+08:00  INFO 7072 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2024-07-03T12:21:04.237+08:00  INFO 7072 --- [user-service] [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-03T12:21:04.238+08:00  INFO 7072 --- [user-service] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-03T12:21:04.239+08:00  INFO 7072 --- [user-service] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-03T13:01:44.961+08:00  WARN 7072 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2024-07-03T13:01:44.961+08:00  WARN 7072 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2024-07-03T13:01:44.962+08:00  WARN 7072 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2024-07-03T13:01:44.962+08:00  WARN 7072 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2024-07-03T13:01:44.971+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+2024-07-03T13:01:44.971+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service user-service with instance: Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={}}
+2024-07-03T13:01:44.975+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+2024-07-03T13:01:44.975+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown begin
+2024-07-03T13:01:44.976+08:00  WARN 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T13:01:44.976+08:00  WARN 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown stop
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+2024-07-03T13:01:44.976+08:00  WARN 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T13:01:44.976+08:00  WARN 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->232901ff-6a47-43b2-93e2-0d5b6d2fb1de
+2024-07-03T13:01:44.976+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@27b89e0a[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 814]
+2024-07-03T13:01:44.977+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+2024-07-03T13:01:44.977+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@fb69ab1[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+2024-07-03T13:01:44.977+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1719980455532_127.0.0.1_56121
+2024-07-03T13:01:44.977+08:00  INFO 7072 --- [user-service] [nacos-grpc-client-executor-localhost-480] c.a.n.c.remote.client.grpc.GrpcClient    : [1719980455532_127.0.0.1_56121]Ignore complete event,isRunning:false,isAbandon=false
+2024-07-03T13:01:44.983+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@5b71ccf2[Running, pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 481]
+2024-07-03T13:01:44.983+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->232901ff-6a47-43b2-93e2-0d5b6d2fb1de
+2024-07-03T13:01:44.983+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialWatcher   : [null] CredentialWatcher is stopped
+2024-07-03T13:01:44.983+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialService   : [null] CredentialService is freed
+2024-07-03T13:01:44.983+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown stop
+2024-07-03T13:01:44.985+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T13:01:44.987+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-03T13:01:44.989+08:00  INFO 7072 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-03T13:01:51.760+08:00  INFO 31024 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-03T13:01:51.762+08:00  INFO 31024 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-03T13:01:51.763+08:00  INFO 31024 --- [user-service] [Thread-1] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-03T13:01:51.763+08:00  INFO 31024 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-03T13:01:51.786+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-03T13:01:51.786+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-03T13:01:51.786+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-03T13:01:51.786+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-03T13:01:51.787+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-03T13:01:51.787+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-03T13:01:51.787+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-03T13:01:51.787+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-03T13:01:51.787+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-03T13:01:51.798+08:00  INFO 31024 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T13:01:51.798+08:00  INFO 31024 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T13:01:51.898+08:00  INFO 31024 --- [user-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-03T13:01:51.902+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0
+2024-07-03T13:01:51.922+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001aa122f5da8
+2024-07-03T13:01:51.922+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001aa122f61c8
+2024-07-03T13:01:51.922+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-03T13:01:51.923+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-03T13:01:51.928+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-03T13:01:51.958+08:00  INFO 31024 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T13:01:52.594+08:00  INFO 31024 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-03T13:01:52.595+08:00  INFO 31024 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-03T13:01:52.597+08:00  INFO 31024 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-03T13:01:52.597+08:00  INFO 31024 --- [user-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-03T13:01:52.621+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1719982912510_127.0.0.1_51317
+2024-07-03T13:01:52.622+08:00  INFO 31024 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Notify connected event to listeners.
+2024-07-03T13:01:52.622+08:00  INFO 31024 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Connected,notify listen context...
+2024-07-03T13:01:52.622+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T13:01:52.623+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [3005f0d3-f9ae-4b66-bb95-027792f418b5_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001aa12488228
+2024-07-03T13:01:52.680+08:00  INFO 31024 --- [user-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-03T13:01:52.700+08:00  WARN 31024 --- [user-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2024-07-03T13:01:52.714+08:00  INFO 31024 --- [user-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-03T13:01:52.750+08:00  INFO 31024 --- [user-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}]
+2024-07-03T13:01:52.762+08:00  INFO 31024 --- [user-service] [main] o.e.userservice.UserServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-03T13:01:53.488+08:00  INFO 31024 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03T13:01:53.527+08:00  INFO 31024 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 1 JPA repository interface.
+2024-07-03T13:01:53.694+08:00  INFO 31024 --- [user-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=429f135e-c62f-3818-9e78-92ae7922205e
+2024-07-03T13:01:53.951+08:00  INFO 31024 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-07-03T13:01:53.963+08:00  INFO 31024 --- [user-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-03T13:01:53.963+08:00  INFO 31024 --- [user-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-03T13:01:54.038+08:00  INFO 31024 --- [user-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-03T13:01:54.038+08:00  INFO 31024 --- [user-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1263 ms
+2024-07-03T13:01:54.125+08:00  INFO 31024 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-03T13:01:54.249+08:00  INFO 31024 --- [user-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c62d2ad
+2024-07-03T13:01:54.250+08:00  INFO 31024 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-03T13:01:54.286+08:00  INFO 31024 --- [user-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03T13:01:54.348+08:00  INFO 31024 --- [user-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-03T13:01:54.385+08:00  INFO 31024 --- [user-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-03T13:01:54.700+08:00  INFO 31024 --- [user-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03T13:01:55.654+08:00  INFO 31024 --- [user-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03T13:01:55.657+08:00  INFO 31024 --- [user-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T13:01:56.047+08:00  WARN 31024 --- [user-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03T13:01:56.063+08:00  INFO 31024 --- [user-service] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-07-03T13:01:56.562+08:00  INFO 31024 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2024-07-03T13:01:56.568+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ans.namespace attribute : null
+2024-07-03T13:01:56.568+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ALIBABA_ALIWARE_NAMESPACE attribute :null
+2024-07-03T13:01:56.568+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from namespace attribute :null
+2024-07-03T13:01:56.576+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.client.naming          : FailoverDataSource type is class com.alibaba.nacos.client.naming.backups.datasource.DiskFailoverDataSource
+2024-07-03T13:01:56.580+08:00  INFO 31024 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T13:01:56.581+08:00  INFO 31024 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T13:01:56.584+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 63b56638-a3fc-4e35-80ec-4ae89cde6504
+2024-07-03T13:01:56.587+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.client.naming          : Create naming rpc client for uuid->63b56638-a3fc-4e35-80ec-4ae89cde6504
+2024-07-03T13:01:56.587+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+2024-07-03T13:01:56.587+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+2024-07-03T13:01:56.587+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+2024-07-03T13:01:56.588+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] Try to connect to server on start up, server: {serverIp = 'localhost', server main port = 8848}
+2024-07-03T13:01:56.589+08:00  INFO 31024 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:localhost ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T13:01:56.604+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] Success to connect to server [localhost:8848] on start up, connectionId = 1719982916594_127.0.0.1_51334
+2024-07-03T13:01:56.604+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T13:01:56.604+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001aa12488228
+2024-07-03T13:01:56.604+08:00  INFO 31024 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [63b56638-a3fc-4e35-80ec-4ae89cde6504] Notify connected event to listeners.
+2024-07-03T13:01:56.604+08:00  INFO 31024 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.client.naming          : Grpc connection connect
+2024-07-03T13:01:56.605+08:00  INFO 31024 --- [user-service] [main] com.alibaba.nacos.client.naming          : [REGISTER-SERVICE] public registering service user-service with instance Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={IPv6=[2403:d400:1000:12:a4cb:66cf:c3ba:a5dd], preserved.register.source=SPRING_CLOUD}}
+2024-07-03T13:01:56.615+08:00  INFO 31024 --- [user-service] [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, DEFAULT_GROUP user-service 2.0.0.1:8082 register finished
+2024-07-03T13:01:56.628+08:00  INFO 31024 --- [user-service] [main] o.e.userservice.UserServiceApplication   : Started UserServiceApplication in 5.492 seconds (process running for 10.249)
+2024-07-03T13:01:56.632+08:00  INFO 31024 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : config listener notify warn timeout millis use default 60000 millis 
+2024-07-03T13:01:56.632+08:00  INFO 31024 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2024-07-03T13:01:56.634+08:00  INFO 31024 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service.yaml+DEFAULT_GROUP
+2024-07-03T13:01:56.644+08:00  INFO 31024 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service.yaml, group=DEFAULT_GROUP, cnt=1
+2024-07-03T13:01:56.645+08:00  INFO 31024 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service.yaml, group=DEFAULT_GROUP
+2024-07-03T13:01:56.645+08:00  INFO 31024 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service+DEFAULT_GROUP
+2024-07-03T13:01:56.646+08:00  INFO 31024 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service, group=DEFAULT_GROUP, cnt=1
+2024-07-03T13:01:56.646+08:00  INFO 31024 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2024-07-03T13:02:19.972+08:00  WARN 31024 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2024-07-03T13:02:19.972+08:00  WARN 31024 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2024-07-03T13:02:19.973+08:00  WARN 31024 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2024-07-03T13:02:19.973+08:00  WARN 31024 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2024-07-03T13:02:19.979+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+2024-07-03T13:02:19.979+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service user-service with instance: Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={}}
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+2024-07-03T13:02:19.983+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown begin
+2024-07-03T13:02:19.983+08:00  WARN 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T13:02:19.983+08:00  WARN 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown stop
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+2024-07-03T13:02:19.984+08:00  WARN 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T13:02:19.984+08:00  WARN 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->63b56638-a3fc-4e35-80ec-4ae89cde6504
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@7752f9fe[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 7]
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@4bdec54[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+2024-07-03T13:02:19.984+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1719982916594_127.0.0.1_51334
+2024-07-03T13:02:19.985+08:00  INFO 31024 --- [user-service] [nacos-grpc-client-executor-localhost-12] c.a.n.c.remote.client.grpc.GrpcClient    : [1719982916594_127.0.0.1_51334]Ignore complete event,isRunning:false,isAbandon=false
+2024-07-03T13:02:19.986+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@5632bed3[Running, pool size = 5, active threads = 0, queued tasks = 0, completed tasks = 13]
+2024-07-03T13:02:19.986+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->63b56638-a3fc-4e35-80ec-4ae89cde6504
+2024-07-03T13:02:19.986+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialWatcher   : [null] CredentialWatcher is stopped
+2024-07-03T13:02:19.986+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialService   : [null] CredentialService is freed
+2024-07-03T13:02:19.987+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown stop
+2024-07-03T13:02:19.988+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T13:02:19.989+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-03T13:02:19.993+08:00  INFO 31024 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-03T13:02:22.787+08:00  INFO 5084 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-03T13:02:22.789+08:00  INFO 5084 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-03T13:02:22.790+08:00  INFO 5084 --- [user-service] [Thread-1] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-03T13:02:22.790+08:00  INFO 5084 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-03T13:02:22.816+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-03T13:02:22.816+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-03T13:02:22.816+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-03T13:02:22.816+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-03T13:02:22.817+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-03T13:02:22.817+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-03T13:02:22.817+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-03T13:02:22.817+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-03T13:02:22.817+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-03T13:02:22.823+08:00  INFO 5084 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T13:02:22.823+08:00  INFO 5084 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T13:02:22.893+08:00  INFO 5084 --- [user-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-03T13:02:22.896+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0
+2024-07-03T13:02:22.911+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x0000022e09309188
+2024-07-03T13:02:22.911+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x0000022e093095a8
+2024-07-03T13:02:22.912+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-03T13:02:22.912+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-03T13:02:22.917+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-03T13:02:22.944+08:00  INFO 5084 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T13:02:23.402+08:00  INFO 5084 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-03T13:02:23.403+08:00  INFO 5084 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-03T13:02:23.403+08:00  INFO 5084 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-03T13:02:23.404+08:00  INFO 5084 --- [user-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-03T13:02:23.421+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1719982943331_127.0.0.1_51365
+2024-07-03T13:02:23.421+08:00  INFO 5084 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Notify connected event to listeners.
+2024-07-03T13:02:23.421+08:00  INFO 5084 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Connected,notify listen context...
+2024-07-03T13:02:23.421+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T13:02:23.422+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [596e4dd4-1a36-48af-ac2c-13e625c4bc49_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x0000022e0949b1d8
+2024-07-03T13:02:23.459+08:00  INFO 5084 --- [user-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-03T13:02:23.474+08:00  WARN 5084 --- [user-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2024-07-03T13:02:23.479+08:00  INFO 5084 --- [user-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-03T13:02:23.512+08:00  INFO 5084 --- [user-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}]
+2024-07-03T13:02:23.523+08:00  INFO 5084 --- [user-service] [main] o.e.userservice.UserServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-03T13:02:23.958+08:00  INFO 5084 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03T13:02:23.993+08:00  INFO 5084 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 1 JPA repository interface.
+2024-07-03T13:02:24.140+08:00  INFO 5084 --- [user-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=429f135e-c62f-3818-9e78-92ae7922205e
+2024-07-03T13:02:24.390+08:00  INFO 5084 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-07-03T13:02:24.400+08:00  INFO 5084 --- [user-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-03T13:02:24.400+08:00  INFO 5084 --- [user-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-03T13:02:24.464+08:00  INFO 5084 --- [user-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-03T13:02:24.464+08:00  INFO 5084 --- [user-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 930 ms
+2024-07-03T13:02:24.537+08:00  INFO 5084 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-03T13:02:24.661+08:00  INFO 5084 --- [user-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6de5ad56
+2024-07-03T13:02:24.663+08:00  INFO 5084 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-03T13:02:24.693+08:00  INFO 5084 --- [user-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03T13:02:24.744+08:00  INFO 5084 --- [user-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-03T13:02:24.770+08:00  INFO 5084 --- [user-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-03T13:02:24.996+08:00  INFO 5084 --- [user-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03T13:02:25.770+08:00  INFO 5084 --- [user-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03T13:02:25.773+08:00  INFO 5084 --- [user-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T13:02:26.107+08:00  WARN 5084 --- [user-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03T13:02:26.126+08:00  INFO 5084 --- [user-service] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-07-03T13:02:26.566+08:00  INFO 5084 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2024-07-03T13:02:26.571+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ans.namespace attribute : null
+2024-07-03T13:02:26.572+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ALIBABA_ALIWARE_NAMESPACE attribute :null
+2024-07-03T13:02:26.572+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from namespace attribute :null
+2024-07-03T13:02:26.578+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.client.naming          : FailoverDataSource type is class com.alibaba.nacos.client.naming.backups.datasource.DiskFailoverDataSource
+2024-07-03T13:02:26.581+08:00  INFO 5084 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T13:02:26.581+08:00  INFO 5084 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T13:02:26.585+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 6c42c6aa-7639-42bc-af83-cf035a99b805
+2024-07-03T13:02:26.588+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.client.naming          : Create naming rpc client for uuid->6c42c6aa-7639-42bc-af83-cf035a99b805
+2024-07-03T13:02:26.588+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+2024-07-03T13:02:26.588+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+2024-07-03T13:02:26.589+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+2024-07-03T13:02:26.589+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] Try to connect to server on start up, server: {serverIp = 'localhost', server main port = 8848}
+2024-07-03T13:02:26.589+08:00  INFO 5084 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:localhost ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T13:02:26.604+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] Success to connect to server [localhost:8848] on start up, connectionId = 1719982946593_127.0.0.1_51378
+2024-07-03T13:02:26.605+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T13:02:26.605+08:00  INFO 5084 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] Notify connected event to listeners.
+2024-07-03T13:02:26.605+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [6c42c6aa-7639-42bc-af83-cf035a99b805] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x0000022e0949b1d8
+2024-07-03T13:02:26.605+08:00  INFO 5084 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.client.naming          : Grpc connection connect
+2024-07-03T13:02:26.606+08:00  INFO 5084 --- [user-service] [main] com.alibaba.nacos.client.naming          : [REGISTER-SERVICE] public registering service user-service with instance Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={IPv6=[2403:d400:1000:12:a4cb:66cf:c3ba:a5dd], preserved.register.source=SPRING_CLOUD}}
+2024-07-03T13:02:26.617+08:00  INFO 5084 --- [user-service] [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, DEFAULT_GROUP user-service 2.0.0.1:8082 register finished
+2024-07-03T13:02:26.632+08:00  INFO 5084 --- [user-service] [main] o.e.userservice.UserServiceApplication   : Started UserServiceApplication in 4.43 seconds (process running for 5.151)
+2024-07-03T13:02:26.635+08:00  INFO 5084 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : config listener notify warn timeout millis use default 60000 millis 
+2024-07-03T13:02:26.636+08:00  INFO 5084 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2024-07-03T13:02:26.638+08:00  INFO 5084 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service.yaml+DEFAULT_GROUP
+2024-07-03T13:02:26.648+08:00  INFO 5084 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service.yaml, group=DEFAULT_GROUP, cnt=1
+2024-07-03T13:02:26.648+08:00  INFO 5084 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service.yaml, group=DEFAULT_GROUP
+2024-07-03T13:02:26.648+08:00  INFO 5084 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service+DEFAULT_GROUP
+2024-07-03T13:02:26.648+08:00  INFO 5084 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service, group=DEFAULT_GROUP, cnt=1
+2024-07-03T13:02:26.648+08:00  INFO 5084 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2024-07-03T13:03:01.166+08:00  WARN 5084 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2024-07-03T13:03:01.167+08:00  WARN 5084 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2024-07-03T13:03:01.167+08:00  WARN 5084 --- [user-service] [Thread-5] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2024-07-03T13:03:01.167+08:00  WARN 5084 --- [user-service] [Thread-2] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2024-07-03T13:03:01.174+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+2024-07-03T13:03:01.174+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service user-service with instance: Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={}}
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown begin
+2024-07-03T13:03:01.178+08:00  WARN 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T13:03:01.178+08:00  WARN 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown stop
+2024-07-03T13:03:01.178+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+2024-07-03T13:03:01.179+08:00  WARN 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2024-07-03T13:03:01.179+08:00  WARN 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2024-07-03T13:03:01.179+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+2024-07-03T13:03:01.179+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown naming grpc client proxy for  uuid->6c42c6aa-7639-42bc-af83-cf035a99b805
+2024-07-03T13:03:01.179+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@42bb0492[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 11]
+2024-07-03T13:03:01.179+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+2024-07-03T13:03:01.179+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@5ac3c6cd[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+2024-07-03T13:03:01.179+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1719982946593_127.0.0.1_51378
+2024-07-03T13:03:01.180+08:00  INFO 5084 --- [user-service] [nacos-grpc-client-executor-localhost-15] c.a.n.c.remote.client.grpc.GrpcClient    : [1719982946593_127.0.0.1_51378]Ignore complete event,isRunning:false,isAbandon=false
+2024-07-03T13:03:01.181+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@3c2406dd[Running, pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 16]
+2024-07-03T13:03:01.182+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : shutdown and remove naming rpc client  for uuid ->6c42c6aa-7639-42bc-af83-cf035a99b805
+2024-07-03T13:03:01.182+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialWatcher   : [null] CredentialWatcher is stopped
+2024-07-03T13:03:01.182+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] c.a.n.c.a.r.identify.CredentialService   : [null] CredentialService is freed
+2024-07-03T13:03:01.182+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown stop
+2024-07-03T13:03:01.183+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T13:03:01.184+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-03T13:03:01.189+08:00  INFO 5084 --- [user-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-03T13:03:03.595+08:00  INFO 22932 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-03T13:03:03.598+08:00  INFO 22932 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-03T13:03:03.598+08:00  INFO 22932 --- [user-service] [Thread-1] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-03T13:03:03.599+08:00  INFO 22932 --- [user-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-03T13:03:03.625+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-03T13:03:03.625+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-03T13:03:03.625+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-03T13:03:03.626+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-03T13:03:03.626+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-03T13:03:03.626+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-03T13:03:03.626+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-03T13:03:03.626+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-03T13:03:03.626+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-03T13:03:03.631+08:00  INFO 22932 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T13:03:03.632+08:00  INFO 22932 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T13:03:03.719+08:00  INFO 22932 --- [user-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-03T13:03:03.722+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0
+2024-07-03T13:03:03.736+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001b4a7331188
+2024-07-03T13:03:03.736+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001b4a73315a8
+2024-07-03T13:03:03.736+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-03T13:03:03.737+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-03T13:03:03.742+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-03T13:03:03.768+08:00  INFO 22932 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T13:03:04.224+08:00  INFO 22932 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-03T13:03:04.225+08:00  INFO 22932 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-03T13:03:04.226+08:00  INFO 22932 --- [user-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-03T13:03:04.226+08:00  INFO 22932 --- [user-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-03T13:03:04.243+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1719982984156_127.0.0.1_51427
+2024-07-03T13:03:04.244+08:00  INFO 22932 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Notify connected event to listeners.
+2024-07-03T13:03:04.244+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T13:03:04.244+08:00  INFO 22932 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Connected,notify listen context...
+2024-07-03T13:03:04.245+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [4e166cc2-380d-496a-8563-8399b6d7dfa5_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001b4a7483628
+2024-07-03T13:03:04.283+08:00  INFO 22932 --- [user-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-03T13:03:04.298+08:00  WARN 22932 --- [user-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2024-07-03T13:03:04.303+08:00  INFO 22932 --- [user-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-03T13:03:04.334+08:00  INFO 22932 --- [user-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}]
+2024-07-03T13:03:04.346+08:00  INFO 22932 --- [user-service] [main] o.e.userservice.UserServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-03T13:03:04.829+08:00  INFO 22932 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03T13:03:04.868+08:00  INFO 22932 --- [user-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 1 JPA repository interface.
+2024-07-03T13:03:05.019+08:00  INFO 22932 --- [user-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=429f135e-c62f-3818-9e78-92ae7922205e
+2024-07-03T13:03:05.276+08:00  INFO 22932 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-07-03T13:03:05.286+08:00  INFO 22932 --- [user-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-03T13:03:05.286+08:00  INFO 22932 --- [user-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-03T13:03:05.354+08:00  INFO 22932 --- [user-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-03T13:03:05.354+08:00  INFO 22932 --- [user-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 996 ms
+2024-07-03T13:03:05.439+08:00  INFO 22932 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-03T13:03:05.562+08:00  INFO 22932 --- [user-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3155f190
+2024-07-03T13:03:05.564+08:00  INFO 22932 --- [user-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-03T13:03:05.593+08:00  INFO 22932 --- [user-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03T13:03:05.669+08:00  INFO 22932 --- [user-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-03T13:03:05.696+08:00  INFO 22932 --- [user-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-03T13:03:05.929+08:00  INFO 22932 --- [user-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03T13:03:06.651+08:00  INFO 22932 --- [user-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03T13:03:06.654+08:00  INFO 22932 --- [user-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T13:03:06.973+08:00  WARN 22932 --- [user-service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03T13:03:06.989+08:00  INFO 22932 --- [user-service] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-07-03T13:03:07.403+08:00  INFO 22932 --- [user-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2024-07-03T13:03:07.409+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ans.namespace attribute : null
+2024-07-03T13:03:07.409+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from ALIBABA_ALIWARE_NAMESPACE attribute :null
+2024-07-03T13:03:07.409+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.client.naming          : initializer namespace from namespace attribute :null
+2024-07-03T13:03:07.414+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.client.naming          : FailoverDataSource type is class com.alibaba.nacos.client.naming.backups.datasource.DiskFailoverDataSource
+2024-07-03T13:03:07.417+08:00  INFO 22932 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-03T13:03:07.417+08:00  INFO 22932 --- [user-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-03T13:03:07.420+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of f1c87829-c45d-4319-948d-b7eea9c5c7be
+2024-07-03T13:03:07.424+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.client.naming          : Create naming rpc client for uuid->f1c87829-c45d-4319-948d-b7eea9c5c7be
+2024-07-03T13:03:07.424+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+2024-07-03T13:03:07.424+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+2024-07-03T13:03:07.424+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+2024-07-03T13:03:07.424+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] Try to connect to server on start up, server: {serverIp = 'localhost', server main port = 8848}
+2024-07-03T13:03:07.425+08:00  INFO 22932 --- [user-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:localhost ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-03T13:03:07.438+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] Success to connect to server [localhost:8848] on start up, connectionId = 1719982987428_127.0.0.1_51443
+2024-07-03T13:03:07.438+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-03T13:03:07.438+08:00  INFO 22932 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] Notify connected event to listeners.
+2024-07-03T13:03:07.438+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.common.remote.client   : [f1c87829-c45d-4319-948d-b7eea9c5c7be] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001b4a7483628
+2024-07-03T13:03:07.438+08:00  INFO 22932 --- [user-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.client.naming          : Grpc connection connect
+2024-07-03T13:03:07.439+08:00  INFO 22932 --- [user-service] [main] com.alibaba.nacos.client.naming          : [REGISTER-SERVICE] public registering service user-service with instance Instance{instanceId='null', ip='2.0.0.1', port=8082, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={IPv6=[2403:d400:1000:12:a4cb:66cf:c3ba:a5dd], preserved.register.source=SPRING_CLOUD}}
+2024-07-03T13:03:07.448+08:00  INFO 22932 --- [user-service] [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, DEFAULT_GROUP user-service 2.0.0.1:8082 register finished
+2024-07-03T13:03:07.461+08:00  INFO 22932 --- [user-service] [main] o.e.userservice.UserServiceApplication   : Started UserServiceApplication in 4.497 seconds (process running for 5.29)
+2024-07-03T13:03:07.464+08:00  INFO 22932 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : config listener notify warn timeout millis use default 60000 millis 
+2024-07-03T13:03:07.464+08:00  INFO 22932 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2024-07-03T13:03:07.466+08:00  INFO 22932 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service.yaml+DEFAULT_GROUP
+2024-07-03T13:03:07.473+08:00  INFO 22932 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service.yaml, group=DEFAULT_GROUP, cnt=1
+2024-07-03T13:03:07.473+08:00  INFO 22932 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service.yaml, group=DEFAULT_GROUP
+2024-07-03T13:03:07.473+08:00  INFO 22932 --- [user-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] user-service+DEFAULT_GROUP
+2024-07-03T13:03:07.473+08:00  INFO 22932 --- [user-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=user-service, group=DEFAULT_GROUP, cnt=1
+2024-07-03T13:03:07.473+08:00  INFO 22932 --- [user-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP

@@ -34,6 +34,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        System.out.println("to here");
         http
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers(getRequestMatchers(ignoreUrlsConfig.getUrls())).permitAll() // 配置白名单

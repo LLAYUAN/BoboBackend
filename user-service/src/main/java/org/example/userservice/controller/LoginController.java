@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RefreshScope
 @RestController
-@RequestMapping(value = "/user")
+//@RequestMapping(value = "/user")
 public class LoginController {
 
     @Autowired
@@ -34,6 +34,7 @@ public class LoginController {
 
     @GetMapping(value = "/publicKey")
     public CommonResult getPublicKey() {
+        System.out.println("publicKey: " + publicKey);
         return CommonResult.success(publicKey);
     }
 
