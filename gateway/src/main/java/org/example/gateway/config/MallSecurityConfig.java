@@ -1,4 +1,4 @@
-//package org.example.userservice.config;
+//package org.example.gateway.config;
 //
 //import org.example.userservice.service.UserInfoService;
 //import org.springframework.context.annotation.Bean;
