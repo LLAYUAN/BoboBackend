@@ -1,5 +1,6 @@
 package org.example.userservice.controller;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.entity.UserInfo;
 import org.example.userservice.service.UserInfoService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ServerWebExchange;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +35,16 @@ public class LoginController {
     private JwtTokenUtil jwtTokenUtil;
 
     @GetMapping(value = "/publicKey")
-    public CommonResult getPublicKey() {
+    public CommonResult getPublicKey(@RequestHeader("Authorization") String authorizationHeader) {
+        Integer userID = Integer.parseInt(authorizationHeader);
+        System.out.println("userID： " + userID.toString());
         System.out.println("publicKey: " + publicKey);
         return CommonResult.success(publicKey);
+    }
+
+    @GetMapping(value = "/test")
+    public CommonResult test() {
+        return CommonResult.success("test");
     }
 
     @PostMapping(value = "/login")
@@ -76,7 +85,8 @@ public class LoginController {
     @GetMapping(value = "/getUserInfo")
     public CommonResult getUserInfo(@RequestHeader("Authorization") String authorizationHeader) {
         // 获取token然后进行解析，得到用户名，再进一步获取用户信息
-        Integer userID = jwtTokenUtil.getUserIDFromHeader(authorizationHeader);
+        Integer userID = Integer.parseInt(authorizationHeader);
+//        Integer userID = jwtTokenUtil.getUserIDFromHeader(authorizationHeader);
         System.out.println("userID： " + userID.toString());
         return CommonResult.success("userID " + userID.toString());
     }
