@@ -29,35 +29,37 @@ public class UserInfoService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public UserDetails findUserByEmail(String email) {
-        UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);
-        if(userInfo == null){
-            throw new UsernameNotFoundException("用户名或密码错误");
-        }
-        else {
-            String role = "ROLE_USER"; // 默认角色
-            if (userInfo.getIsAdmin()) {
-                role = "ROLE_ADMIN"; // 管理员角色
-            }
-            List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(role));
-                return new User(userInfo.getUserID().toString(), userInfo.getPassword(), authorities);
-        }
-    }
+//    public UserDetails findUserByEmail(String email) {
+//        UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);
+//        if(userInfo == null){
+//            throw new UsernameNotFoundException("用户名或密码错误");
+//        }
+//        else {
+//            String role = "ROLE_USER"; // 默认角色
+//            if (userInfo.getIsAdmin()) {
+//                role = "ROLE_ADMIN"; // 管理员角色
+//            }
+//            List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(role));
+//                return new User(userInfo.getUserID().toString(), userInfo.getPassword(), authorities);
+//        }
+//    }
+//
+//    public UserDetails findUserByUserID(String userID) {
+//        UserInfo userInfo = completeUserDao.findUserInfoByUserID(Integer.parseInt(userID));
+//        if(userInfo == null){
+//            throw new UsernameNotFoundException("用户名或密码错误");
+//        }
+//        else {
+//            String role = "ROLE_USER"; // 默认角色
+//            if (userInfo.getIsAdmin()) {
+//                role = "ROLE_ADMIN"; // 管理员角色
+//            }
+//            List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(role));
+//            return new User(userInfo.getUserID().toString(), userInfo.getPassword(), authorities);
+//        }
+//    }
 
-    public UserDetails findUserByUserID(String userID) {
-        UserInfo userInfo = completeUserDao.findUserInfoByUserID(Integer.parseInt(userID));
-        if(userInfo == null){
-            throw new UsernameNotFoundException("用户名或密码错误");
-        }
-        else {
-            String role = "ROLE_USER"; // 默认角色
-            if (userInfo.getIsAdmin()) {
-                role = "ROLE_ADMIN"; // 管理员角色
-            }
-            List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(role));
-            return new User(userInfo.getUserID().toString(), userInfo.getPassword(), authorities);
-        }
-    }
+
 
     public String login(String email, String password) {
         Logger log = Logger.getLogger(UserInfoService.class.getName());
@@ -66,20 +68,21 @@ public class UserInfoService {
         // 密码需要客户端加密后传递
         try{
             // 根据用户名从数据库中获取用户信息
-            UserDetails userDetails = findUserByEmail(email);
+//            UserDetails userDetails = findUserByEmail(email);
+            UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);
             // 进行密码匹配
-            if (userDetails == null) {
+            if (userInfo == null) {
                 throw new UsernameNotFoundException("用户不存在");
             }
-            if (!passwordEncoder.matches(password,userDetails.getPassword())){
+            if (!passwordEncoder.matches(password,userInfo.getPassword())){
                 throw new BadCredentialsException("密码不正确");
             }
-            // 封装用户信息（由于使用 JWT 进行验证，这里不需要凭证）
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-            // 将用户信息存储到 Security 上下文中，以便于 Security 进行权限验证
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+//            // 封装用户信息（由于使用 JWT 进行验证，这里不需要凭证）
+//            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+//            // 将用户信息存储到 Security 上下文中，以便于 Security 进行权限验证
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
             // 生成 token
-            token = JwtTokenUtil.generateToken(userDetails);
+            token = JwtTokenUtil.generateToken(userInfo);
             // 添加登录记录
             log.info("用户"+email+"进行登录");
         }catch (UsernameNotFoundException | BadCredentialsException e){

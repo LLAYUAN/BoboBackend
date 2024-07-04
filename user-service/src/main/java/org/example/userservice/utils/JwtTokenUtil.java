@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.example.userservice.entity.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -126,54 +127,54 @@ public class JwtTokenUtil {
 
     //================ public methods ==================
 
-    /**
-     * 从 token 中获取登录用户名
-     * @param token JWT 的 token
-     * @return 登录用户名
-     */
-    public String getUserNameFromToken(String token){
-        String username;
-        try{
-            // 从 token 中获取 JWT 中的负载
-            Claims claims = getClaimsFromToken(token);
-            // 从负载中获取用户名
-            username = claims.getSubject();
-        }catch (Exception e){
-            username = null;
-        }
-        return username;
-    }
+//    /**
+//     * 从 token 中获取登录用户名
+//     * @param token JWT 的 token
+//     * @return 登录用户名
+//     */
+//    public String getUserNameFromToken(String token){
+//        String username;
+//        try{
+//            // 从 token 中获取 JWT 中的负载
+//            Claims claims = getClaimsFromToken(token);
+//            // 从负载中获取用户名
+//            username = claims.getSubject();
+//        }catch (Exception e){
+//            username = null;
+//        }
+//        return username;
+//    }
 
-    public Integer getUserIDFromHeader(String authorizedHeader){
-        authorizedHeader = authorizedHeader.substring(tokenHead.length());
-        return  Integer.parseInt(getUserNameFromToken(authorizedHeader));
-    }
+//    public Integer getUserIDFromHeader(String authorizedHeader){
+//        authorizedHeader = authorizedHeader.substring(tokenHead.length());
+//        return  Integer.parseInt(getUserNameFromToken(authorizedHeader));
+//    }
 
-    /**
-     * 验证 token 是否有效
-     * @param token JWT 的 token
-     * @param userDetails 从数据库中查询出来的用户信息（需要自定义 UserDetailsService 和 UserDetails）
-     * @return token 是否有效 true：有效 false：无效
-     */
-    public boolean validateToken(String token, UserDetails userDetails){
-        // 从 token 中获取用户名
-        String username = getUserNameFromToken(token);
-        // 条件一：用户名不为 null
-        // 条件二：用户名和 UserDetails 中的用户名一致
-        // 条件三：token 未过期
-        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
-    }
+//    /**
+//     * 验证 token 是否有效
+//     * @param token JWT 的 token
+//     * @param userDetails 从数据库中查询出来的用户信息（需要自定义 UserDetailsService 和 UserDetails）
+//     * @return token 是否有效 true：有效 false：无效
+//     */
+//    public boolean validateToken(String token, UserDetails userDetails){
+//        // 从 token 中获取用户名
+//        String username = getUserNameFromToken(token);
+//        // 条件一：用户名不为 null
+//        // 条件二：用户名和 UserDetails 中的用户名一致
+//        // 条件三：token 未过期
+//        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+//    }
 
     /**
      * 根据用户信息生成 token
-     * @param userDetails 用户信息（需要自定义 UserDetails）
+     * @param userInfo 用户信息
      * @return token 字符串
      */
-    public String generateToken(UserDetails userDetails){
+    public String generateToken(UserInfo userInfo){
         // 创建负载
         Map<String,Object> claims = new HashMap<>();
         // 设置负载中的用户名
-        claims.put(CLAM_KEY_USERNAME,userDetails.getUsername());
+        claims.put(CLAM_KEY_USERNAME,userInfo.getUserID().toString());
         // 设置负载中的创建时间
         claims.put(CLAM_KEY_CREATED,new Date());
         // 根据负载生成 token
