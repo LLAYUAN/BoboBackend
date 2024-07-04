@@ -1,6 +1,7 @@
 package org.example.userservice.controller;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
+import org.example.userservice.Feign.LiveVideoFeign;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.entity.UserInfo;
 import org.example.userservice.service.UserInfoService;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.core.env.Environment;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
@@ -32,7 +34,13 @@ public class LoginController {
     private String publicKey;
 
     @Autowired
+    private Environment environment;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private LiveVideoFeign liveVideoFeign;
 
     @GetMapping(value = "/publicKey")
     public CommonResult getPublicKey(@RequestHeader("Authorization") String authorizationHeader) {
@@ -44,7 +52,16 @@ public class LoginController {
 
     @GetMapping(value = "/test")
     public CommonResult test() {
-        return CommonResult.success("test");
+        String test = liveVideoFeign.test();
+        return CommonResult.success(test);
+//        String port = environment.getProperty("local.server.port");
+//        if ("8082".equals(port)) {
+//            return CommonResult.success("This is instance running on port 8082");
+//        } else if ("8086".equals(port)) {
+//            return CommonResult.success("This is instance running on port 8086");
+//        }
+////        return "Unknown instance";
+//        return CommonResult.success("test");
     }
 
     @PostMapping(value = "/login")
@@ -71,7 +88,7 @@ public class LoginController {
         Logger log = LoggerFactory.getLogger(LoginController.class);
         String email = (String) registerRequest.get("email");
         String password = (String) registerRequest.get("password");
-        log.info("email: " + email+ " password: " + password+"is going to register");
+        log.info("email: " + email+ " password: " + password+" is going to register");
         // 通过用户名和密码获取token
         UserInfo userInfo = userInfoService.register(email, password);
         // 如果userInfo为空，返回错误信息
@@ -79,7 +96,7 @@ public class LoginController {
             return CommonResult.failed("注册失败");
         }
         // 如果userInfo不为空，返回userInfo
-        return CommonResult.success(userInfo);
+        return CommonResult.success(null);
     }
 
     @GetMapping(value = "/getUserInfo")
