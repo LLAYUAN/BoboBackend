@@ -21,28 +21,13 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
+        System.out.println("Received a new web socket connection");
         logger.info("Received a new web socket connection");
     }
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
-        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-
-        String username = (String) headerAccessor.getSessionAttributes().get("username");
-        if (username != null) {
-            logger.info("User Disconnected : " + username);
-
-            ChatMessage chatMessage = new ChatMessage();
-            chatMessage.setType(ChatMessage.MessageType.LEAVE);
-            chatMessage.setSender(username);
-
-            String roomNumber = (String) headerAccessor.getSessionAttributes().get("roomID");
-            if (roomNumber != null) {
-                chatMessage.setRoomID(roomNumber);
-                rabbitTemplate.convertAndSend("chatQueue", chatMessage);
-            } else {
-                logger.warn("No room ID found for the user " + username);
-            }
-        }
+        System.out.println("Received a new web socket disconnection");
+        logger.info("Received a new web socket disconnection");
     }
 }
