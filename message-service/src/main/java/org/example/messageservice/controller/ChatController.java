@@ -24,20 +24,16 @@ public class ChatController {
         return "test";
     }
 
-    @MessageMapping("/chat.sendMessage/{roomID}")
+    @MessageMapping("/chat.sendMessage")
     public void sendMessage(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-        String roomNumber = headerAccessor.getDestination().split("/")[3];
-        chatMessage.setRoomID(roomNumber);
-        System.out.println("Received message in room " + roomNumber + ": " + chatMessage.getContent());
-        rabbitTemplate.convertAndSend("chatQueue", chatMessage);
+        System.out.println(chatMessage.getContent());
+        rabbitTemplate.convertAndSend("chatExchange", "",chatMessage);
     }
 
-    @MessageMapping("/chat.addUser/{roomID}")
+    @MessageMapping("/chat.addUser")
     public void addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-        String roomNumber = headerAccessor.getDestination().split("/")[3];
-        chatMessage.setRoomID(roomNumber);
-        System.out.println("Received addUser in room " + roomNumber + ": " + chatMessage.getSender());
+        System.out.println( ": " + chatMessage.getSender());
         chatMessage.setContent(chatMessage.getSender() + " joined");
-        rabbitTemplate.convertAndSend("chatQueue", chatMessage);
+        rabbitTemplate.convertAndSend("chatExchange", "", chatMessage);
     }
 }
