@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Objects;
 
-@Component
+//@Component
 public class JwtAuthenticationTokenFilter implements WebFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
 
