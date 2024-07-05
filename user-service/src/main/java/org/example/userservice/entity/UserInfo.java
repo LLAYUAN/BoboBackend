@@ -34,6 +34,9 @@ public class UserInfo {
     @Column(name = "is_admin")
     private Boolean isAdmin;
 
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
     public UserInfo() {
     }
 
