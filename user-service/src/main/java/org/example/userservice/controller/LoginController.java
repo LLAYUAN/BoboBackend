@@ -102,6 +102,8 @@ public class LoginController {
             return CommonResult.failed("注册失败");
         }
         // 如果userInfo不为空，返回userInfo
+        userInfo.setNickname("用户"+userInfo.getUserID().toString());
+        userInfoService.save(userInfo);
         return CommonResult.success(null);
     }
 
