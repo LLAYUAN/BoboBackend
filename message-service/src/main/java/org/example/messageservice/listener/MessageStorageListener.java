@@ -18,6 +18,7 @@ public class MessageStorageListener {
 
     @RabbitListener(queues = "chatStorageQueue")
     public void saveMessage(ChatMessage message) {
+        System.out.println("Save message: " + message);
         chatMessageRepository.save(message);
     }
 }
