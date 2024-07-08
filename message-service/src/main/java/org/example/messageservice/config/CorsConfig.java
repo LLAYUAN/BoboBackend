@@ -17,4 +17,3 @@ public class CorsConfig implements WebMvcConfigurer {
                 .exposedHeaders("*");
     }
 }
-
