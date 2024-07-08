@@ -72,8 +72,8 @@ public class UserController {
     // 点击关注按钮
     @PostMapping(value = "/follow")
     public CommonResult follow(@RequestHeader("Authorization") String authorizationHeader,
-                               @RequestBody Map<String,Object> requestBody) {
-        Integer followeeID = (Integer) requestBody.get("followeeID");
+                               @RequestBody Map<String, Integer> requestBody) {
+        Integer followeeID = requestBody.get("followeeID");
         // follower即发起关注的人，为当前用户
         Integer followerID = Integer.parseInt(authorizationHeader);
         userService.follow(followeeID, followerID);
@@ -83,8 +83,8 @@ public class UserController {
     // 点击取消关注按钮
     @PostMapping(value = "/unfollow")
     public CommonResult unfollow(@RequestHeader("Authorization") String authorizationHeader,
-                                 @RequestBody Map<String,Object> requestBody) {
-        Integer followeeID = (Integer) requestBody.get("followeeID");
+                                 @RequestBody Map<String, Integer> requestBody) {
+        Integer followeeID = requestBody.get("followeeID");
         // follower即发起关注的人，为当前用户
         Integer followerID = Integer.parseInt(authorizationHeader);
         userService.unfollow(followeeID, followerID);
