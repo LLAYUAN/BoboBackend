@@ -17,6 +17,7 @@ import java.util.Map;
 public class tryController {
     @GetMapping(value = "/test")
     public String test() {
+        System.out.println("test");
         return "livevideo-test";
     }
 }

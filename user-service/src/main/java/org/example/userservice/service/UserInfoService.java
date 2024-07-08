@@ -76,6 +76,10 @@ public class UserInfoService {
         return completeUserDao.save(userInfo);
     }
 
+    public UserInfo save(UserInfo userInfo) {
+        return completeUserDao.save(userInfo);
+    }
+
 
 //    public UserDetails findUserByEmail(String email) {
 //        UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);

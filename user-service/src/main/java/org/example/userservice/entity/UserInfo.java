@@ -19,9 +19,6 @@ public class UserInfo {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
-    private String phone;
-
     @Column(name = "nickname")
     private String nickname;
 
@@ -40,10 +37,9 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(String email, String phone, String nickname, String selfIntro, Date birthday) {
+    public UserInfo(String email, String nickname, String selfIntro, Date birthday) {
 //        this.userID = userID;
         this.email = email;
-        this.phone = phone;
         this.nickname = nickname;
         this.selfIntro = selfIntro;
         this.birthday = birthday;
