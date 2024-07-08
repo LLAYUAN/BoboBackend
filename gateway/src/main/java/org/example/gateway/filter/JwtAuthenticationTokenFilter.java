@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
@@ -49,6 +51,11 @@ public class JwtAuthenticationTokenFilter implements WebFilter {
             String newQuery = uri.getQuery().lines()
                     .filter(param -> !param.startsWith("token="))
                     .collect(Collectors.joining("&"));
+////            HttpHeaders headers = request.getHeaders();
+//            request.getHeaders().remove("Access-Control-Allow-Origin");
+//            request.getHeaders().remove("Access-Control-Allow-Credentials");
+////            headers.remove("Access-Control-Allow-Origin");
+////            headers.remove("Access-Control-Allow-Credentials");
 
             URI newUri = null;
             try {
@@ -58,6 +65,8 @@ public class JwtAuthenticationTokenFilter implements WebFilter {
             }
             ServerHttpRequest modifiedRequest = request.mutate().uri(newUri).build();
             ServerWebExchange modifiedExchange = exchange.mutate().request(modifiedRequest).build();
+
+            //exchange.getResponse().getHeaders().remove(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN).remove(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS);
         } else {
             String authHeader = exchange.getRequest().getHeaders().getFirst(this.tokenHeader);
             if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
