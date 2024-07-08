@@ -34,6 +34,9 @@ public class UserInfo {
     @Column(name = "avatar_url")
     private String avatarUrl;
 
+    @OneToOne(mappedBy = "userInfo", fetch = FetchType.EAGER)
+    private RoomInfo roomInfo;
+
     public UserInfo() {
     }
 
