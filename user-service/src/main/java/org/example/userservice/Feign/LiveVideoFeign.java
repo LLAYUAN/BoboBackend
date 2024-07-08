@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(name = "gateway")
 public interface LiveVideoFeign {
-    @GetMapping("/internal/recordvideo/test")
+    @GetMapping("/internal/livevideo/test")
     String test();
 }
