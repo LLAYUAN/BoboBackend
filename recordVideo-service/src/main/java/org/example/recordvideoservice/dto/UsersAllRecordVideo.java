@@ -7,11 +7,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @Data
-public class VideoPagePlayingRecordVideo {
+public class UsersAllRecordVideo {
+    private Integer videoID;
     private String videoName;
     private String videoIntro;
-    private String videoUrl;
-    private Integer ownerUserID;
     private String ownerName;
-    private String ownerIntro;
+    private String imageUrl;
 }
