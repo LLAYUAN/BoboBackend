@@ -146,7 +146,8 @@ public class UserController {
 
     @PostMapping(value = "/visitInfo")
     public CommonResult visitInfo(@RequestHeader("Authorization") String authorizationHeader,
-                                  @RequestBody Integer userID) {
+                                  @RequestBody Map<String,Integer> requestBody) {
+        Integer userID = requestBody.get("userID");
         UserInfo userInfo = userInfoService.findUserInfoByUserID(userID);
         Integer followerCount = userService.getFollowerCount(userID);
         Integer followeeCount = userService.getFolloweeCount(userID);

@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @FeignClient(name = "gateway")
 public interface Feign {
-    @GetMapping("/internal/livevideo/test")
+    @GetMapping("/internal/recordvideo/test")
     String test();
 
     @PostMapping("/internal/recordvideo/uploadFile")
