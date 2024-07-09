@@ -2,6 +2,7 @@ package org.example.userservice.service;
 
 import org.example.userservice.dao.CompleteUserDao;
 import org.example.userservice.dao.FollowerDao;
+import org.example.userservice.dao.RoomDao;
 import org.example.userservice.dto.BasicUserDTO;
 import org.example.userservice.repository.UserInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.stream.Collectors;
 public class UserService {
     @Autowired
     FollowerDao followerDao;
+
+    @Autowired
+    RoomDao roomDao;
 
     @Autowired
     UserInfoRepo userInfoRepository;
@@ -42,6 +46,22 @@ public class UserService {
         return userInfoRepository.findAllById(followerIDs).stream()
                 .map(userInfo -> new BasicUserDTO(userInfo.getUserID(), userInfo.getNickname()))
                 .collect(Collectors.toList());
+    }
+
+    public boolean checkIsFan(Integer followeeID, Integer followerID) {
+        return followerDao.checkIsFan(followeeID, followerID);
+    }
+
+    public void startLive(Integer userID,String name, Integer[] tags,String coverUrl) {
+        roomDao.startLive(userID, name, tags, coverUrl);
+    }
+
+    public Integer getFollowerCount(Integer userID) {
+        return followerDao.getFollowerCount(userID);
+    }
+
+    public Integer getFolloweeCount(Integer userID) {
+        return followerDao.getFolloweeCount(userID);
     }
 
 

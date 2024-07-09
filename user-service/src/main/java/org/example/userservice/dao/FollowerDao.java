@@ -66,4 +66,22 @@ public class FollowerDao {
                 .map(FollowerInfo::getFollowerID)
                 .collect(Collectors.toList());
     }
+
+    public boolean checkIsFan(Integer followeeID, Integer followerID) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("followeeID").is(followeeID).and("followerID").is(followerID));
+        return mongoTemplate.exists(query, FollowerInfo.class);
+    }
+
+    public Integer getFollowerCount(Integer userID) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("followeeID").is(userID));
+        return (int) mongoTemplate.count(query, FollowerInfo.class);
+    }
+
+    public Integer getFolloweeCount(Integer userID) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("followerID").is(userID));
+        return (int) mongoTemplate.count(query, FollowerInfo.class);
+    }
 }

@@ -1,7 +1,10 @@
 package org.example.userservice.service;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.example.userservice.dao.CompleteUserDao;
+import org.example.userservice.entity.RoomInfo;
 import org.example.userservice.entity.UserInfo;
+import org.example.userservice.repository.RoomInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +31,9 @@ public class UserInfoService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoomInfoRepo roomInfoRepo;
 
     public String login(String email, String password,UserInfo userInfo) {
         Logger log = Logger.getLogger(UserInfoService.class.getName());
@@ -65,6 +71,22 @@ public class UserInfoService {
 
     public UserInfo findUserInfoByUserID(Integer userID) {
         return completeUserDao.findUserInfoByUserID(userID);
+    }
+
+    public Integer getRoomIDByUserID(Integer userID) {
+        return completeUserDao.findUserInfoByUserID(userID).getRoomInfo().getRoomID();
+    }
+
+    public RoomInfo getRoomInfoByUserID(Integer userID) {
+        UserInfo userInfo = completeUserDao.findUserInfoByUserID(userID);
+        RoomInfo roomInfo = userInfo.getRoomInfo();
+        if(roomInfo == null){
+            roomInfo = new RoomInfo("直播间", "直播间", "");
+            roomInfo.setUserInfo(userInfo);
+//             TODO：设置tags
+            roomInfoRepo.save(roomInfo);
+        }
+        return roomInfo;
     }
 
     public UserInfo register(String email, String password) {
