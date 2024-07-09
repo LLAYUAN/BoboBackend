@@ -29,6 +29,15 @@ public class RoomInfo {
     @Column(name = "cover_url")
     private String coverUrl;
 
+    @Column(name = "study")
+    private Boolean study;
+
+    @Column(name = "entertain")
+    private Boolean entertain;
+
+    @Column(name = "other")
+    private Boolean other;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private UserInfo userInfo;
@@ -38,6 +47,9 @@ public class RoomInfo {
         this.description = description;
         this.coverUrl = coverUrl;
         this.status = true;
+        this.study = false;
+        this.entertain = false;
+        this.other = false;
     }
 
     public RoomInfo() {
