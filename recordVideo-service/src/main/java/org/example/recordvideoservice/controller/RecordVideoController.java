@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -62,8 +63,9 @@ public class RecordVideoController {
 
     private static String UPLOADED_FOLDER = "/static/";
     @PostMapping("/uploadFile")
+    //@RequestParam("file") MultipartFile file
     public String uploadFile(@RequestParam("file") MultipartFile file) {
-        System.out.println("START uploadFile");
+        System.out.println("START uploadFile1111111111111111111111111111");
         if (file.isEmpty()) {
             return "上传失败";
         }
@@ -75,17 +77,21 @@ public class RecordVideoController {
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
             // 重新生成唯一文件名
             String newFilename = UUID.randomUUID().toString() + fileExtension;
-
-            // 保存文件到服务器指定目录
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + newFilename);
-            Files.write(path, bytes);
-
+            // 构建静态资源目录的Path对象
+            Path staticFolderPath = Paths.get("static");
+            // 确保静态资源目录存在
+            Files.createDirectories(staticFolderPath);
+            // 构建文件的完整路径
+            Path filePath = staticFolderPath.resolve(newFilename);
+            // 将文件数据写入到服务器的文件系统中
+            System.out.println("filePath");
+            System.out.println(filePath);
+            file.transferTo(filePath);
             // 返回文件的访问路径
             return "http://localhost:9999/recordvideo/resources/" + newFilename;
         } catch (IOException e) {
             e.printStackTrace();
             return "上传失败";
         }
-    }
+      }
 }
