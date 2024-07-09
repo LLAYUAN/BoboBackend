@@ -28,7 +28,7 @@ public class CorsFilter implements Filter {
 
         // 如果是OPTIONS则结束请求
         if (OPTIONS.equals(((HttpServletRequest) request).getMethod())) {
-            //System.out.println("CorsFilter is invoked");
+            System.out.println("CorsFilter is invoked");
             response.getWriter().println("ok");
             return;
         }

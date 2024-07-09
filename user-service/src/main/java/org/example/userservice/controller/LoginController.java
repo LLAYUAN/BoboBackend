@@ -3,6 +3,7 @@ package org.example.userservice.controller;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.example.userservice.Feign.LiveVideoFeign;
 import org.example.userservice.common.CommonResult;
+import org.example.userservice.dto.UserInfoDTO;
 import org.example.userservice.entity.UserInfo;
 import org.example.userservice.service.UserInfoService;
 import org.example.userservice.utils.JwtTokenUtil;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
@@ -70,17 +72,21 @@ public class LoginController {
         String email = (String) loginRequest.get("email");
         String password = (String) loginRequest.get("password");
         // 通过用户名和密码获取token
-        String token = userInfoService.login(email, password);
+        UserInfo userInfo = null;
+        String token = userInfoService.login(email, password,userInfo);
         log.info("token: " + token);
         // 如果token为空，返回错误信息
         if (token == null) {
             return CommonResult.failed("用户名或密码错误");
         }
         // 如果token不为空，返回token
-        Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", token);
-        tokenMap.put("tokenHead", tokenHead);
-        return CommonResult.success(tokenMap);
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("token", token);
+        dataMap.put("tokenHead", tokenHead);
+        userInfo = userInfoService.findUserInfoByEmail(email);
+        UserInfoDTO userInfoDTO = new UserInfoDTO(userInfo.getUserID(), userInfo.getNickname());
+        dataMap.put("userInfo", userInfoDTO);
+        return CommonResult.success(dataMap);
     }
 
     @PostMapping(value = "/register")
@@ -96,15 +102,9 @@ public class LoginController {
             return CommonResult.failed("注册失败");
         }
         // 如果userInfo不为空，返回userInfo
+        userInfo.setNickname("用户"+userInfo.getUserID().toString());
+        userInfoService.save(userInfo);
         return CommonResult.success(null);
     }
 
-    @GetMapping(value = "/getUserInfo")
-    public CommonResult getUserInfo(@RequestHeader("Authorization") String authorizationHeader) {
-        // 获取token然后进行解析，得到用户名，再进一步获取用户信息
-        Integer userID = Integer.parseInt(authorizationHeader);
-//        Integer userID = jwtTokenUtil.getUserIDFromHeader(authorizationHeader);
-        System.out.println("userID： " + userID.toString());
-        return CommonResult.success("userID " + userID.toString());
-    }
 }

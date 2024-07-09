@@ -7,16 +7,16 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RabbitMQListener {
+public class MessageBroadcastListener {
 
     private final SimpMessagingTemplate messagingTemplate;
 
     @Autowired
-    public RabbitMQListener(SimpMessagingTemplate messagingTemplate) {
+    public MessageBroadcastListener(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
 
-    @RabbitListener(queues = "chatQueue")
+    @RabbitListener(queues = "chatBroadcastQueue")
     public void receiveMessage(ChatMessage message) {
         messagingTemplate.convertAndSend("/topic/public/" + message.getRoomID(), message);
     }

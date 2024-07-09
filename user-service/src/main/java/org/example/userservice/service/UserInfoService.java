@@ -29,6 +29,58 @@ public class UserInfoService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    public String login(String email, String password,UserInfo userInfo) {
+        Logger log = Logger.getLogger(UserInfoService.class.getName());
+        log.info("用户"+email+"进行登录");
+        String token = null;
+        // 密码需要客户端加密后传递
+        try{
+            // 根据用户名从数据库中获取用户信息
+//            UserDetails userDetails = findUserByEmail(email);
+            userInfo = completeUserDao.findUserInfoByEmail(email);
+            // 进行密码匹配
+            if (userInfo == null) {
+                throw new UsernameNotFoundException("用户不存在");
+            }
+            if (!passwordEncoder.matches(password,userInfo.getPassword())){
+                throw new BadCredentialsException("密码不正确");
+            }
+//            // 封装用户信息（由于使用 JWT 进行验证，这里不需要凭证）
+//            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+//            // 将用户信息存储到 Security 上下文中，以便于 Security 进行权限验证
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+            // 生成 token
+            token = JwtTokenUtil.generateToken(userInfo);
+            // 添加登录记录
+            log.info("用户"+email+"进行登录");
+        }catch (UsernameNotFoundException | BadCredentialsException e){
+            log.info("登录异常:"+e.getMessage());
+        }
+        return token;
+    }
+
+    public UserInfo findUserInfoByEmail(String email) {
+        return completeUserDao.findUserInfoByEmail(email);
+    }
+
+    public UserInfo findUserInfoByUserID(Integer userID) {
+        return completeUserDao.findUserInfoByUserID(userID);
+    }
+
+    public UserInfo register(String email, String password) {
+        // 先检查是否已经存在该用户，若存在则返回 null
+        if(completeUserDao.findUserInfoByEmail(email) != null){
+            return null;
+        }
+        UserInfo userInfo = new UserInfo(email,passwordEncoder.encode(password));
+        return completeUserDao.save(userInfo);
+    }
+
+    public UserInfo save(UserInfo userInfo) {
+        return completeUserDao.save(userInfo);
+    }
+
+
 //    public UserDetails findUserByEmail(String email) {
 //        UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);
 //        if(userInfo == null){
@@ -58,45 +110,4 @@ public class UserInfoService {
 //            return new User(userInfo.getUserID().toString(), userInfo.getPassword(), authorities);
 //        }
 //    }
-
-
-
-    public String login(String email, String password) {
-        Logger log = Logger.getLogger(UserInfoService.class.getName());
-        log.info("用户"+email+"进行登录");
-        String token = null;
-        // 密码需要客户端加密后传递
-        try{
-            // 根据用户名从数据库中获取用户信息
-//            UserDetails userDetails = findUserByEmail(email);
-            UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);
-            // 进行密码匹配
-            if (userInfo == null) {
-                throw new UsernameNotFoundException("用户不存在");
-            }
-            if (!passwordEncoder.matches(password,userInfo.getPassword())){
-                throw new BadCredentialsException("密码不正确");
-            }
-//            // 封装用户信息（由于使用 JWT 进行验证，这里不需要凭证）
-//            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-//            // 将用户信息存储到 Security 上下文中，以便于 Security 进行权限验证
-//            SecurityContextHolder.getContext().setAuthentication(authentication);
-            // 生成 token
-            token = JwtTokenUtil.generateToken(userInfo);
-            // 添加登录记录
-            log.info("用户"+email+"进行登录");
-        }catch (UsernameNotFoundException | BadCredentialsException e){
-            log.info("登录异常:"+e.getMessage());
-        }
-        return token;
-    }
-
-    public UserInfo register(String email, String password) {
-        // 先检查是否已经存在该用户，若存在则返回 null
-        if(completeUserDao.findUserInfoByEmail(email) != null){
-            return null;
-        }
-        UserInfo userInfo = new UserInfo(email,passwordEncoder.encode(password));
-        return completeUserDao.save(userInfo);
-    }
 }

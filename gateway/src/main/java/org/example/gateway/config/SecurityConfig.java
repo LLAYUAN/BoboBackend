@@ -56,9 +56,9 @@ public class SecurityConfig {
 //        return http.build();
 //    }
 
+//    @Bean
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        // 设置白名单和认证规则
         return http
                 .authorizeExchange(exchanges ->
                         exchanges
@@ -71,10 +71,10 @@ public class SecurityConfig {
                         .accessDeniedHandler(restfulAccessDeniedHandler) // 访问被拒绝时的处理器
                         .authenticationEntryPoint(restAuthenticationEntryPoint) // 未认证或 token 过期的处理器
                 )
-                .addFilterAt(jwtAuthenticationTokenFilter, SecurityWebFiltersOrder.AUTHENTICATION) // 添加 JWT 拦截器到过滤链
-//                .securityContextRepository(securityContextRepository) // 设置安全上下文库
+                .addFilterAt(jwtAuthenticationTokenFilter, SecurityWebFiltersOrder.AUTHENTICATION) // 添加 JWT 拦截器到过滤链的指定位置
                 .build();
     }
+
 
     private RequestMatcher[] getRequestMatchers(List<String> urls) {
         return urls.stream()
