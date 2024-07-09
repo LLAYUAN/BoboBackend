@@ -1,7 +1,6 @@
 package org.example.userservice.controller;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.example.userservice.Feign.LiveVideoFeign;
+import org.example.userservice.Feign.Feign;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.dto.UserInfoDTO;
 import org.example.userservice.entity.UserInfo;
@@ -13,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ServerWebExchange;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +39,7 @@ public class LoginController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private LiveVideoFeign liveVideoFeign;
+    private Feign feign;
 
     @GetMapping(value = "/publicKey")
     public CommonResult getPublicKey(@RequestHeader("Authorization") String authorizationHeader) {
@@ -54,7 +51,7 @@ public class LoginController {
 
     @GetMapping(value = "/test")
     public CommonResult test() {
-        String test = liveVideoFeign.test();
+        String test = feign.test();
         return CommonResult.success(test);
 //        String port = environment.getProperty("local.server.port");
 //        if ("8082".equals(port)) {
