@@ -1,5 +1,6 @@
 package org.example.userservice.controller;
 
+import lombok.Data;
 import org.example.userservice.Feign.Feign;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.dto.BasicRoomDTO;
@@ -158,5 +159,20 @@ public class UserController {
         UserInfoDTO userInfoDTO = new UserInfoDTO(userInfo, followeeCount, followerCount, isFan);
 //        userService.visitInfo(visitorID, visitedID);
         return CommonResult.success(userInfoDTO);
+    }
+
+    @PostMapping(value = "/createRoom")
+    public CommonResult createRoom(@RequestHeader("Authorization") String authorizationHeader,
+                                   @RequestBody Map<String, Object> requestBody) {
+        Integer userID = Integer.parseInt(authorizationHeader);
+        String roomName = (String) requestBody.get("title");
+        String coverUrl = (String) requestBody.get("cover_image");
+        List<Integer> tags = (List<Integer>) requestBody.get("tags");
+        System.out.println("roomName: " + roomName);
+        System.out.println("coverUrl: " + coverUrl);
+        System.out.println("tags: " + tags);
+
+        Integer roomID = userService.createRoom(userID, roomName, coverUrl , tags);
+        return CommonResult.success(roomID);
     }
 }

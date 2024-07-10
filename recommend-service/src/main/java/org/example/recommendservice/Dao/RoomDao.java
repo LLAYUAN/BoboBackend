@@ -60,13 +60,16 @@ public class RoomDao {
                 .map(RoomCardInfo::new)
                 .filter(roomCardInfo -> tag < 0 || roomCardInfo.getTags().get(tag))
                 .toList());
+        System.out.println(roomCardInfos);
 
         roomCardInfos.forEach(roomCardInfo -> {
             RoomHotIndex roomHotIndex = mongoTemplate.findOne(Query.query(Criteria.where("_id").is(roomCardInfo.getId())), RoomHotIndex.class);
             if (roomHotIndex != null) {
+
                 roomCardInfo.setHotIndex(HotIndexCalculator.calculateHotIndex(roomHotIndex));
             }
         });
+        System.out.println(roomCardInfos);
 
         roomCardInfos.sort(Comparator.comparing(RoomCardInfo::getHotIndex).reversed());
 
@@ -79,8 +82,12 @@ public class RoomDao {
             return null;
         }
         RoomCardInfo roomCardInfo = new RoomCardInfo(roomInfo);
+        System.out.println("id: " + id);
         RoomHotIndex roomHotIndex = mongoTemplate.findOne(Query.query(Criteria.where("_id").is(id)), RoomHotIndex.class);
+        System.out.println(roomHotIndex);
+        System.out.println("to here");
         if (roomHotIndex != null) {
+            System.out.println("Hot Index: " + HotIndexCalculator.calculateHotIndex(roomHotIndex));
             roomCardInfo.setHotIndex(HotIndexCalculator.calculateHotIndex(roomHotIndex));
         }
         return roomCardInfo;

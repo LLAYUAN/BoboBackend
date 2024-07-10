@@ -31,4 +31,8 @@ public class RoomDao {
             roomInfoRepo.save(roomInfo);
         }
     }
+
+    public void saveRoomInfo(RoomInfo roomInfo) {
+        roomInfoRepo.save(roomInfo);
+    }
 }

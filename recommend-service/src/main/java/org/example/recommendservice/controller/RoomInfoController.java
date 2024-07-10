@@ -36,6 +36,7 @@ public class RoomInfoController {
 
     @GetMapping("/{id}")
     public RoomCardInfo getRank(@PathVariable Integer id) {
+        System.out.println("getRoomInfo: " + id);
         return roomInfoService.getRoomInfo(id);
     }
 }
