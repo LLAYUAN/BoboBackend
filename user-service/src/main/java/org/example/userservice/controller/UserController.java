@@ -81,6 +81,7 @@ public class UserController {
     public CommonResult follow(@RequestHeader("Authorization") String authorizationHeader,
                                @RequestBody Map<String, Integer> requestBody) {
         Integer followeeID = requestBody.get("followeeID");
+        System.out.println("follow: " + followeeID);
         // follower即发起关注的人，为当前用户
         Integer followerID = Integer.parseInt(authorizationHeader);
         userService.follow(followeeID, followerID);
@@ -92,6 +93,7 @@ public class UserController {
     public CommonResult unfollow(@RequestHeader("Authorization") String authorizationHeader,
                                  @RequestBody Map<String, Integer> requestBody) {
         Integer followeeID = requestBody.get("followeeID");
+        System.out.println("unfollow: " + followeeID);
         // follower即发起关注的人，为当前用户
         Integer followerID = Integer.parseInt(authorizationHeader);
         userService.unfollow(followeeID, followerID);
@@ -148,10 +150,12 @@ public class UserController {
     public CommonResult visitInfo(@RequestHeader("Authorization") String authorizationHeader,
                                   @RequestBody Map<String,Integer> requestBody) {
         Integer userID = requestBody.get("userID");
+        System.out.println("visitInfo: " + userID);
         UserInfo userInfo = userInfoService.findUserInfoByUserID(userID);
         Integer followerCount = userService.getFollowerCount(userID);
         Integer followeeCount = userService.getFolloweeCount(userID);
-        UserInfoDTO userInfoDTO = new UserInfoDTO(userInfo, followeeCount, followerCount);
+        boolean isFan = userService.checkIsFan(userID, Integer.parseInt(authorizationHeader));
+        UserInfoDTO userInfoDTO = new UserInfoDTO(userInfo, followeeCount, followerCount, isFan);
 //        userService.visitInfo(visitorID, visitedID);
         return CommonResult.success(userInfoDTO);
     }
