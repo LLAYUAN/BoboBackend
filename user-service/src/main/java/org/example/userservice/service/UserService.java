@@ -4,6 +4,7 @@ import org.example.userservice.dao.CompleteUserDao;
 import org.example.userservice.dao.FollowerDao;
 import org.example.userservice.dao.RoomDao;
 import org.example.userservice.dto.BasicUserDTO;
+import org.example.userservice.entity.RoomInfo;
 import org.example.userservice.repository.UserInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class UserService {
 
     @Autowired
     UserInfoRepo userInfoRepository;
+
+    @Autowired
+    CompleteUserDao completeUserDao;
 
     public void follow(Integer followeeID, Integer followerID) {
         followerDao.saveFollowerInfo(followeeID, followerID);
@@ -64,5 +68,15 @@ public class UserService {
         return followerDao.getFolloweeCount(userID);
     }
 
-
+    public Integer createRoom(Integer userID, String roomName, String coverUrl, List<Integer> tags) {
+        RoomInfo roomInfo = completeUserDao.findUserInfoByUserID(userID).getRoomInfo();
+        roomInfo.setRoomName(roomName);
+        roomInfo.setCoverUrl(coverUrl);
+        // 如果tags中有0，study为true，如果有1，entertain为true，如果有2，other为true
+        roomInfo.setStudy(tags.contains(0));
+        roomInfo.setEntertain(tags.contains(1));
+        roomInfo.setOther(tags.contains(2));
+        roomDao.saveRoomInfo(roomInfo);
+        return roomInfo.getRoomID();
+    }
 }

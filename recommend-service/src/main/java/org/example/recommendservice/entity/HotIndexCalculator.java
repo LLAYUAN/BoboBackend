@@ -19,6 +19,7 @@ public class HotIndexCalculator {
         hotIndex += roomHotIndex.getNewFollowerCount() * NEW_FOLLOWER_COUNT_WEIGHT;
         hotIndex += roomHotIndex.getMessageCount() * MESSAGE_COUNT_WEIGHT;
         hotIndex += roomHotIndex.getConsumptionCount() * CONSUMPTION_COUNT_WEIGHT;
+        System.out.println("hotIndex: " + hotIndex);
         return (int) hotIndex;
     }
 
