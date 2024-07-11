@@ -16,6 +16,7 @@ public class UserInfoDTO {
     private String email;
     private Integer followerCount;
     private Integer followeeCount;
+    private Boolean isFan;
 
     public UserInfoDTO() {
         this.nickname = "";
@@ -25,6 +26,7 @@ public class UserInfoDTO {
         this.email = "";
         this.followeeCount = null;
         this.followerCount = null;
+        this.isFan = null;
     }
 
     public UserInfoDTO(UserInfo userInfo) {
@@ -51,7 +53,7 @@ public class UserInfoDTO {
         this.email = userInfo.getEmail();
     }
 
-    public UserInfoDTO(UserInfo userInfo,Integer followeeCount,Integer followerCount){
+    public UserInfoDTO(UserInfo userInfo,Integer followeeCount,Integer followerCount,boolean isFan){
         this.userID = userInfo.getUserID();
         if(userInfo.getNickname() == null) {
             this.nickname = "";
@@ -75,9 +77,10 @@ public class UserInfoDTO {
         this.email = userInfo.getEmail();
         this.followeeCount = followeeCount;
         this.followerCount = followerCount;
+        this.isFan = isFan;
     }
 
-    public UserInfoDTO(Integer userID, String nickname){
+    public UserInfoDTO(Integer userID, String nickname ,String email){
         this.userID = userID;
         if(nickname == null) {
             this.nickname = "";
@@ -85,6 +88,7 @@ public class UserInfoDTO {
         else {
             this.nickname = nickname;
         }
+        this.email = email;
 //        this.avatarUrl = "";
 //        this.birthday = "";
 //        this.introduction = "";
