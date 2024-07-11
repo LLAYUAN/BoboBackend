@@ -1,0 +1,102 @@
+2024-07-04T10:48:50.034+08:00  INFO 12000 --- [livevideo-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-04T10:48:50.047+08:00  INFO 12000 --- [livevideo-service] [Thread-2] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-04T10:48:50.053+08:00  INFO 12000 --- [livevideo-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-04T10:48:50.054+08:00  INFO 23376 --- [livevideo-service] [Thread-2] c.a.n.c.a.r.identify.CredentialWatcher   : null No credential found
+2024-07-04T10:48:50.047+08:00  INFO 23376 --- [livevideo-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [req-serv] nacos-server port:8848
+2024-07-04T10:48:50.057+08:00  INFO 23376 --- [livevideo-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : [settings] [http-client] connect timeout:1000
+2024-07-04T10:48:50.057+08:00  INFO 12000 --- [livevideo-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-04T10:48:50.059+08:00  INFO 23376 --- [livevideo-service] [main] c.alibaba.nacos.client.utils.ParamUtil   : PER_TASK_CONFIG_SIZE: 3000.0
+2024-07-04T10:48:50.136+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-04T10:48:50.136+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-04T10:48:50.137+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-04T10:48:50.138+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-04T10:48:50.138+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels.....
+2024-07-04T10:48:50.139+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-04T10:48:50.139+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-04T10:48:50.139+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : Process LabelsCollector with [name:defaultNacosLabelsCollector]
+2024-07-04T10:48:50.139+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-04T10:48:50.139+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties raw labels: null
+2024-07-04T10:48:50.139+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-04T10:48:50.140+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-04T10:48:50.142+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect properties labels: {}
+2024-07-04T10:48:50.142+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm raw labels: null
+2024-07-04T10:48:50.142+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect jvm labels: {}
+2024-07-04T10:48:50.143+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env raw labels: null
+2024-07-04T10:48:50.144+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : default nacos collect env labels: {}
+2024-07-04T10:48:50.145+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.labels          : DefaultLabelsCollectorManager get labels finished,labels :{}
+2024-07-04T10:48:50.152+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-04T10:48:50.152+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-04T10:48:50.161+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2024-07-04T10:48:50.161+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2024-07-04T10:48:50.315+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-04T10:48:50.325+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0
+2024-07-04T10:48:50.325+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.c.c.impl.LocalConfigInfoProcessor  : LOCAL_SNAPSHOT_PATH:C:\Users\liang\nacos\config
+2024-07-04T10:48:50.332+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0
+2024-07-04T10:48:50.350+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x0000017d81342868
+2024-07-04T10:48:50.351+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x0000017d81342c88
+2024-07-04T10:48:50.351+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-04T10:48:50.351+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-04T10:48:50.353+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001eca73451a0
+2024-07-04T10:48:50.353+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda/0x000001eca73455c0
+2024-07-04T10:48:50.354+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
+2024-07-04T10:48:50.354+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] RpcClient init, ServerListFactory = com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
+2024-07-04T10:48:50.357+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-04T10:48:50.360+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Try to connect to server on start up, server: {serverIp = '127.0.0.1', server main port = 8848}
+2024-07-04T10:48:50.384+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-04T10:48:50.387+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:127.0.0.1 ip,serverPort:9848,grpcTslConfig:{"sslProvider":"","enableTls":false,"mutualAuthEnable":false,"trustAll":false}
+2024-07-04T10:48:51.084+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-04T10:48:51.085+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to get current node abilities...
+2024-07-04T10:48:51.086+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-04T10:48:51.086+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Ready to initialize current node abilities, support modes: [SDK_CLIENT]
+2024-07-04T10:48:51.087+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-04T10:48:51.087+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.c.a.AbstractAbilityControlManager  : Initialize current abilities finish...
+2024-07-04T10:48:51.087+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-04T10:48:51.087+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.c.a.d.NacosAbilityManagerHolder    : [AbilityControlManager] Successfully initialize AbilityControlManager
+2024-07-04T10:48:51.170+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1720061330889_127.0.0.1_57352
+2024-07-04T10:48:51.171+08:00  INFO 12000 --- [livevideo-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Notify connected event to listeners.
+2024-07-04T10:48:51.171+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-04T10:48:51.172+08:00  INFO 12000 --- [livevideo-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Connected,notify listen context...
+2024-07-04T10:48:51.172+08:00  INFO 12000 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [e1a35d87-3367-40a2-a4cb-da85cfedc10a_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x0000017d814d7600
+2024-07-04T10:48:51.172+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Success to connect to server [127.0.0.1:8848] on start up, connectionId = 1720061330888_127.0.0.1_57351
+2024-07-04T10:48:51.173+08:00  INFO 23376 --- [livevideo-service] [com.alibaba.nacos.client.remote.worker.0] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Notify connected event to listeners.
+2024-07-04T10:48:51.173+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2024-07-04T10:48:51.173+08:00  INFO 23376 --- [livevideo-service] [com.alibaba.nacos.client.remote.worker.0] c.a.n.client.config.impl.ClientWorker    : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Connected,notify listen context...
+2024-07-04T10:48:51.174+08:00  INFO 23376 --- [livevideo-service] [main] com.alibaba.nacos.common.remote.client   : [3c1b2dff-4fcb-4453-92be-ff85cbdb7747_config-0] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda/0x000001eca74dc228
+2024-07-04T10:48:51.224+08:00  INFO 12000 --- [livevideo-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-04T10:48:51.224+08:00  INFO 23376 --- [livevideo-service] [main] c.a.nacos.client.config.impl.Limiter     : limitTime:5.0
+2024-07-04T10:48:51.294+08:00  WARN 12000 --- [livevideo-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[livevideo-service] & group[DEFAULT_GROUP]
+2024-07-04T10:48:51.294+08:00  WARN 23376 --- [livevideo-service] [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[livevideo-service] & group[DEFAULT_GROUP]
+2024-07-04T10:48:51.314+08:00  INFO 23376 --- [livevideo-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-04T10:48:51.316+08:00  INFO 12000 --- [livevideo-service] [main] c.a.nacos.client.config.utils.JvmUtil    : isMultiInstance:false
+2024-07-04T10:48:51.363+08:00  INFO 12000 --- [livevideo-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-livevideo-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-livevideo-service,DEFAULT_GROUP'}]
+2024-07-04T10:48:51.364+08:00  INFO 23376 --- [livevideo-service] [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-livevideo-service.yaml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-livevideo-service,DEFAULT_GROUP'}]
+2024-07-04T10:48:51.389+08:00  INFO 12000 --- [livevideo-service] [main] o.e.l.LiveVideoServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2024-07-04T10:48:51.389+08:00  INFO 23376 --- [livevideo-service] [main] o.e.l.LiveVideoServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2024-07-04T10:48:52.051+08:00  INFO 23376 --- [livevideo-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=c7e7d9ff-be9f-30c9-9638-4c84f0d52e6a
+2024-07-04T10:48:52.058+08:00  INFO 12000 --- [livevideo-service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=c7e7d9ff-be9f-30c9-9638-4c84f0d52e6a
+2024-07-04T10:48:52.867+08:00  INFO 12000 --- [livevideo-service] [main] o.e.l.LiveVideoServiceApplicationTests   : Started LiveVideoServiceApplicationTests in 3.587 seconds (process running for 4.946)
+2024-07-04T10:48:52.871+08:00  INFO 23376 --- [livevideo-service] [main] o.e.l.LiveVideoServiceApplicationTests   : Started LiveVideoServiceApplicationTests in 3.59 seconds (process running for 4.946)
+2024-07-04T10:48:52.878+08:00  INFO 12000 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : config listener notify warn timeout millis use default 60000 millis 
+2024-07-04T10:48:52.878+08:00  INFO 12000 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2024-07-04T10:48:52.879+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] livevideo-service+DEFAULT_GROUP
+2024-07-04T10:48:52.886+08:00  INFO 23376 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : config listener notify warn timeout millis use default 60000 millis 
+2024-07-04T10:48:52.886+08:00  INFO 23376 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2024-07-04T10:48:52.887+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] livevideo-service+DEFAULT_GROUP
+2024-07-04T10:48:52.903+08:00  INFO 12000 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=livevideo-service, group=DEFAULT_GROUP, cnt=1
+2024-07-04T10:48:52.904+08:00  INFO 12000 --- [livevideo-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=livevideo-service, group=DEFAULT_GROUP
+2024-07-04T10:48:52.909+08:00  INFO 12000 --- [livevideo-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] livevideo-service.yaml+DEFAULT_GROUP
+2024-07-04T10:48:52.909+08:00  INFO 12000 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=livevideo-service.yaml, group=DEFAULT_GROUP, cnt=1
+2024-07-04T10:48:52.910+08:00  INFO 12000 --- [livevideo-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=livevideo-service.yaml, group=DEFAULT_GROUP
+2024-07-04T10:48:52.936+08:00  INFO 23376 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=livevideo-service, group=DEFAULT_GROUP, cnt=1
+2024-07-04T10:48:52.937+08:00  INFO 23376 --- [livevideo-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=livevideo-service, group=DEFAULT_GROUP
+2024-07-04T10:48:52.941+08:00  INFO 23376 --- [livevideo-service] [main] c.a.n.client.config.impl.ClientWorker    : [fixed-127.0.0.1_8848] [subscribe] livevideo-service.yaml+DEFAULT_GROUP
+2024-07-04T10:48:52.942+08:00  INFO 23376 --- [livevideo-service] [main] c.a.nacos.client.config.impl.CacheData   : [fixed-127.0.0.1_8848] [add-listener] ok, tenant=, dataId=livevideo-service.yaml, group=DEFAULT_GROUP, cnt=1
+2024-07-04T10:48:52.942+08:00  INFO 23376 --- [livevideo-service] [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=livevideo-service.yaml, group=DEFAULT_GROUP
+2024-07-04T10:48:53.848+08:00  WARN 12000 --- [livevideo-service] [Thread-6] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2024-07-04T10:48:53.848+08:00  WARN 12000 --- [livevideo-service] [Thread-3] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2024-07-04T10:48:53.849+08:00  WARN 12000 --- [livevideo-service] [Thread-6] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2024-07-04T10:48:53.849+08:00  WARN 12000 --- [livevideo-service] [Thread-3] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2024-07-04T10:48:53.850+08:00  WARN 23376 --- [livevideo-service] [Thread-3] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2024-07-04T10:48:53.850+08:00  WARN 23376 --- [livevideo-service] [Thread-6] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2024-07-04T10:48:53.850+08:00  WARN 23376 --- [livevideo-service] [Thread-6] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2024-07-04T10:48:53.851+08:00  WARN 23376 --- [livevideo-service] [Thread-3] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
