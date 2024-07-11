@@ -30,6 +30,7 @@ public class RoomInfoController {
     @PostMapping("/saveRoomHotIndex")
     public void saveRoomHotIndex(@RequestBody List<RoomHotIndex> roomHotIndexList) {
 //        System.out.println(roomHotIndexList);
+        System.out.println("saveRoomHotIndex: "+roomHotIndexList.get(0).getRoomId());
         roomInfoService.saveRoomHotIndexList(roomHotIndexList);
     }
 

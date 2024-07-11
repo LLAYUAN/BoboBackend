@@ -102,6 +102,16 @@ public class UserInfoService {
         return completeUserDao.save(userInfo);
     }
 
+    public Boolean modifyPassword(Integer userID,String oldPassword,String newPassword){
+        UserInfo userInfo = completeUserDao.findUserInfoByUserID(userID);
+        if(passwordEncoder.matches(oldPassword,userInfo.getPassword())){
+            userInfo.setPassword(passwordEncoder.encode(newPassword));
+            completeUserDao.save(userInfo);
+            return true;
+        }
+        return false;
+    }
+
 
 //    public UserDetails findUserByEmail(String email) {
 //        UserInfo userInfo = completeUserDao.findUserInfoByEmail(email);

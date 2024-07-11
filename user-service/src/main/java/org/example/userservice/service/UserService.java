@@ -1,14 +1,17 @@
 package org.example.userservice.service;
 
+import org.example.userservice.Feign.Feign;
 import org.example.userservice.dao.CompleteUserDao;
 import org.example.userservice.dao.FollowerDao;
 import org.example.userservice.dao.RoomDao;
 import org.example.userservice.dto.BasicUserDTO;
+import org.example.userservice.entity.RoomHotIndex;
 import org.example.userservice.entity.RoomInfo;
 import org.example.userservice.repository.UserInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +28,9 @@ public class UserService {
 
     @Autowired
     CompleteUserDao completeUserDao;
+
+    @Autowired
+    Feign feign;
 
     public void follow(Integer followeeID, Integer followerID) {
         followerDao.saveFollowerInfo(followeeID, followerID);
@@ -56,9 +62,10 @@ public class UserService {
         return followerDao.checkIsFan(followeeID, followerID);
     }
 
-    public void startLive(Integer userID,String name, Integer[] tags,String coverUrl) {
-        roomDao.startLive(userID, name, tags, coverUrl);
-    }
+//    public void startLive(Integer userID,String name, Integer[] tags,String coverUrl) {
+//        roomDao.startLive(userID, name, tags, coverUrl);
+//        // 将直播间设为开播状态，并开辟对应的hotindex
+//    }
 
     public Integer getFollowerCount(Integer userID) {
         return followerDao.getFollowerCount(userID);
@@ -70,13 +77,39 @@ public class UserService {
 
     public Integer createRoom(Integer userID, String roomName, String coverUrl, List<Integer> tags) {
         RoomInfo roomInfo = completeUserDao.findUserInfoByUserID(userID).getRoomInfo();
+        Boolean status = roomInfo.getStatus();
         roomInfo.setRoomName(roomName);
         roomInfo.setCoverUrl(coverUrl);
         // 如果tags中有0，study为true，如果有1，entertain为true，如果有2，other为true
         roomInfo.setStudy(tags.contains(0));
         roomInfo.setEntertain(tags.contains(1));
         roomInfo.setOther(tags.contains(2));
+        if(!status){
+            roomInfo.setStartTime(java.time.LocalDateTime.now());
+        }
+        //调整为开播
+        roomInfo.setStatus(true);
         roomDao.saveRoomInfo(roomInfo);
+        // 为开播直播间创建一个roomHotIndexList
+        System.out.println("roomID = " + roomInfo.getRoomID());
+        // 如果当前已经开播，则不会创建hotindex，也不会将所有值设为0
+        if(status){
+            return roomInfo.getRoomID();
+        }
+        List<RoomHotIndex> roomHotIndexList = new ArrayList<>();
+        RoomHotIndex roomHotIndex = new RoomHotIndex();
+        roomHotIndex.setRoomId(roomInfo.getRoomID());
+        roomHotIndex.setDuration(0);
+        roomHotIndex.setViewCount(0);
+        roomHotIndex.setLikeCount(0);
+        roomHotIndex.setShareCount(0);
+        roomHotIndex.setConsumptionCount(0);
+        roomHotIndex.setMessageCount(0);
+        roomHotIndex.setNewFollowerCount(0);
+        roomHotIndex.setSumViewTime(0);
+        roomHotIndexList.add(roomHotIndex);
+        //保存直播间信息
+        feign.saveRoomHotIndex(roomHotIndexList);
         return roomInfo.getRoomID();
     }
 }
