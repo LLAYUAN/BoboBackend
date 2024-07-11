@@ -7,4 +7,5 @@ import java.util.List;
 public interface RecordVideoService {
     List<RecordVideo> findByUserid(Integer userID);
     RecordVideo findRecordVideoByRecordVideoID(Integer recordVideoID);
+    void saveRecordVideo(RecordVideo recordVideo);
 }

@@ -25,8 +25,8 @@ public class UserInfo {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "avatar_url")
+    private String avatarUrl;
 
     @Column(name = "nickname")
     private String nickname;
