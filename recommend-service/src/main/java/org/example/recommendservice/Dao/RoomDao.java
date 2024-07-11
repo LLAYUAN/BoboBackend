@@ -32,6 +32,7 @@ public class RoomDao {
     public void saveRoomHotIndexList(List<RoomHotIndex> roomHotIndexList) {
 //        mongoTemplate.insert(roomHotIndexList, RoomHotIndex.class);
         for (RoomHotIndex roomHotIndex : roomHotIndexList) {
+            System.out.println(roomHotIndex);
             mongoTemplate.save(roomHotIndex);
 //            double hotIndex = HotIndexCalculator.calculateHotIndex(roomHotIndex);
 //            System.out.println("Room ID: " + roomHotIndex.getRoomId() + " - Hot Index: " + hotIndex);

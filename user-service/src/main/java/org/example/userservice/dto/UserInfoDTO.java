@@ -80,7 +80,7 @@ public class UserInfoDTO {
         this.isFan = isFan;
     }
 
-    public UserInfoDTO(Integer userID, String nickname){
+    public UserInfoDTO(Integer userID, String nickname ,String email){
         this.userID = userID;
         if(nickname == null) {
             this.nickname = "";
@@ -88,6 +88,7 @@ public class UserInfoDTO {
         else {
             this.nickname = nickname;
         }
+        this.email = email;
 //        this.avatarUrl = "";
 //        this.birthday = "";
 //        this.introduction = "";

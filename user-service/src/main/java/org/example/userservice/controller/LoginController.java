@@ -81,7 +81,7 @@ public class LoginController {
         dataMap.put("token", token);
         dataMap.put("tokenHead", tokenHead);
         userInfo = userInfoService.findUserInfoByEmail(email);
-        UserInfoDTO userInfoDTO = new UserInfoDTO(userInfo.getUserID(), userInfo.getNickname());
+        UserInfoDTO userInfoDTO = new UserInfoDTO(userInfo.getUserID(), userInfo.getNickname(),email);
         dataMap.put("userInfo", userInfoDTO);
         return CommonResult.success(dataMap);
     }
