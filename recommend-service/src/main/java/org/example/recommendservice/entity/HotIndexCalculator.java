@@ -22,9 +22,4 @@ public class HotIndexCalculator {
         System.out.println("hotIndex: " + hotIndex);
         return (int) hotIndex;
     }
-
-
-
-
-
 }
