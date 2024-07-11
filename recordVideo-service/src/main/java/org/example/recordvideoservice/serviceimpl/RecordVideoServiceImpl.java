@@ -1,5 +1,6 @@
 package org.example.recordvideoservice.serviceimpl;
 
+import jakarta.transaction.Transactional;
 import org.example.recordvideoservice.dao.RecordVideoDao;
 import org.example.recordvideoservice.entity.RecordVideo;
 import org.example.recordvideoservice.service.RecordVideoService;
@@ -12,6 +13,12 @@ import java.util.List;
 public class RecordVideoServiceImpl implements RecordVideoService {
     @Autowired
     private RecordVideoDao recordVideoDao;
+
+    @Transactional
+    @Override
+    public void saveRecordVideo(RecordVideo recordVideo) {
+        recordVideoDao.saveRecordVideo(recordVideo);
+    }
 
     @Override
     public List<RecordVideo> findByUserid(Integer userID) {
