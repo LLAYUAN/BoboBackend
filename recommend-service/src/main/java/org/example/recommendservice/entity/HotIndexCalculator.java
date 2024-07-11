@@ -21,9 +21,4 @@ public class HotIndexCalculator {
         hotIndex += roomHotIndex.getConsumptionCount() * CONSUMPTION_COUNT_WEIGHT;
         return (int) hotIndex;
     }
-
-
-
-
-
 }
