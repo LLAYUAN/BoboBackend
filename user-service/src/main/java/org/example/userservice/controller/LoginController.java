@@ -5,7 +5,7 @@ import org.example.userservice.common.CommonResult;
 import org.example.userservice.dto.UserInfoDTO;
 import org.example.userservice.entity.UserInfo;
 import org.example.userservice.service.UserInfoService;
-import org.example.userservice.utils.JwtTokenUtil;
+//import org.example.userservice.utils.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +35,8 @@ public class LoginController {
     @Autowired
     private Environment environment;
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+//    @Autowired
+//    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
     private Feign feign;
@@ -51,7 +51,8 @@ public class LoginController {
 
     @GetMapping(value = "/test")
     public CommonResult test() {
-        String test = feign.test();
+//        String test = feign.test();
+        String test = "test";
         return CommonResult.success(test);
 //        String port = environment.getProperty("local.server.port");
 //        if ("8082".equals(port)) {
@@ -68,6 +69,7 @@ public class LoginController {
         Logger log = LoggerFactory.getLogger(LoginController.class);
         String email = (String) loginRequest.get("email");
         String password = (String) loginRequest.get("password");
+        log.info("email: " + email+ " password: " + password+" is going to login");
         // 通过用户名和密码获取token
         UserInfo userInfo = null;
         String token = userInfoService.login(email, password,userInfo);
