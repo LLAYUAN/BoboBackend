@@ -13,5 +13,4 @@ public interface RecordVideoRepository extends JpaRepository<RecordVideo, Intege
     List<RecordVideo> findByUserid(@Param("userid") Integer userID);
 
     RecordVideo findRecordVideoByRecordVideoID(Integer recordVideoID);
-    void deleteByRecordVideoID(Integer recordVideoID);
 }
