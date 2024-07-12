@@ -20,8 +20,8 @@ public class UserActivityController {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
 
-        UserActivity existingActivity = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
-        if (existingActivity != null) {
+        List<UserActivity> existingActivities = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
+        if (!existingActivities.isEmpty()) {
             return Result.error("User is already in a room");
         }
 
@@ -31,18 +31,19 @@ public class UserActivityController {
         activity.setEnterTime(LocalDateTime.now());
 
         userActivityRepository.save(activity);
-
-        return Result.success("User entered");
+        return Result.success();
     }
 
     @PostMapping("/user-exit")
     public Result userExit(@RequestBody Map<String, String> payload) {
         String userId = payload.get("userId");
 
-        UserActivity activity = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
-        if (activity != null) {
-            activity.setExitTime(LocalDateTime.now());
-            userActivityRepository.save(activity);
+        List<UserActivity> activities = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
+        if (!activities.isEmpty()) {
+            for (UserActivity activity : activities) {
+                activity.setExitTime(LocalDateTime.now());
+                userActivityRepository.save(activity);
+            }
         }
 
         return Result.success("User exited");
@@ -56,7 +57,8 @@ public class UserActivityController {
 
     @GetMapping("/getUserId")
     public Result getUserId(@RequestHeader("Authorization") String authorizationHeader) {
-        Integer userId = Integer.parseInt(authorizationHeader);
-        return Result.success(userId);
+        // Assuming the Authorization header contains a token that needs to be parsed
+        // Here we simply return the header as is, you should implement proper token parsing
+        return Result.success(authorizationHeader);
     }
 }

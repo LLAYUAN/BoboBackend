@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface UserActivityRepository extends MongoRepository<UserActivity, String> {
     List<UserActivity> findByRoomIdAndExitTimeIsNull(String roomId);
-    UserActivity findByUserIdAndExitTimeIsNull(String userId);
-}
+    // 修改这里
+    List<UserActivity> findByUserIdAndExitTimeIsNull(String userId);}
