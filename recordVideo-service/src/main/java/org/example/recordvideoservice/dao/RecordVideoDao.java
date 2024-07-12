@@ -12,4 +12,6 @@ import java.util.List;
 public interface RecordVideoDao {
     List<RecordVideo> findByUserid(Integer userID);
     RecordVideo findRecordVideoByRecordVideoID(Integer recordVideoID);
+    void saveRecordVideo(RecordVideo recordVideo);
+    void deleteByRecordVideoID(Integer recordVideoID);
 }

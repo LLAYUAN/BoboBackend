@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @Data
@@ -28,6 +30,9 @@ public class RecordVideo {
 
     @Column(name = "video_url")
     private String recordVideoAddress;
+
+    @Column(name = "upload_time")
+    private LocalDateTime recordVideoUploadTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")

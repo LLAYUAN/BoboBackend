@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/history")
 public class BrowsHistoryController {
@@ -16,9 +18,15 @@ public class BrowsHistoryController {
     @PostMapping("/add")
     public ResponseEntity<String> addBrowsingRecord(
             @RequestHeader("Authorization") String userId,
-//            @PathVariable String userId,
             @RequestBody BrowsingRecord browsingRecord) {
         userBrowsHistoryService.addBrowsingRecord(userId, browsingRecord);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Browsing record added successfully.");
+    }
+    @PostMapping("/set")
+    public ResponseEntity<String> setBrowsingRecord(
+            @RequestHeader("Authorization") String userId,
+            @RequestBody List<BrowsingRecord> browsingHistory) {
+        userBrowsHistoryService.setBrowsingRecord(userId, browsingHistory);
         return ResponseEntity.status(HttpStatus.CREATED).body("Browsing record added successfully.");
     }
 }

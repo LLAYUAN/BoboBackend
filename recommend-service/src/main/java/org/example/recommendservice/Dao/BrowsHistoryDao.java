@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class BrowsHistoryDao {
     @Autowired
@@ -15,6 +17,10 @@ public class BrowsHistoryDao {
     public UserBrowsHistory getUserBrowsHistory(String userId){
         Query query = Query.query(Criteria.where("_id").is(userId));  // 必须按照字段名查而不是变量名
         return mongoTemplate.findOne(query, UserBrowsHistory.class);
+    }
+
+    public List<UserBrowsHistory> getAllUserBrowsHistory(){
+        return mongoTemplate.findAll(UserBrowsHistory.class);
     }
     public void saveUserBrowsHistory(UserBrowsHistory userBrowsHistory){
         mongoTemplate.save(userBrowsHistory);

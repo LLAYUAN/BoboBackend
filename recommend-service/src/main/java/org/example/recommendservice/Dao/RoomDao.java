@@ -58,6 +58,7 @@ public class RoomDao {
     public List<RoomCardInfo> getRank(Integer tag) {
         List<RoomInfo> roomInfos = roomInfoRepo.findAll();
         List<RoomCardInfo> roomCardInfos = new java.util.ArrayList<>(roomInfos.stream()
+                .filter(RoomInfo::getStatus)
                 .map(RoomCardInfo::new)
                 .filter(roomCardInfo -> tag < 0 || roomCardInfo.getTags().get(tag))
                 .toList());
@@ -92,5 +93,12 @@ public class RoomDao {
             roomCardInfo.setHotIndex(HotIndexCalculator.calculateHotIndex(roomHotIndex));
         }
         return roomCardInfo;
+    }
+    public List<RoomInfo> findAll() {
+        return roomInfoRepo.findAll();
+    }
+
+    public RoomInfo findById(Integer id) {
+        return roomInfoRepo.findById(id).orElse(null);
     }
 }
