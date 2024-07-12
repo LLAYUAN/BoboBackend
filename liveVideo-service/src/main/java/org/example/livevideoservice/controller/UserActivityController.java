@@ -1,8 +1,8 @@
 package org.example.livevideoservice.controller;
 
-import org.example.livevideoservice.Repository.UserActivityRepository;
-import org.example.livevideoservice.entrty.Result;
-import org.example.livevideoservice.entrty.UserActivity;
+import org.example.livevideoservice.repository.UserActivityRepository;
+import org.example.livevideoservice.entity.Result;
+import org.example.livevideoservice.entity.UserActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

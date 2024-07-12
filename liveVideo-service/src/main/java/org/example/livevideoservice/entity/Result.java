@@ -1,4 +1,4 @@
-package org.example.livevideoservice.entrty;
+package org.example.livevideoservice.entity;
 
 public class Result {
     private int status;
