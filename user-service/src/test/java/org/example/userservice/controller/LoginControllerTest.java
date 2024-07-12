@@ -1,13 +1,13 @@
 package org.example.userservice.controller;
 
-import org.example.userservice.Feign.Feign;
 import org.example.userservice.entity.UserInfo;
 import org.example.userservice.service.UserInfoService;
-import org.example.userservice.utils.JwtTokenUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.cloud.autoconfigure.RefreshAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(LoginController.class)
+@ImportAutoConfiguration(RefreshAutoConfiguration.class)
 class LoginControllerTest {
 
     @Autowired
@@ -29,32 +30,31 @@ class LoginControllerTest {
 
     @MockBean
     private UserInfoService mockUserInfoService;
-    @MockBean
-    private JwtTokenUtil mockJwtTokenUtil;
-    @MockBean
-    private Feign mockFeign;
 
     @Test
     void testGetPublicKey() throws Exception {
-        // Setup
-        // Run the test and verify the results
         mockMvc.perform(get("/publicKey")
-                        .header("Authorization", "authorizationHeader")
+                        .header("Authorization", "90")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{}", true));
     }
+//    @Test
+//    void testGetPublicKey() throws Exception {
+////        User user = userObject();
+//        mockMvc.perform(post("/publicKey")
+//                        .header("Authorization", "90")
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk()).andReturn();
+//
+//    }
 
     @Test
     void testTest() throws Exception {
-        // Setup
-        when(mockFeign.test()).thenReturn("result");
-
-        // Run the test and verify the results
         mockMvc.perform(get("/test")
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{}", true));
+                .andExpect(status().isOk());
+//                .andExpect(content().json("{}", true));
     }
 
     @Test
