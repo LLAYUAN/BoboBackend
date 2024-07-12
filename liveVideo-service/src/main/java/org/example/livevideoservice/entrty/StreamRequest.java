@@ -1,11 +1,10 @@
-package org.example.livevideoservice.entity;
+package org.example.livevideoservice.entrty;
 
 public class StreamRequest {
     private String inputFile;
     private String rtmpUrl;
     private String cameraDevice;
     private String localFilePath;
-    private String roomId;
 
     // Getters and setters
 
@@ -32,7 +31,6 @@ public class StreamRequest {
     public void setCameraDevice(String cameraDevice) {
         this.cameraDevice = cameraDevice;
     }
-
     public String getLocalFilePath() {
         return localFilePath;
     }
@@ -41,7 +39,4 @@ public class StreamRequest {
         this.localFilePath = localFilePath;
     }
 
-    public String getRoomId() {
-        return roomId;
-    }
 }

@@ -1,6 +1,6 @@
-package org.example.livevideoservice.repository;
+package org.example.livevideoservice.Repository;
 
-import org.example.livevideoservice.entity.UserActivity;
+import org.example.livevideoservice.entrty.UserActivity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.example.livevideoservice.entity;
+package org.example.livevideoservice.entrty;
 
 import jakarta.persistence.*;
 import lombok.Data;

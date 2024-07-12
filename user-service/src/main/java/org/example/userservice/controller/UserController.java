@@ -184,6 +184,8 @@ public class UserController {
         Integer userID = Integer.parseInt(authorizationHeader);
         String oldPassword = requestBody.get("oldPassword");
         String newPassword = requestBody.get("newPassword");
+        System.out.println("oldPassword: " + oldPassword);
+        System.out.println("newPassword: " + newPassword);
         Boolean result = userInfoService.modifyPassword(userID, oldPassword, newPassword);
         if(!result) {
             return CommonResult.failed("修改密码失败");
