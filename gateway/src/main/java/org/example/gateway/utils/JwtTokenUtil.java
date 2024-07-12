@@ -180,17 +180,6 @@ public class JwtTokenUtil {
         return generateToken(claims);
     }
 
-    public String generateToken(Integer userID){
-        // 创建负载
-        Map<String,Object> claims = new HashMap<>();
-        // 设置负载中的用户名
-        claims.put(CLAM_KEY_USERNAME,userID.toString());
-        // 设置负载中的创建时间
-        claims.put(CLAM_KEY_CREATED,new Date());
-        // 根据负载生成 token
-        return generateToken(claims);
-    }
-
     /**
      * 判断 token 是否可以被刷新
      * @param oldToken JWT 的 token
