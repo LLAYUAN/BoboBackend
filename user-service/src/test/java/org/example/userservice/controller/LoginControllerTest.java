@@ -35,11 +35,13 @@ class LoginControllerTest {
     void testGetPublicKey() throws Exception {
         // Setup
         // Run the test and verify the results
+        String expectedJson = "{\"data\":\"abcdef\"}";
+
         mockMvc.perform(get("/publicKey")
-                        .header("Authorization", "authorizationHeader")
+                        .header("Authorization", "90")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{}", true));
+                .andExpect(content().json(expectedJson));
     }
 
     @Test

@@ -12,7 +12,7 @@ import org.example.userservice.service.UserInfoService;
 import org.example.userservice.service.UserService;
 import org.example.userservice.utils.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+//import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RefreshScope
+//@RefreshScope
 @RestController
 public class UserController {
     @Autowired

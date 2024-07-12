@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+//import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@RefreshScope
+//@RefreshScope
 @RestController
 //@RequestMapping(value = "/user")
 public class LoginController {
@@ -49,10 +49,12 @@ public class LoginController {
         return CommonResult.success(publicKey);
     }
 
+
+    // 测试跨服务通信
     @GetMapping(value = "/test")
     public CommonResult test() {
-//        String test = feign.test();
-        String test = "test";
+        String test = feign.test();
+//        String test = "test";
         return CommonResult.success(test);
 //        String port = environment.getProperty("local.server.port");
 //        if ("8082".equals(port)) {

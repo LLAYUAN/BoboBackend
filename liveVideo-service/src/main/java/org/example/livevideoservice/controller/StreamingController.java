@@ -1,8 +1,8 @@
 package org.example.livevideoservice.controller;
 
 import org.example.livevideoservice.Repository.UserActivityRepository;
-import org.example.livevideoservice.entrty.Result;
-import org.example.livevideoservice.entrty.StreamRequest;
+import org.example.livevideoservice.entity.Result;
+import org.example.livevideoservice.entity.StreamRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
