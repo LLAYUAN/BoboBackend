@@ -72,19 +72,31 @@ public class UserActivityController {
             String userId = payload.get("userId");
             String roomId = payload.get("roomId");
 
-            UserActivity existingActivity = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
-            if (existingActivity != null) {
-                return ResponseEntity.badRequest().body("User is already in a room");
-            }
+        List<UserActivity> existingActivities = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
+        if (!existingActivities.isEmpty()) {
+            return Result.error("User is already in a room");
+        }
+
+        UserActivity activity = new UserActivity();
+        activity.setUserId(userId);
+        activity.setRoomId(roomId);
+        activity.setEnterTime(LocalDateTime.now());
+
+        userActivityRepository.save(activity);
+        return Result.success();
+    }
 
             UserActivity activity = new UserActivity();
             activity.setUserId(userId);
             activity.setRoomId(roomId);
             activity.setEnterTime(LocalDateTime.now());
 
-            userActivityRepository.save(activity);
-
-            return ResponseEntity.ok("User entered");
+        List<UserActivity> activities = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
+        if (!activities.isEmpty()) {
+            for (UserActivity activity : activities) {
+                activity.setExitTime(LocalDateTime.now());
+                userActivityRepository.save(activity);
+            }
         }
 
         @PostMapping("/api/user-exit")
