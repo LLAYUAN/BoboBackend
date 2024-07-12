@@ -21,10 +21,6 @@ public class RecordVideoDaoImpl implements RecordVideoDao {
         recordVideoRepository.save(recordVideo);
     }
 
-    @Transactional
-    @Override
-    public void deleteByRecordVideoID(Integer recordVideoID) { recordVideoRepository.deleteByRecordVideoID(recordVideoID);}
-
     @Override
     public List<RecordVideo> findByUserid(Integer userID) {
         return recordVideoRepository.findByUserid(userID);
