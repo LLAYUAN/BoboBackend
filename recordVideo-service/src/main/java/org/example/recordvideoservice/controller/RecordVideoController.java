@@ -133,4 +133,12 @@ public class RecordVideoController {
         return true;
     }
 
+    @GetMapping("/deleteRecordVideoByRecordVideoID")
+    public Boolean deleteRecordVideoByRecordVideoID(@RequestParam("recordVideoID") String recordVideoID_String) {
+        System.out.println("执行删除RecordVideo数据");
+        Integer recordVideoIDtoDelete = Integer.parseInt(recordVideoID_String);
+        recordVideoService.deleteByRecordVideoID(recordVideoIDtoDelete);
+        return true;
+    }
+
 }
