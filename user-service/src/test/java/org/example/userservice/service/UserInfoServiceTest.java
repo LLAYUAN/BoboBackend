@@ -1,16 +1,16 @@
 package org.example.userservice.service;
 
+import org.example.userservice.Feign.Feign;
 import org.example.userservice.dao.CompleteUserDao;
 import org.example.userservice.entity.RoomInfo;
 import org.example.userservice.entity.UserInfo;
+import org.example.userservice.model.PasswordRequest;
 import org.example.userservice.repository.RoomInfoRepo;
-//import org.example.userservice.utils.JwtTokenUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -24,12 +24,10 @@ class UserInfoServiceTest {
 
     @Mock
     private CompleteUserDao mockCompleteUserDao;
-//    @Mock
-//    private JwtTokenUtil mockJwtTokenUtil;
-    @Mock
-    private BCryptPasswordEncoder mockPasswordEncoder;
     @Mock
     private RoomInfoRepo mockRoomInfoRepo;
+    @Mock
+    private Feign mockFeign;
 
     @InjectMocks
     private UserInfoService userInfoServiceUnderTest;
@@ -45,37 +43,35 @@ class UserInfoServiceTest {
                 Date.valueOf(LocalDate.of(2020, 1, 1)));
         when(mockCompleteUserDao.findUserInfoByEmail("email")).thenReturn(userInfo1);
 
-        when(mockPasswordEncoder.matches("password", "password")).thenReturn(false);
+        when(mockFeign.matchPassword(new PasswordRequest("oldPassword", "encodedPassword"))).thenReturn(false);
 
         // Run the test
-        final String result = userInfoServiceUnderTest.login("email", "password", userInfo);
+        final String result = userInfoServiceUnderTest.login("email", "oldPassword", userInfo);
 
         // Verify the results
         assertThat(result).isEqualTo("result");
     }
 
-//    @Test
-//    void testLogin_BCryptPasswordEncoderReturnsTrue() {
-//        // Setup
-//        final UserInfo userInfo = new UserInfo("email", "nickname", "selfIntro",
-//                Date.valueOf(LocalDate.of(2020, 1, 1)));
-//
-//        // Configure CompleteUserDao.findUserInfoByEmail(...).
-//        final UserInfo userInfo1 = new UserInfo("email", "nickname", "selfIntro",
-//                Date.valueOf(LocalDate.of(2020, 1, 1)));
-//        when(mockCompleteUserDao.findUserInfoByEmail("email")).thenReturn(userInfo1);
-//
-//        when(mockPasswordEncoder.matches("password", "password")).thenReturn(true);
-//        when(mockJwtTokenUtil.generateToken(
-//                new UserInfo("email", "nickname", "selfIntro", Date.valueOf(LocalDate.of(2020, 1, 1)))))
-//                .thenReturn("result");
-//
-//        // Run the test
-//        final String result = userInfoServiceUnderTest.login("email", "password", userInfo);
-//
-//        // Verify the results
-//        assertThat(result).isEqualTo("result");
-//    }
+    @Test
+    void testLogin_FeignMatchPasswordReturnsTrue() {
+        // Setup
+        final UserInfo userInfo = new UserInfo("email", "nickname", "selfIntro",
+                Date.valueOf(LocalDate.of(2020, 1, 1)));
+
+        // Configure CompleteUserDao.findUserInfoByEmail(...).
+        final UserInfo userInfo1 = new UserInfo("email", "nickname", "selfIntro",
+                Date.valueOf(LocalDate.of(2020, 1, 1)));
+        when(mockCompleteUserDao.findUserInfoByEmail("email")).thenReturn(userInfo1);
+
+        when(mockFeign.matchPassword(new PasswordRequest("oldPassword", "encodedPassword"))).thenReturn(true);
+        when(mockFeign.generateToken(0)).thenReturn("result");
+
+        // Run the test
+        final String result = userInfoServiceUnderTest.login("email", "oldPassword", userInfo);
+
+        // Verify the results
+        assertThat(result).isEqualTo("result");
+    }
 
     @Test
     void testFindUserInfoByEmail() {
@@ -167,7 +163,7 @@ class UserInfoServiceTest {
         final UserInfo expectedResult = new UserInfo("email", "nickname", "selfIntro",
                 Date.valueOf(LocalDate.of(2020, 1, 1)));
         when(mockCompleteUserDao.findUserInfoByEmail("email")).thenReturn(null);
-        when(mockPasswordEncoder.encode("password")).thenReturn("password");
+        when(mockFeign.encode("password")).thenReturn("encodedPassword");
 
         // Configure CompleteUserDao.save(...).
         final UserInfo userInfo = new UserInfo("email", "nickname", "selfIntro",
@@ -213,7 +209,7 @@ class UserInfoServiceTest {
                 Date.valueOf(LocalDate.of(2020, 1, 1)));
         when(mockCompleteUserDao.findUserInfoByUserID(0)).thenReturn(userInfo);
 
-        when(mockPasswordEncoder.matches("oldPassword", "password")).thenReturn(false);
+        when(mockFeign.matchPassword(new PasswordRequest("oldPassword", "encodedPassword"))).thenReturn(false);
 
         // Run the test
         final Boolean result = userInfoServiceUnderTest.modifyPassword(0, "oldPassword", "newPassword");
@@ -223,15 +219,15 @@ class UserInfoServiceTest {
     }
 
     @Test
-    void testModifyPassword_BCryptPasswordEncoderMatchesReturnsTrue() {
+    void testModifyPassword_FeignMatchPasswordReturnsTrue() {
         // Setup
         // Configure CompleteUserDao.findUserInfoByUserID(...).
         final UserInfo userInfo = new UserInfo("email", "nickname", "selfIntro",
                 Date.valueOf(LocalDate.of(2020, 1, 1)));
         when(mockCompleteUserDao.findUserInfoByUserID(0)).thenReturn(userInfo);
 
-        when(mockPasswordEncoder.matches("oldPassword", "password")).thenReturn(true);
-        when(mockPasswordEncoder.encode("newPassword")).thenReturn("password");
+        when(mockFeign.matchPassword(new PasswordRequest("oldPassword", "encodedPassword"))).thenReturn(true);
+        when(mockFeign.encode("newPassword")).thenReturn("encodedPassword");
 
         // Run the test
         final Boolean result = userInfoServiceUnderTest.modifyPassword(0, "oldPassword", "newPassword");

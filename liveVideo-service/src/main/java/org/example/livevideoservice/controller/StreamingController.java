@@ -15,14 +15,13 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 public class StreamingController {
-
     private final Map<String, Process> processMap = new ConcurrentHashMap<>();
 
     @Autowired
     private UserActivityRepository userActivityRepository;
-    @GetMapping("/api/camera-devices")
+
+    @GetMapping("/camera-devices")
     public Result getCameraDevices() {
         List<String> devices = new ArrayList<>();
         try {
@@ -59,74 +58,32 @@ public class StreamingController {
         }
     }
 
-    @PostMapping("/api/camera-live")
+
+    @PostMapping("/camera-live")
     public Result startCameraStream(@RequestBody StreamRequest request) {
-        // 根据选择的摄像头设备名称构建 ffmpeg 命令
-        System.out.println("Camera Device: " + request.getCameraDevice());
-        System.out.println("RTMP URL: " + request.getRtmpUrl());
         String command = String.format("ffmpeg -f dshow -rtbufsize 100M -i video=\"%s\" -vcodec libx264 -preset ultrafast -maxrate 2000k -bufsize 4000k -f flv %s", request.getCameraDevice(), request.getRtmpUrl());
-
-//        if (Objects.equals(request.getLocalFilePath(), "NO PATH")) {
-//            command = String.format("ffmpeg -f dshow -rtbufsize 100M -i video=\"%s\" -vcodec libx264 -preset ultrafast -maxrate 2000k -bufsize 4000k -f flv %s", request.getCameraDevice(), request.getRtmpUrl());
-//        }else{
-//            command = String.format("ffmpeg -f dshow -rtbufsize 100M -i video=\"%s\" -vcodec libx264 -preset ultrafast -maxrate 2000k -bufsize 4000k -f flv %s  -c:v libx264 -preset fast -crf 22 -y %s", request.getCameraDevice(), request.getRtmpUrl(),request.getLocalFilePath());
-//        }
-
-        System.out.println("Command: " + command);
-        try {
-            Process process = Runtime.getRuntime().exec(command);
-
-            new Thread(() -> {
-                try {
-                    process.waitFor();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }).start();
-
-            return Result.success();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Result.error("Failed to start camera stream");
-        }
+        return startStream(command, request.getRoomId());
     }
 
-    @PostMapping("/api/desktop-live")
+    @PostMapping("/desktop-live")
     public Result startDesktopStream(@RequestBody StreamRequest request) {
-        System.out.println("RTMP URL: " + request.getRtmpUrl());
-        System.out.println("Local File Path: " + request.getLocalFilePath());
-        String rtmpUrl = request.getRtmpUrl();
-        String command = String.format("ffmpeg -f gdigrab -i desktop -c:v libx264 -pix_fmt yuv420p -f flv %s", rtmpUrl);
-//
-//        if (Objects.equals(request.getLocalFilePath(), "NO PATH")) {
-//
-//            command = String.format("ffmpeg -f gdigrab -i desktop -c:v libx264 -pix_fmt yuv420p -f flv %s", rtmpUrl);
-//        }else{
-//
-//            command = String.format("ffmpeg -f gdigrab -i desktop -c:v libx264 -pix_fmt yuv420p -f flv %s -c:v libx264 -preset fast -crf 22 -y %s", rtmpUrl,request.getLocalFilePath());
-//            System.out.println(command);
-//        }
-        try {
+        String command = String.format("ffmpeg -f gdigrab -i desktop -c:v libx264 -pix_fmt yuv420p -f flv %s", request.getRtmpUrl());
+        return startStream(command, request.getRoomId());
+    }
 
-            Process process = Runtime.getRuntime().exec(command);
-
-            new Thread(() -> {
-                try {
-                    process.waitFor();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }).start();
-
+    @PostMapping("/stop-stream")
+    public Result stopStream(@RequestBody StreamRequest request) {
+        Process process = processMap.get(request.getRoomId());
+        if (process != null) {
+            process.destroy();
+            processMap.remove(request.getRoomId());
             return Result.success();
-        } catch (IOException e) {
-            e.printStackTrace();
-
-            return Result.error("Failed to start desktop stream");
+        } else {
+            return Result.error("No stream found for the given roomId");
         }
     }
 
-    @PostMapping("/api/record")
+    @PostMapping("/record")
     public Result startRecord(@RequestBody StreamRequest request) {
         System.out.println("RTMP URL: " + request.getRtmpUrl());
         System.out.println("Local File Path: " + request.getLocalFilePath());
@@ -153,23 +110,26 @@ public class StreamingController {
         }
     }
 
-    @PostMapping("/api/stop-stream")
-    public Result stopStream(@RequestBody StreamRequest request) {
+    private Result startStream(String command, String roomId) {
         try {
-            // 查找正在进行的ffmpeg进程并杀死它
-            String command = "taskkill /F /IM ffmpeg.exe";
             Process process = Runtime.getRuntime().exec(command);
+            processMap.put(roomId, process);
 
-            int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                return Result.success("Stream stopped successfully");
-            } else {
-                return Result.error("Failed to stop the stream");
-            }
-        } catch (IOException | InterruptedException e) {
+            new Thread(() -> {
+                try {
+                    process.waitFor();
+                    processMap.remove(roomId);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }).start();
+
+            return Result.success();
+        } catch (IOException e) {
             e.printStackTrace();
-            return Result.error("Error occurred while stopping the stream");
+            return Result.error("Failed to start stream");
         }
     }
+
 
 }
