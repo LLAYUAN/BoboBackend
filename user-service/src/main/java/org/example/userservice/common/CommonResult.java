@@ -8,9 +8,6 @@ public class CommonResult<T> {
     private String message;
     private T data;
 
-    protected CommonResult() {
-    }
-
     protected CommonResult(long code, String message, T data) {
         this.code = code;
         this.message = message;
