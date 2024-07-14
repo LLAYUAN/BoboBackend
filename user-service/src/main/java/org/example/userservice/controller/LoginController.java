@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@RefreshScope
+//@RefreshScope
 @RestController
 //@RequestMapping(value = "/user")
 public class LoginController {
@@ -51,8 +51,7 @@ public class LoginController {
 
     @GetMapping(value = "/test")
     public CommonResult test() {
-//        String test = feign.test();
-        String test = "test";
+        String test = feign.test();
         return CommonResult.success(test);
 //        String port = environment.getProperty("local.server.port");
 //        if ("8082".equals(port)) {
