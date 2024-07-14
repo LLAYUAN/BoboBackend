@@ -79,6 +79,7 @@ class UserServiceTest {
         // Configure UserInfoRepo.findAllById(...).
         final List<UserInfo> userInfos = List.of(
                 new UserInfo("email", "nickname", "selfIntro", Date.valueOf(LocalDate.of(2020, 1, 1))));
+        userInfos.get(0).setUserID(0);
         when(mockUserInfoRepository.findAllById(List.of(0))).thenReturn(userInfos);
 
         // Run the test
@@ -91,13 +92,11 @@ class UserServiceTest {
     @Test
     void testGetFollowees_FollowerDaoReturnsNoItems() {
         // Setup
-        final List<BasicUserDTO> expectedResult = List.of(new BasicUserDTO(0, "nickname"));
+        final List<BasicUserDTO> expectedResult = List.of();
         when(mockFollowerDao.findFolloweesByFollowerID(0)).thenReturn(Collections.emptyList());
 
         // Configure UserInfoRepo.findAllById(...).
-        final List<UserInfo> userInfos = List.of(
-                new UserInfo("email", "nickname", "selfIntro", Date.valueOf(LocalDate.of(2020, 1, 1))));
-        when(mockUserInfoRepository.findAllById(List.of(0))).thenReturn(userInfos);
+        when(mockUserInfoRepository.findAllById(Collections.emptyList())).thenReturn(Collections.emptyList());
 
         // Run the test
         final List<BasicUserDTO> result = userServiceUnderTest.getFollowees(0);
@@ -105,6 +104,7 @@ class UserServiceTest {
         // Verify the results
         assertThat(result).isEqualTo(expectedResult);
     }
+
 
     @Test
     void testGetFollowees_UserInfoRepoReturnsNoItems() {
@@ -128,6 +128,7 @@ class UserServiceTest {
         // Configure UserInfoRepo.findAllById(...).
         final List<UserInfo> userInfos = List.of(
                 new UserInfo("email", "nickname", "selfIntro", Date.valueOf(LocalDate.of(2020, 1, 1))));
+        userInfos.get(0).setUserID(0);
         when(mockUserInfoRepository.findAllById(List.of(0))).thenReturn(userInfos);
 
         // Run the test
@@ -140,13 +141,11 @@ class UserServiceTest {
     @Test
     void testGetFollowers_FollowerDaoReturnsNoItems() {
         // Setup
-        final List<BasicUserDTO> expectedResult = List.of(new BasicUserDTO(0, "nickname"));
+        final List<BasicUserDTO> expectedResult = Collections.emptyList();
         when(mockFollowerDao.findFollowersByFolloweeID(0)).thenReturn(Collections.emptyList());
 
         // Configure UserInfoRepo.findAllById(...).
-        final List<UserInfo> userInfos = List.of(
-                new UserInfo("email", "nickname", "selfIntro", Date.valueOf(LocalDate.of(2020, 1, 1))));
-        when(mockUserInfoRepository.findAllById(List.of(0))).thenReturn(userInfos);
+        when(mockUserInfoRepository.findAllById(Collections.emptyList())).thenReturn(Collections.emptyList());
 
         // Run the test
         final List<BasicUserDTO> result = userServiceUnderTest.getFollowers(0);
@@ -154,6 +153,7 @@ class UserServiceTest {
         // Verify the results
         assertThat(result).isEqualTo(expectedResult);
     }
+
 
     @Test
     void testGetFollowers_UserInfoRepoReturnsNoItems() {
@@ -223,13 +223,23 @@ class UserServiceTest {
         final UserInfo userInfo = new UserInfo("email", "nickname", "selfIntro",
                 Date.valueOf(LocalDate.of(2020, 1, 1)));
         when(mockCompleteUserDao.findUserInfoByUserID(0)).thenReturn(userInfo);
+        RoomInfo roomInfo = new RoomInfo("roomName", "description", "coverUrl");
+        roomInfo.setRoomID(0);
+        userInfo.setRoomInfo(roomInfo);
 
         // Run the test
-        final Integer result = userServiceUnderTest.createRoom(0, "roomName", "coverUrl", List.of(0));
+        final Integer result = userServiceUnderTest.createRoom(0, "roomName", "coverUrl", List.of(0,1,2));
 
         // Verify the results
         assertThat(result).isEqualTo(0);
-        verify(mockRoomDao).saveRoomInfo(new RoomInfo("roomName", "description", "coverUrl"));
+        RoomInfo expectedRoomInfo = new RoomInfo("roomName", "description", "coverUrl");
+        expectedRoomInfo.setRoomID(0);
+        expectedRoomInfo.setStatus(true);
+        expectedRoomInfo.setStudy(true);
+        expectedRoomInfo.setEntertain(true);
+        expectedRoomInfo.setOther(true);
+        expectedRoomInfo.setStartTime(roomInfo.getStartTime());
+        verify(mockRoomDao).saveRoomInfo(expectedRoomInfo);
 
         // Confirm Feign.saveRoomHotIndex(...).
         final RoomHotIndex roomHotIndex = new RoomHotIndex();
@@ -244,5 +254,46 @@ class UserServiceTest {
         roomHotIndex.setSumViewTime(0);
         final List<RoomHotIndex> roomHotIndexList = List.of(roomHotIndex);
         verify(mockFeign).saveRoomHotIndex(roomHotIndexList);
+    }
+
+    @Test
+    void testCreateRoom_statusTrue() {
+        // Setup
+        // Configure CompleteUserDao.findUserInfoByUserID(...).
+        final UserInfo userInfo = new UserInfo("email", "nickname", "selfIntro",
+                Date.valueOf(LocalDate.of(2020, 1, 1)));
+        when(mockCompleteUserDao.findUserInfoByUserID(0)).thenReturn(userInfo);
+        RoomInfo roomInfo = new RoomInfo("roomName", "description", "coverUrl");
+        roomInfo.setStatus(true);
+        roomInfo.setRoomID(0);
+        userInfo.setRoomInfo(roomInfo);
+
+        // Run the test
+        final Integer result = userServiceUnderTest.createRoom(0, "roomName", "coverUrl", List.of(0,1,2));
+
+        // Verify the results
+        assertThat(result).isEqualTo(0);
+        RoomInfo expectedRoomInfo = new RoomInfo("roomName", "description", "coverUrl");
+        expectedRoomInfo.setRoomID(0);
+        expectedRoomInfo.setStatus(true);
+        expectedRoomInfo.setStudy(true);
+        expectedRoomInfo.setEntertain(true);
+        expectedRoomInfo.setOther(true);
+        expectedRoomInfo.setStartTime(null);
+        verify(mockRoomDao).saveRoomInfo(expectedRoomInfo);
+
+//        // Confirm Feign.saveRoomHotIndex(...).
+//        final RoomHotIndex roomHotIndex = new RoomHotIndex();
+//        roomHotIndex.setRoomId(0);
+//        roomHotIndex.setDuration(0);
+//        roomHotIndex.setViewCount(0);
+//        roomHotIndex.setLikeCount(0);
+//        roomHotIndex.setShareCount(0);
+//        roomHotIndex.setConsumptionCount(0);
+//        roomHotIndex.setMessageCount(0);
+//        roomHotIndex.setNewFollowerCount(0);
+//        roomHotIndex.setSumViewTime(0);
+//        final List<RoomHotIndex> roomHotIndexList = List.of(roomHotIndex);
+//        verify(mockFeign).saveRoomHotIndex(roomHotIndexList);
     }
 }

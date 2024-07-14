@@ -9,13 +9,6 @@ import org.example.userservice.entity.UserInfo;
 import org.example.userservice.model.PasswordRequest;
 import org.example.userservice.repository.RoomInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.authentication.BadCredentialsException;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.security.core.userdetails.User;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 //import org.example.userservice.utils.JwtTokenUtil;
@@ -92,7 +85,7 @@ public class UserInfoService {
         UserInfo userInfo = completeUserDao.findUserInfoByUserID(userID);
         RoomInfo roomInfo = userInfo.getRoomInfo();
         if(roomInfo == null){
-            roomInfo = new RoomInfo("直播间", "直播间", "");
+            roomInfo = new RoomInfo("直播间", "视频简介", "");
             roomInfo.setUserInfo(userInfo);
 //             TODO：设置tags
             roomInfoRepo.save(roomInfo);
