@@ -7,6 +7,8 @@ import org.example.userservice.dao.RoomDao;
 import org.example.userservice.dto.BasicUserDTO;
 import org.example.userservice.entity.RoomHotIndex;
 import org.example.userservice.entity.RoomInfo;
+import org.example.userservice.entity.UserInfo;
+import org.example.userservice.repository.RoomInfoRepo;
 import org.example.userservice.repository.UserInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,9 @@ public class UserService {
 
     @Autowired
     Feign feign;
+
+    @Autowired
+    RoomInfoRepo roomInfoRepo;
 
     public void follow(Integer followeeID, Integer followerID) {
         followerDao.saveFollowerInfo(followeeID, followerID);
@@ -76,7 +81,8 @@ public class UserService {
     }
 
     public Integer createRoom(Integer userID, String roomName, String coverUrl, List<Integer> tags) {
-        RoomInfo roomInfo = completeUserDao.findUserInfoByUserID(userID).getRoomInfo();
+        UserInfo userInfo = completeUserDao.findUserInfoByUserID(userID);
+        RoomInfo roomInfo = userInfo.getRoomInfo();
         Boolean status = roomInfo.getStatus();
         roomInfo.setRoomName(roomName);
         roomInfo.setCoverUrl(coverUrl);
@@ -112,4 +118,6 @@ public class UserService {
         feign.saveRoomHotIndex(roomHotIndexList);
         return roomInfo.getRoomID();
     }
+
+
 }
