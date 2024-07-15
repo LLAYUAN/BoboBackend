@@ -22,7 +22,14 @@ public class UserActivityController {
     public Result userEnter(@RequestBody Map<String, String> payload) {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
-        System.out.println("user: " + userId +" is entering room: " + roomId);
+
+        Query query = new Query();
+        query.addCriteria(Criteria.where("userId").is(userId).and("roomId").is(roomId).and("exitTime").is(null));
+        List<UserActivity> activities = mongoTemplate.find(query, UserActivity.class);
+
+        if (!activities.isEmpty()){
+            return Result.success();
+        }
 
         // 插入新的用户进入记录
         UserActivity activity = new UserActivity();
