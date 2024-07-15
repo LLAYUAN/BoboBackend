@@ -19,6 +19,7 @@ public class UserActivityController {
     public Result userEnter(@RequestBody Map<String, String> payload) {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
+        System.out.println("user: " + userId +" is entering room: " + roomId);
 
         List<UserActivity> existingActivities = userActivityRepository.findByUserIdAndExitTimeIsNull(userId);
         if (!existingActivities.isEmpty()) {
