@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface ChatMessageRepository extends MongoRepository<ChatMessage, String> {
     Page<ChatMessage> findByRoomIDAndTimestampLessThanOrderByTimestampDesc(Integer roomID, Instant timestamp, Pageable pageable);
+
+    void deleteByTimestampLessThan(Instant cutoffTime);
 }
