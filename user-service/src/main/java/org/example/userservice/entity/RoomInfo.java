@@ -59,6 +59,18 @@ public class RoomInfo {
         this.other = false;
     }
 
+    public RoomInfo(Integer roomID, String roomName, Boolean study,Boolean entertain,Boolean other,String description, String coverUrl) {
+        this.roomID = roomID;
+        this.roomName = roomName;
+        this.description = description;
+        this.coverUrl = coverUrl;
+        this.status = false;
+        this.study = study;
+        this.entertain = entertain;
+        this.other = other;
+        this.userInfo = new UserInfo();
+    }
+
     public RoomInfo() {
     }
 }

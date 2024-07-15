@@ -19,7 +19,7 @@ public class BasicRoomDTO {
 
     public BasicRoomDTO() {
         // 开一个大小为3的tags数组，初始值都为0
-        this.tags = new Integer[3];
+        this.tags = new Integer[]{0, 0, 0};
     }
 
     public BasicRoomDTO(RoomInfo roomInfo) {
