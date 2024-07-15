@@ -140,6 +140,7 @@ public class StreamingController {
             new Thread(() -> {
                 try {
                     finalProcess.waitFor();
+                    log.info("Stream stopped for roomId: " + roomId);
                     processMap.remove(roomId);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
