@@ -4,6 +4,7 @@ import org.example.livevideoservice.entity.Result;
 import org.example.livevideoservice.entity.StreamRequest;
 import org.example.livevideoservice.entity.RoomInfo;
 import org.example.livevideoservice.repository.RoomInfoRepository;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,6 +69,9 @@ public class StreamingController {
 
     @PostMapping("/stop-stream")
     public Result stopStream(@RequestBody StreamRequest request) {
+        Logger log = org.slf4j.LoggerFactory.getLogger(StreamingController.class);
+        log.info("Stop stream for roomId: " + request.getRoomId());
+        log.info("Process map: " + processMap);
         Process process = processMap.get(request.getRoomId());
 
         if (process != null) {
@@ -114,8 +118,16 @@ public class StreamingController {
 
     private Result startStream(String command, String roomId) {
         try {
-            Process process = Runtime.getRuntime().exec(command);
+            Logger log = org.slf4j.LoggerFactory.getLogger(StreamingController.class);
+            log.info("Start stream for roomId: " + roomId);
+            Process process = processMap.get(roomId);
+            if (process != null) {
+                log.info("Stream already started for roomId: " + roomId);
+                return Result.success();
+            }
+            process = Runtime.getRuntime().exec(command);
             processMap.put(roomId, process);
+            log.info("Process map: " + processMap);
 
             // Update room status to 1
             RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(roomId));
@@ -124,9 +136,11 @@ public class StreamingController {
                 roomInfoRepository.save(roomInfo);
             }
 
+            Process finalProcess = process;
             new Thread(() -> {
                 try {
-                    process.waitFor();
+                    finalProcess.waitFor();
+                    log.info("Stream stopped for roomId: " + roomId);
                     processMap.remove(roomId);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
