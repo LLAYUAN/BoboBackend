@@ -23,6 +23,14 @@ public class UserActivityController {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
 
+        Query query = new Query();
+        query.addCriteria(Criteria.where("userId").is(userId).and("roomId").is(roomId).and("exitTime").is(null));
+        List<UserActivity> activities = mongoTemplate.find(query, UserActivity.class);
+
+        if (!activities.isEmpty()){
+            return Result.success();
+        }
+
         // 插入新的用户进入记录
         UserActivity activity = new UserActivity();
         activity.setUserId(userId);
