@@ -79,7 +79,7 @@ public class RecordVideoController {
     public String uploadFile(@RequestParam("file") MultipartFile file) {
         System.out.println("START uploadFile1111111111111111111111111111");
         if (file.isEmpty()) {
-            return "上传失败";
+            return "uploadFail";
         }
 
         try {
@@ -103,7 +103,7 @@ public class RecordVideoController {
             return "http://localhost:9999/recordvideo/resources/" + newFilename;
         } catch (IOException e) {
             e.printStackTrace();
-            return "上传失败";
+            return "uploadFail";
         }
     }
 

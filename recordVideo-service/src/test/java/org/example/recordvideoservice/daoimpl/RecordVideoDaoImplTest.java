@@ -10,8 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -46,6 +48,18 @@ class RecordVideoDaoImplTest {
         entity.setRecordVideoCoverUrl("recordVideoCoverUrl");
         entity.setRecordVideoAddress("recordVideoAddress");
         verify(mockRecordVideoRepository).save(entity);
+    }
+
+    @Test
+    public void testDeleteByRecordVideoID() {
+        // Setup
+        final Integer recordVideoID = 1;
+
+        // Run the test
+        recordVideoDaoImplUnderTest.deleteByRecordVideoID(recordVideoID);
+
+        // Verify the results
+        verify(mockRecordVideoRepository).deleteByRecordVideoID(recordVideoID);
     }
 
     @Test
