@@ -1,4 +1,6 @@
-package org.example.recommendservice.entity;
+package org.example.recommendservice.utils;
+
+import org.example.recommendservice.entity.RoomHotIndex;
 
 public class HotIndexCalculator {
     private static final double VIEW_COUNT_WEIGHT = 1.5;

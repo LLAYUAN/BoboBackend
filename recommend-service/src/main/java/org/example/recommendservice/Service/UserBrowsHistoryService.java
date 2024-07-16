@@ -4,6 +4,8 @@ import org.example.recommendservice.DTO.RoomCardInfo;
 import org.example.recommendservice.Dao.BrowsHistoryDao;
 import org.example.recommendservice.Dao.RoomDao;
 import org.example.recommendservice.entity.*;
+import org.example.recommendservice.utils.HotIndexCalculator;
+import org.example.recommendservice.utils.SimilarIndexCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
