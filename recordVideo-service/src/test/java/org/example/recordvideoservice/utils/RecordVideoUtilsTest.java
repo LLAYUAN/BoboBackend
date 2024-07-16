@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,29 +28,31 @@ class RecordVideoUtilsTest {
     @Test
     void testTransRecordVideoFromFrontend() {
         // Setup
-        final Map<String, Object> recordVideoData = Map.ofEntries(Map.entry("value", "value"));
-        final RecordVideo expectedResult = new RecordVideo();
-        expectedResult.setRecordVideoName("recordVideoName");
-        expectedResult.setRecordVideoIntro("recordVideoIntro");
-        expectedResult.setRecordVideoCoverUrl("recordVideoCoverUrl");
-        expectedResult.setRecordVideoAddress("recordVideoAddress");
-        expectedResult.setRecordVideoUploadTime(LocalDateTime.of(2020, 1, 1, 0, 0, 0));
-        final UserInfo userInfo = new UserInfo();
-        expectedResult.setUserInfo(userInfo);
+        Integer userID = 1;
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserID(userID);
+        when(mockUserInfoService.findUserInfoByUserID(userID)).thenReturn(userInfo);
 
-        // Configure UserInfoService.findUserInfoByUserID(...).
-        final UserInfo userInfo1 = new UserInfo();
-        userInfo1.setUserID(0);
-        userInfo1.setPassword("password");
-        userInfo1.setEmail("email");
-        userInfo1.setAvatarUrl("avatarUrl");
-        userInfo1.setNickname("nickname");
-        when(mockUserInfoService.findUserInfoByUserID(0)).thenReturn(userInfo1);
+        Map<String, Object> recordVideoData = new HashMap<>();
+        recordVideoData.put("videoName", "testVideo");
+        recordVideoData.put("videoIntro", "testIntro");
+        recordVideoData.put("imageUrl", "http://test.com/image.jpg");
+        recordVideoData.put("videoUrl", "http://test.com/video.mp4");
+
+        LocalDateTime now = LocalDateTime.now();
 
         // Run the test
-        final RecordVideo result = recordVideoUtilsUnderTest.transRecordVideoFromFrontend(recordVideoData, 0);
+        RecordVideo result = recordVideoUtilsUnderTest.transRecordVideoFromFrontend(recordVideoData, userID);
 
         // Verify the results
-        assertThat(result).isEqualTo(expectedResult);
+        assertThat(result).isNotNull();
+        assertThat(result.getRecordVideoName()).isEqualTo("testVideo");
+        assertThat(result.getRecordVideoIntro()).isEqualTo("testIntro");
+        assertThat(result.getRecordVideoCoverUrl()).isEqualTo("http://test.com/image.jpg");
+        assertThat(result.getRecordVideoAddress()).isEqualTo("http://test.com/video.mp4");
+        assertThat(result.getUserInfo()).isEqualTo(userInfo);
+        assertThat(result.getRecordVideoUploadTime()).isNotNull();
+        assertThat(result.getRecordVideoUploadTime()).isAfterOrEqualTo(now.minusSeconds(1));
+        assertThat(result.getRecordVideoUploadTime()).isBeforeOrEqualTo(now.plusSeconds(1));
     }
 }

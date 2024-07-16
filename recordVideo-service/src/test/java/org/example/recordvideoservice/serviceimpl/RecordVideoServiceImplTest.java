@@ -113,4 +113,16 @@ class RecordVideoServiceImplTest {
         // Verify the results
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    void testDeleteByRecordVideoID() {
+        // Setup
+        final Integer recordVideoID = 1;
+
+        // Run the test
+        recordVideoServiceImplUnderTest.deleteByRecordVideoID(recordVideoID);
+
+        // Verify the results
+        verify(mockRecordVideoDao).deleteByRecordVideoID(recordVideoID);
+    }
 }

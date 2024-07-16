@@ -12,7 +12,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -21,9 +27,11 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.matchesPattern;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.matches;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.willThrow;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -171,14 +179,70 @@ class RecordVideoControllerTest {
     }
 
     @Test
-    void testDeleteFile() throws Exception {
-        // Setup
-        // Run the test and verify the results
-        mockMvc.perform(get("/deleteFile")
-                        .param("fileName", "fileName")
+    void testUploadFileWithEmptyFile() throws Exception {
+        // 使用空文件进行测试
+        mockMvc.perform(multipart("/uploadFile")
+                        .file(new MockMultipartFile("file", "", "application/octet-stream", new byte[0]))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{}", true));
+                .andExpect(content().string("uploadFail"));
+    }
+
+    @Test
+    public void testUploadFile_IOException() throws Exception {
+        // 模拟一个文件上传
+        MockMultipartFile file = new MockMultipartFile("file", "test.txt", MediaType.TEXT_PLAIN_VALUE, "Test content".getBytes());
+
+        // 模拟 Files.createDirectories 抛出 IOException
+        try (var mockedStatic = mockStatic(Files.class)) {
+            mockedStatic.when(() -> Files.createDirectories(any(Path.class)))
+                    .thenThrow(new IOException("Simulated IO Exception"));
+
+            mockMvc.perform(multipart("/uploadFile").file(file))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string("uploadFail"));
+        }
+    }
+
+    @Test
+    public void testDeleteFile_FileExists() throws Exception {
+        try (var mockedStatic = mockStatic(Files.class)) {
+            Path mockPath = Paths.get("static/test.txt");
+
+            mockedStatic.when(() -> Files.exists(mockPath)).thenReturn(true);
+            mockedStatic.when(() -> Files.delete(mockPath)).thenAnswer(invocation -> null);
+
+            mockMvc.perform(get("/deleteFile").param("fileName", "test.txt"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string("true"));
+        }
+    }
+
+    @Test
+    public void testDeleteFile_FileNotExists() throws Exception {
+        try (var mockedStatic = mockStatic(Files.class)) {
+            Path mockPath = Paths.get("static/test.txt");
+
+            mockedStatic.when(() -> Files.exists(mockPath)).thenReturn(false);
+
+            mockMvc.perform(get("/deleteFile").param("fileName", "test.txt"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string("false"));
+        }
+    }
+
+    @Test
+    public void testDeleteFile_IOException() throws Exception {
+        try (var mockedStatic = mockStatic(Files.class)) {
+            Path mockPath = Paths.get("static/test.txt");
+
+            mockedStatic.when(() -> Files.exists(mockPath)).thenReturn(true);
+            mockedStatic.when(() -> Files.delete(mockPath)).thenThrow(new IOException("Simulated IO Exception"));
+
+            mockMvc.perform(get("/deleteFile").param("fileName", "test.txt"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string("false"));
+        }
     }
 
     @Test
@@ -202,4 +266,15 @@ class RecordVideoControllerTest {
                 .andExpect(status().isOk()) // 期望的状态码为200
                 .andExpect(content().string("true")); // 适用于控制器方法返回的是一个简单的布尔值true，并且Spring MVC将其转换为字符串形式的JSON响应。
     }
+
+    @Test
+    public void testDeleteRecordVideoByRecordVideoID_Success() throws Exception {
+        mockMvc.perform(get("/deleteRecordVideoByRecordVideoID")
+                        .param("recordVideoID", "123"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
+
+        verify(mockRecordVideoService).deleteByRecordVideoID(123);
+    }
+
 }
