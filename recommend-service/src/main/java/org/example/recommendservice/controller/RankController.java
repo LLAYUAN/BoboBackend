@@ -6,7 +6,10 @@ import org.example.recommendservice.Service.UserBrowsHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/rank")
@@ -24,6 +27,17 @@ public class RankController {
     @GetMapping("/recommend")
     public List<RoomCardInfo> recommendRooms(@RequestHeader("Authorization") String userId) {
         System.out.println("personal recommend userId: " + userId);
-        return userBrowsHistoryService.recommendRooms(userId);
+        List<RoomCardInfo> recommendList = new ArrayList<>(userBrowsHistoryService.recommendRooms(userId));
+        List<RoomCardInfo> rankList = roomInfoService.getRank(-1);
+
+        Set<RoomCardInfo> recommendSet = new HashSet<>(recommendList);
+        for (RoomCardInfo room : rankList) {
+            if (!recommendSet.contains(room)) {
+                recommendList.add(room);
+            }
+        }
+
+        return recommendList;
     }
+
 }
