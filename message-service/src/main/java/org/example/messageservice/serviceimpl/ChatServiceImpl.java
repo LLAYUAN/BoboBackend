@@ -22,6 +22,10 @@ public class ChatServiceImpl implements ChatService {
         Pageable pageable = PageRequest.of(0, 20);  // 查询时指定一页的大小
         List<ChatMessage> messages=chatMessageRepository.findByRoomIDAndTimestampLessThanOrderByTimestampDesc(roomID, timestamp, pageable).getContent();
         return messages;
+    }
 
+    @Override
+    public void deleteOldMessages(Instant cutoffTime){
+        chatMessageRepository.deleteByTimestampLessThan(cutoffTime);
     }
 }
