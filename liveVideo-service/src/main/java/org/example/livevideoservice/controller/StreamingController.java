@@ -62,7 +62,7 @@ public class StreamingController {
 
     @PostMapping("/camera-live")
     public Result startCameraStream(@RequestBody StreamRequest request) throws IOException {
-        String command = String.format("ffmpeg -f dshow -rtbufsize 100M -i video=\"%s\" -vcodec libx264 -preset ultrafast -maxrate 2000k -bufsize 4000k -f flv %s", request.getCameraDevice(), request.getRtmpUrl());
+        String command = String.format("ffmpeg -f dshow -rtbufsize 50M -i video=\"%s\" -vcodec libx264 -preset ultrafast -maxrate 2000k -bufsize 4000k -f flv %s", request.getCameraDevice(), request.getRtmpUrl());
         return startStream(command, request.getRoomId());
     }
 
@@ -103,6 +103,7 @@ public class StreamingController {
 
             return Result.success();
         }
+        return Result.success();
     }
 
     @PostMapping("/record")
@@ -130,6 +131,7 @@ public class StreamingController {
 //            return Result.error("Failed to start desktop record");
 //        }
     }
+
 
     public Result startStream(String command, String roomId) throws IOException {
 

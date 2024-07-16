@@ -4,6 +4,8 @@ import org.example.livevideoservice.entity.Result;
 import org.example.livevideoservice.entity.UserActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +25,15 @@ public class UserActivityController {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
 
+        System.out.println("User entered room: " + roomId);
+
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(userId).and("roomId").is(roomId).and("exitTime").is(null));
         List<UserActivity> activities = mongoTemplate.find(query, UserActivity.class);
 
+        System.out.println("activities: " + activities);
         if (!activities.isEmpty()){
-            return Result.success();
+            return Result.error("User already entered");
         }
 
         // 插入新的用户进入记录
@@ -39,6 +44,7 @@ public class UserActivityController {
         activity.setExitTime(null);
 
         mongoTemplate.save(activity);
+
         System.out.println(activity);
         return Result.success();
     }
@@ -48,15 +54,22 @@ public class UserActivityController {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
 
+        System.out.println("User exited room: " + roomId);
+
         // 查找最近一次用户进入的记录并更新退出时间
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(userId).and("roomId").is(roomId).and("exitTime").is(null));
         List<UserActivity> activities = mongoTemplate.find(query, UserActivity.class);
 
+        System.out.println("activities: " + activities );
+
         if (!activities.isEmpty()) {
-            UserActivity activity = activities.get(0);
-            activity.setExitTime(LocalDateTime.now());
-            mongoTemplate.save(activity);
+            for(UserActivity activity: activities){
+                activity.setExitTime(LocalDateTime.now());
+                mongoTemplate.save(activity);
+
+                System.out.println(activity);
+            }
         }
 
         return Result.success("User exited");
@@ -64,10 +77,16 @@ public class UserActivityController {
 
     @GetMapping("/active-users/{roomId}")
     public Result getActiveUsers(@PathVariable String roomId) {
-        // 查找所有exitTime为null的活动用户
-        Query query = new Query();
-        query.addCriteria(Criteria.where("roomId").is(roomId).and("exitTime").is(null));
-        List<UserActivity> activeUsers = mongoTemplate.find(query, UserActivity.class);
+        // 使用 Aggregation 框架按照 userId 分组，选择每个分组的第一个活动记录
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.match(Criteria.where("roomId").is(roomId).and("exitTime").is(null)),
+                Aggregation.group("userId").first("$$ROOT").as("activeUser"),
+                Aggregation.replaceRoot("activeUser")
+        );
+
+        AggregationResults<UserActivity> results = mongoTemplate.aggregate(aggregation, "userActivity", UserActivity.class);
+        List<UserActivity> activeUsers = results.getMappedResults();
+
         return Result.success(activeUsers);
     }
 
