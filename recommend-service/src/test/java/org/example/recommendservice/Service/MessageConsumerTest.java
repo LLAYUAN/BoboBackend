@@ -59,4 +59,18 @@ class MessageConsumerTest {
 
         verify(roomDao, times(1)).saveRoomHotIndex(any(RoomHotIndex.class));
     }
+
+    @Test
+    void processMessagesWithNewRoomHotIndex() {
+        AddHotIndex addHotIndex1 = new AddHotIndex(2, 10, 5, 2, 3, 4, 1, 100);
+        AddHotIndex addHotIndex2 = new AddHotIndex(2, 5, 2, 1, 1, 1, 1, 50);
+        messageConsumer.getMessageQueue().add(addHotIndex1);
+        messageConsumer.getMessageQueue().add(addHotIndex2);
+
+        when(roomDao.getRoomHotIndex(2)).thenReturn(null);
+
+        messageConsumer.processMessages();
+
+        verify(roomDao, times(1)).saveRoomHotIndex(any(RoomHotIndex.class));
+    }
 }
