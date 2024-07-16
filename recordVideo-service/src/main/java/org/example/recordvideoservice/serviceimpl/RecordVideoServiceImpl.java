@@ -20,6 +20,10 @@ public class RecordVideoServiceImpl implements RecordVideoService {
         recordVideoDao.saveRecordVideo(recordVideo);
     }
 
+    @Transactional
+    @Override
+    public void deleteByRecordVideoID(Integer recordVideoID) {recordVideoDao.deleteByRecordVideoID(recordVideoID);}
+
     @Override
     public List<RecordVideo> findByUserid(Integer userID) {
         return recordVideoDao.findByUserid(userID);

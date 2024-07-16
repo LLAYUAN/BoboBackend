@@ -74,12 +74,18 @@ public class RecordVideoController {
     }
 
 
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
+
     @PostMapping("/uploadFile")
     //@RequestParam("file") MultipartFile file
     public String uploadFile(@RequestParam("file") MultipartFile file) {
         System.out.println("START uploadFile1111111111111111111111111111");
         if (file.isEmpty()) {
-            return "上传失败";
+            return "uploadFail";
         }
 
         try {
@@ -103,7 +109,7 @@ public class RecordVideoController {
             return "http://localhost:9999/recordvideo/resources/" + newFilename;
         } catch (IOException e) {
             e.printStackTrace();
-            return "上传失败";
+            return "uploadFail";
         }
     }
 
@@ -133,4 +139,11 @@ public class RecordVideoController {
         return true;
     }
 
+    @GetMapping("/deleteRecordVideoByRecordVideoID")
+    public Boolean deleteRecordVideoByRecordVideoID(@RequestParam("recordVideoID") String recordVideoID_String) {
+        System.out.println("执行删除RecordVideo数据");
+        Integer recordVideoIDtoDelete = Integer.parseInt(recordVideoID_String);
+        recordVideoService.deleteByRecordVideoID(recordVideoIDtoDelete);
+        return true;
+    }
 }
