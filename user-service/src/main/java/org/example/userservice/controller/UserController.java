@@ -49,6 +49,13 @@ public class UserController {
         return CommonResult.success(result);
     }
 
+    @PostMapping("/setStatus")
+    public void setStatus(@RequestBody Map<String,Object>requestBody) {
+        Integer roomID = (Integer) requestBody.get("roomID");
+        Boolean status = (Boolean) requestBody.get("status");
+        userService.setStatus(roomID,status);
+    }
+
     @GetMapping(value = "/getUserInfo")
     public CommonResult getUserInfo(@RequestHeader("Authorization") String authorizationHeader) {
         // 获取token然后进行解析，得到用户名，再进一步获取用户信息
