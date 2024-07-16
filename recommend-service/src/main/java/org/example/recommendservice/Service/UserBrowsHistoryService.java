@@ -175,7 +175,7 @@ public class UserBrowsHistoryService {
                 .map(Map.Entry::getKey)
                 .toList();
     }
-    private List<Boolean> getCategoryFromRecord(BrowsingRecord record) {
+    public List<Boolean> getCategoryFromRecord(BrowsingRecord record) {
         RoomInfo roomInfo = roomDao.findById(record.getRoomId());
         List<Boolean> category = new ArrayList<>();
         category.add(roomInfo.getStudy());
@@ -250,8 +250,8 @@ public class UserBrowsHistoryService {
 
         return recommendedRooms;
     }
-    private double calculateSimilarity(Map<Integer, Integer> userMap,
-                                       List<BrowsingRecord> compareUserRecords) {
+    public double calculateSimilarity(Map<Integer, Integer> userMap,
+                                      List<BrowsingRecord> compareUserRecords) {
         // 实现余弦相似度计算逻辑
         Map<Integer, Integer> compareUserMap = compareUserRecords.stream()
                 .collect(Collectors.toMap(
