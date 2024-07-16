@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @Data
@@ -14,4 +16,6 @@ public class VideoPagePlayingRecordVideo {
     private Integer ownerUserID;
     private String ownerName;
     private String ownerIntro;
+    private String ownerAvatarUrl;
+    private LocalDateTime uploadTime;
 }

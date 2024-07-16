@@ -1,6 +1,8 @@
 package org.example.recommendservice.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.recommendservice.entity.RoomInfo;
 import org.example.recommendservice.entity.UserInfo;
 
@@ -8,8 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RoomCardInfo {
     private int id;
+    private int userID;
     private String roomName;
     private String description;
     private String coverUrl;
@@ -21,6 +26,7 @@ public class RoomCardInfo {
 
     public RoomCardInfo(RoomInfo roomInfo) {
         this.id = roomInfo.getRoomID();
+        this.userID = roomInfo.getUserInfo().getUserID();
         this.roomName = roomInfo.getRoomName();
         this.description = roomInfo.getDescription();
         this.coverUrl = roomInfo.getCoverUrl();

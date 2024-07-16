@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
-    <artifactId>liveVideo-service</artifactId>
+    <artifactId>recommend-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>liveVideo-service</name>
-    <description>liveVideo-service</description>
+    <name>recommend-service</name>
+    <description>recommend-service</description>
     <url/>
     <licenses>
         <license/>
@@ -135,6 +135,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.17.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

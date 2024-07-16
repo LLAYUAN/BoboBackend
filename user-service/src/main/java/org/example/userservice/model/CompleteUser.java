@@ -1,10 +1,14 @@
 package org.example.userservice.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CompleteUser {
     private Integer id;
     private String username;
@@ -12,5 +16,4 @@ public class CompleteUser {
     private List<String> followers;
     private List<String> subscriptions;
 
-    // Getters and Setters
 }

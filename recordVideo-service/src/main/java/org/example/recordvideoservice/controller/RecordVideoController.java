@@ -4,6 +4,7 @@ import org.example.recordvideoservice.dto.UsersAllRecordVideo;
 import org.example.recordvideoservice.dto.VideoPagePlayingRecordVideo;
 import org.example.recordvideoservice.entity.RecordVideo;
 import org.example.recordvideoservice.service.RecordVideoService;
+import org.example.recordvideoservice.utils.RecordVideoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,19 +16,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
 public class RecordVideoController {
     @Autowired
     private RecordVideoService recordVideoService;
+    @Autowired
+    private RecordVideoUtils recordVideoUtils;
 
     @GetMapping("/getUsersRecordVideos")
     public List<UsersAllRecordVideo> getUsersRecordVideos(@RequestParam(name = "userID") String string_userID,@RequestHeader("Authorization") String authorizationHeader) {
         Integer auth_userID = Integer.parseInt(authorizationHeader);
-        Integer param_userID;
+        Integer param_userID = Integer.parseInt(string_userID);
         List<RecordVideo> recordVideoList;
-        if (!string_userID.isEmpty()) {
+        System.out.println("param_userID:");
+        System.out.println(param_userID);
+        System.out.println("auth_userID:");
+        System.out.println(auth_userID);
+        if (param_userID != 0) {
             param_userID = Integer.parseInt(string_userID);
             recordVideoList = recordVideoService.findByUserid(param_userID);
         } else {
@@ -41,8 +49,11 @@ public class RecordVideoController {
             tmp.setVideoIntro(recordVideo.getRecordVideoIntro());
             tmp.setOwnerName(recordVideo.getUserInfo().getNickname());
             tmp.setImageUrl(recordVideo.getRecordVideoCoverUrl());
+            tmp.setUploadTime(recordVideo.getRecordVideoUploadTime());
             result.add(tmp);
         }
+        System.out.println("getUsersRecordVideos");
+        System.out.println(result);
         return result;
     }
 
@@ -57,11 +68,12 @@ public class RecordVideoController {
         result.setOwnerUserID(playingRecordVideo.getUserInfo().getUserID());
         result.setOwnerName(playingRecordVideo.getUserInfo().getNickname());
         result.setOwnerIntro(playingRecordVideo.getUserInfo().getSelfIntro());
+        result.setUploadTime(playingRecordVideo.getRecordVideoUploadTime());
+        result.setOwnerAvatarUrl(playingRecordVideo.getUserInfo().getAvatarUrl());
         return result;
     }
 
 
-    private static String UPLOADED_FOLDER = "/static/";
     @PostMapping("/uploadFile")
     //@RequestParam("file") MultipartFile file
     public String uploadFile(@RequestParam("file") MultipartFile file) {
@@ -93,5 +105,39 @@ public class RecordVideoController {
             e.printStackTrace();
             return "上传失败";
         }
-      }
+    }
+
+    @GetMapping("/deleteFile")
+    public Boolean deleteFile(@RequestParam("fileName") String fileName) {
+        try {
+            Path path = Paths.get("static/" + fileName);
+            if (Files.exists(path)) {
+                System.out.println("要删除的文件存在");
+                Files.delete(path);
+                return true;
+            } else {
+                System.out.println("要删除的文件不存在");
+                return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @PostMapping("/saveRecordVideo")
+    public Boolean saveRecordVideo(@RequestBody Map<String, Object> recordVideoData, @RequestHeader("Authorization") String authorizationHeader) {
+        Integer userID = Integer.parseInt(authorizationHeader);
+        RecordVideo recordVideoToSave = recordVideoUtils.transRecordVideoFromFrontend(recordVideoData, userID);
+        recordVideoService.saveRecordVideo(recordVideoToSave);
+        return true;
+    }
+
+    @GetMapping("/deleteRecordVideoByRecordVideoID")
+    public Boolean deleteRecordVideoByRecordVideoID(@RequestParam("recordVideoID") String recordVideoID_String) {
+        System.out.println("执行删除RecordVideo数据");
+        Integer recordVideoIDtoDelete = Integer.parseInt(recordVideoID_String);
+        recordVideoService.deleteByRecordVideoID(recordVideoIDtoDelete);
+        return true;
+    }
 }

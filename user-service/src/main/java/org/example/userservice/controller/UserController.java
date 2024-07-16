@@ -1,5 +1,6 @@
 package org.example.userservice.controller;
 
+import lombok.Data;
 import org.example.userservice.Feign.Feign;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.dto.BasicRoomDTO;
@@ -11,7 +12,7 @@ import org.example.userservice.service.UserInfoService;
 import org.example.userservice.service.UserService;
 import org.example.userservice.utils.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+//import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RefreshScope
+//@RefreshScope
 @RestController
 public class UserController {
     @Autowired
@@ -100,6 +101,7 @@ public class UserController {
         return CommonResult.success("Unfollow successfully");
     }
 
+    // 判断是否是当前浏览界面从属用户的粉丝，决定了关注按钮是显示为关注还是未关注
     @GetMapping(value = "/checkIsFan")
     public CommonResult checkIsFan(@RequestHeader("Authorization") String authorizationHeader,
                                    @RequestParam("followeeID") Integer followeeID) {
@@ -124,20 +126,20 @@ public class UserController {
         return CommonResult.success("Update user info successfully");
     }
 
-    // 创建或更改直播间信息
-    @PostMapping(value = "/startLive")
-    public CommonResult startLive(@RequestHeader("Authorization") String authorizationHeader,
-                                  @RequestPart("coverImage") MultipartFile coverImage,
-                                  @RequestPart("name") String name,
-                                  @RequestPart("tags") Integer[] tags) {
-        Integer userID = Integer.parseInt(authorizationHeader);
-        String coverUrl = feign.uploadFile(coverImage);
-        userService.startLive(userID, name,tags, coverUrl);
-        Map<String,Object> result = new HashMap<>();
-        result.put("coverUrl",coverUrl);
-        result.put("roomID",userInfoService.getRoomIDByUserID(userID));
-        return CommonResult.success(result);
-    }
+//    // 创建或更改直播间信息
+//    @PostMapping(value = "/startLive")
+//    public CommonResult startLive(@RequestHeader("Authorization") String authorizationHeader,
+//                                  @RequestPart("coverImage") MultipartFile coverImage,
+//                                  @RequestPart("name") String name,
+//                                  @RequestPart("tags") Integer[] tags) {
+//        Integer userID = Integer.parseInt(authorizationHeader);
+//        String coverUrl = feign.uploadFile(coverImage);
+//        userService.startLive(userID, name,tags, coverUrl);
+//        Map<String,Object> result = new HashMap<>();
+//        result.put("coverUrl",coverUrl);
+//        result.put("roomID",userInfoService.getRoomIDByUserID(userID));
+//        return CommonResult.success(result);
+//    }
 
     @GetMapping(value = "/getRoomInfo")
     public CommonResult getRoomInfo(@RequestHeader("Authorization") String authorizationHeader) {
@@ -158,5 +160,36 @@ public class UserController {
         UserInfoDTO userInfoDTO = new UserInfoDTO(userInfo, followeeCount, followerCount, isFan);
 //        userService.visitInfo(visitorID, visitedID);
         return CommonResult.success(userInfoDTO);
+    }
+
+    // 更改直播间信息并开播
+    @PostMapping(value = "/createRoom")
+    public CommonResult createRoom(@RequestHeader("Authorization") String authorizationHeader,
+                                   @RequestBody Map<String, Object> requestBody) {
+        Integer userID = Integer.parseInt(authorizationHeader);
+        String roomName = (String) requestBody.get("title");
+        String coverUrl = (String) requestBody.get("cover_image");
+        List<Integer> tags = (List<Integer>) requestBody.get("tags");
+        System.out.println("roomName: " + roomName);
+        System.out.println("coverUrl: " + coverUrl);
+        System.out.println("tags: " + tags);
+
+        Integer roomID = userService.createRoom(userID, roomName, coverUrl , tags);
+        return CommonResult.success(roomID);
+    }
+
+    @PostMapping(value = "/modifyPassword")
+    public CommonResult modifyPassword(@RequestHeader("Authorization") String authorizationHeader,
+                                       @RequestBody Map<String, String> requestBody) {
+        Integer userID = Integer.parseInt(authorizationHeader);
+        String oldPassword = requestBody.get("oldPassword");
+        String newPassword = requestBody.get("newPassword");
+        System.out.println("oldPassword: " + oldPassword);
+        System.out.println("newPassword: " + newPassword);
+        Boolean result = userInfoService.modifyPassword(userID, oldPassword, newPassword);
+        if(!result) {
+            return CommonResult.failed("修改密码失败");
+        }
+        return CommonResult.success("修改密码成功");
     }
 }

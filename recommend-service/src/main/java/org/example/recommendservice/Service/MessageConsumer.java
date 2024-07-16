@@ -2,8 +2,11 @@ package org.example.recommendservice.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.recommendservice.DTO.AddHotIndex;
 import org.example.recommendservice.Dao.RoomDao;
+import org.example.recommendservice.entity.RoomHotIndex;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class MessageConsumer {
 
+    @Setter
+    @Getter
     private ConcurrentLinkedQueue<AddHotIndex> messageQueue = new ConcurrentLinkedQueue<>();
 
     @Autowired
@@ -38,7 +43,7 @@ public class MessageConsumer {
         scheduler.scheduleAtFixedRate(this::processMessages, 5, 5, TimeUnit.SECONDS);
     }
 
-    private void processMessages() {
+    public void processMessages() {
         Map<Integer, AddHotIndex> map = new HashMap<>();
         AddHotIndex addHotIndex;
 
@@ -58,8 +63,22 @@ public class MessageConsumer {
         }
         map.forEach((roomId, hotIndex) -> addRoomHotIndex(hotIndex));
     }
-    public void  addRoomHotIndex(AddHotIndex addHotIndex){
-        roomDao.addRoomHotIndex(addHotIndex);
+    public void addRoomHotIndex(AddHotIndex addHotIndex){
+        RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(addHotIndex.getRoomId());
+        if (roomHotIndex == null) {
+            roomHotIndex = new RoomHotIndex();
+            roomHotIndex.setRoomId(addHotIndex.getRoomId());
+        }
+        roomHotIndex.setViewCount(roomHotIndex.getViewCount() + addHotIndex.getViewCount());
+        roomHotIndex.setLikeCount(roomHotIndex.getLikeCount() + addHotIndex.getLikeCount());
+        roomHotIndex.setShareCount(roomHotIndex.getShareCount() + addHotIndex.getShareCount());
+        roomHotIndex.setConsumptionCount(roomHotIndex.getConsumptionCount() + addHotIndex.getConsumptionCount());
+        roomHotIndex.setMessageCount(roomHotIndex.getMessageCount() + addHotIndex.getMessageCount());
+        roomHotIndex.setNewFollowerCount(roomHotIndex.getNewFollowerCount() + addHotIndex.getNewFollowerCount());
+        roomHotIndex.setSumViewTime(roomHotIndex.getSumViewTime() + addHotIndex.getSumViewTime());
+
+        roomDao.saveRoomHotIndex(roomHotIndex);
+//        roomDao.addRoomHotIndex(addHotIndex);
     }
 
 }

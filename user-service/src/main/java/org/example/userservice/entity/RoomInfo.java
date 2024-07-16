@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.example.userservice.dao.RoomDao;
 
 import java.beans.ConstructorProperties;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -38,6 +39,12 @@ public class RoomInfo {
     @Column(name = "other")
     private Boolean other;
 
+    @Column(name = "start_time")
+    private LocalDateTime startTime;
+
+    @Column(name = "end_time")
+    private LocalDateTime endTime;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private UserInfo userInfo;
@@ -46,10 +53,22 @@ public class RoomInfo {
         this.roomName = roomName;
         this.description = description;
         this.coverUrl = coverUrl;
-        this.status = true;
+        this.status = false;
         this.study = false;
         this.entertain = false;
         this.other = false;
+    }
+
+    public RoomInfo(Integer roomID, String roomName, Boolean study,Boolean entertain,Boolean other,String description, String coverUrl) {
+        this.roomID = roomID;
+        this.roomName = roomName;
+        this.description = description;
+        this.coverUrl = coverUrl;
+        this.status = false;
+        this.study = study;
+        this.entertain = entertain;
+        this.other = other;
+        this.userInfo = new UserInfo();
     }
 
     public RoomInfo() {
