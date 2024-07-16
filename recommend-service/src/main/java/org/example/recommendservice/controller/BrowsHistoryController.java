@@ -16,17 +16,15 @@ public class BrowsHistoryController {
     UserBrowsHistoryService userBrowsHistoryService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addBrowsingRecord(
+    public void addBrowsingRecord(
             @RequestHeader("Authorization") String userId,
             @RequestBody BrowsingRecord browsingRecord) {
         userBrowsHistoryService.addBrowsingRecord(userId, browsingRecord);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Browsing record added successfully.");
     }
     @PostMapping("/set")
-    public ResponseEntity<String> setBrowsingRecord(
+    public void setBrowsingRecord(
             @RequestHeader("Authorization") String userId,
             @RequestBody List<BrowsingRecord> browsingHistory) {
         userBrowsHistoryService.setBrowsingRecord(userId, browsingHistory);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Browsing record added successfully.");
     }
 }
