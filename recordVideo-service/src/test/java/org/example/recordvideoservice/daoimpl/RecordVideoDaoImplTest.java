@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 import java.util.List;
+
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,6 +52,7 @@ class RecordVideoDaoImplTest {
     }
 
     @Test
+
     public void testDeleteByRecordVideoID() {
         // Setup
         final Integer recordVideoID = 1;

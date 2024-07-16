@@ -1,5 +1,6 @@
 package org.example.recordvideoservice.controller;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.recordvideoservice.entity.RecordVideo;
 import org.example.recordvideoservice.entity.UserInfo;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
+
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,6 +50,7 @@ class RecordVideoControllerTest {
     private RecordVideoUtils mockRecordVideoUtils;
 
     @Test
+
     void testGetUsersRecordVideosParamsIs0() throws Exception {
         // Setup
         // Configure RecordVideoService.findByUserid(...).
@@ -65,6 +68,7 @@ class RecordVideoControllerTest {
         userInfo.setSelfIntro("ownerIntro");
         recordVideo.setUserInfo(userInfo);
         final List<RecordVideo> recordVideos = List.of(recordVideo);
+
         when(mockRecordVideoService.findByUserid(1)).thenReturn(recordVideos);
         // 构造预期的JSON数组字符串
         String expectedJsonArray = "[{\"videoID\":0,\"videoName\":\"recordVideoName\",\"videoIntro\":\"recordVideoIntro\",\"ownerName\":\"nickname\",\"imageUrl\":\"imageUrl\",\"uploadTime\":\"2020-01-01T00:00:00\"}]";
@@ -116,6 +120,7 @@ class RecordVideoControllerTest {
 
         // Run the test and verify the results
         mockMvc.perform(get("/getUsersRecordVideos")
+
                         .param("userID", "1")
                         .header("Authorization", "1")
                         .accept(MediaType.APPLICATION_JSON))
@@ -133,6 +138,7 @@ class RecordVideoControllerTest {
         recordVideo.setRecordVideoIntro("recordVideoIntro");
         recordVideo.setRecordVideoCoverUrl("imageUrl");
         recordVideo.setRecordVideoAddress("recordVideoAddress");
+
         recordVideo.setRecordVideoUploadTime(LocalDateTime.of(2020, 1, 1, 0, 0,0));
         final UserInfo userInfo = new UserInfo();
         userInfo.setUserID(0);
@@ -141,6 +147,7 @@ class RecordVideoControllerTest {
         userInfo.setSelfIntro("ownerIntro");
         recordVideo.setUserInfo(userInfo);
         when(mockRecordVideoService.findRecordVideoByRecordVideoID(0)).thenReturn(recordVideo);
+
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         String formattedUploadTime = recordVideo.getRecordVideoUploadTime().format(formatter);
@@ -170,6 +177,7 @@ class RecordVideoControllerTest {
         // Setup
         // Run the test and verify the results
         mockMvc.perform(multipart("/uploadFile")
+
                         .file(new MockMultipartFile("file", "video.mp4", MediaType.APPLICATION_JSON_VALUE,
                                 "content".getBytes()))
                         .accept(MediaType.APPLICATION_JSON))
@@ -247,6 +255,7 @@ class RecordVideoControllerTest {
 
     @Test
     void testSaveRecordVideo() throws Exception {
+
         // 构造JSON请求体
         Map<String, Object> recordVideoData = new HashMap<>();
         recordVideoData.put("videoName", "recordVideoName");
