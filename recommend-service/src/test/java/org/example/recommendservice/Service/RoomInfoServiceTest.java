@@ -79,4 +79,20 @@ class RoomInfoServiceTest {
         assertEquals(roomInfo.getRoomName(), result.getRoomName());
         assertEquals(HotIndexCalculator.calculateHotIndex(roomHotIndex), result.getHotIndex());
     }
+    @Test
+    void saveRoomHotIndexList() {
+        // 准备测试数据
+        List<RoomHotIndex> roomHotIndexList = new ArrayList<>();
+        RoomHotIndex roomHotIndex1 = new RoomHotIndex(1, 0, 100, 50, 30, 20, 10, 5, 200);
+        RoomHotIndex roomHotIndex2 = new RoomHotIndex(2, 0, 90, 40, 20, 10, 5, 2, 150);
+        roomHotIndexList.add(roomHotIndex1);
+        roomHotIndexList.add(roomHotIndex2);
+
+        // 调用方法
+        roomInfoService.saveRoomHotIndexList(roomHotIndexList);
+
+        // 验证是否正确调用了 roomDao.saveRoomHotIndexList 方法，并且参数正确
+        verify(roomDao, times(1)).saveRoomHotIndexList(eq(roomHotIndexList));
+    }
+
 }

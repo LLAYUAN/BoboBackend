@@ -1,5 +1,6 @@
 package org.example.livevideoservice.controller;
 
+import org.example.livevideoservice.Feign.Feign;
 import org.example.livevideoservice.entity.Result;
 import org.example.livevideoservice.entity.StreamRequest;
 import org.example.livevideoservice.entity.RoomInfo;
@@ -20,6 +21,9 @@ public class StreamingController {
 
     @Autowired
     private RoomInfoRepository roomInfoRepository;
+
+    @Autowired
+    Feign feign;
 
     @GetMapping("/camera-devices")
     public Result getCameraDevices() throws IOException, InterruptedException {
@@ -80,12 +84,24 @@ public class StreamingController {
             processMap.remove(request.getRoomId());
 
             // Update room status to 0
-            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(request.getRoomId()));
-            if (roomInfo != null) {
-                roomInfo.setStatus(false);
-                roomInfoRepository.save(roomInfo);
-            }
+            Map<String,Object> result = new HashMap<>();
+            result.put("roomID",request.getRoomId());
+            result.put("status",false);
+            feign.setStatus(result);
+//            // Update room status to 0
+//            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(request.getRoomId()));
+//            if (roomInfo != null) {
+//                roomInfo.setStatus(false);
+//                roomInfoRepository.save(roomInfo);
+//            }
+            return Result.success();
+        } else {
+            Map<String,Object> result = new HashMap<>();
+            result.put("roomID",request.getRoomId());
+            result.put("status",false);
+            feign.setStatus(result);
 
+            return Result.success();
         }
         return Result.success();
     }
@@ -131,11 +147,16 @@ public class StreamingController {
             log.info("Process map: " + processMap);
 
             // Update room status to 1
-            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(roomId));
-            if (roomInfo != null) {
-                roomInfo.setStatus(true);
-                roomInfoRepository.save(roomInfo);
-            }
+            Map<String,Object> result = new HashMap<>();
+            result.put("roomID",roomId);
+            result.put("status",true);
+            feign.setStatus(result);
+
+//            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(roomId));
+//            if (roomInfo != null) {
+//                roomInfo.setStatus(true);
+//                roomInfoRepository.save(roomInfo);
+//            }
 
             Process finalProcess = process;
             new Thread(() -> {

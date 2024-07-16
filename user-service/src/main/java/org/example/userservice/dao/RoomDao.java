@@ -24,4 +24,8 @@ public class RoomDao {
     public void saveRoomInfo(RoomInfo roomInfo) {
         roomInfoRepo.save(roomInfo);
     }
+
+    public RoomInfo findRoomInfoByRoomID(Integer roomID) {
+        return roomInfoRepo.findRoomInfoByRoomID(roomID);
+    }
 }

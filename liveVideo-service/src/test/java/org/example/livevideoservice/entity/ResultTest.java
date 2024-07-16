@@ -39,8 +39,8 @@ class ResultTest {
     void testSuccess1() {
         // Run the test
         final Result result = Result.success("data");
-        assertThat(result.getStatus()).isEqualTo(0);
-        assertThat(result.getMessage()).isEqualTo("message");
+        assertThat(result.getStatus()).isEqualTo(200);
+        assertThat(result.getMessage()).isEqualTo("success");
         assertThat(result.getData()).isEqualTo("data");
     }
 
@@ -48,17 +48,17 @@ class ResultTest {
     void testSuccess2() {
         // Run the test
         final Result result = Result.success();
-        assertThat(result.getStatus()).isEqualTo(0);
-        assertThat(result.getMessage()).isEqualTo("message");
-        assertThat(result.getData()).isEqualTo("data");
+        assertThat(result.getStatus()).isEqualTo(200);
+        assertThat(result.getMessage()).isEqualTo("success");
+        assertThat(result.getData()).isEqualTo(null);
     }
 
     @Test
     void testError() {
         // Run the test
         final Result result = Result.error("message");
-        assertThat(result.getStatus()).isEqualTo(0);
+        assertThat(result.getStatus()).isEqualTo(500);
         assertThat(result.getMessage()).isEqualTo("message");
-        assertThat(result.getData()).isEqualTo("data");
+        assertThat(result.getData()).isEqualTo(null);
     }
 }
