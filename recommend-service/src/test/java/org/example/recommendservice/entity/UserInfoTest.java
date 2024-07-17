@@ -8,17 +8,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UserInfoTest {
-
+    RoomInfo roomInfo = new RoomInfo();
     @Test
     public void testNoArgsConstructor() {
         UserInfo userInfo = new UserInfo();
         assertNotNull(userInfo);
     }
-
     @Test
     public void testAllArgsConstructor() {
         Date birthday = new Date(System.currentTimeMillis());
-        UserInfo userInfo = new UserInfo(1, "password", "john@example.com", "John Doe", "Self Intro", birthday, true, "avatar.jpg", null);
+        UserInfo userInfo = new UserInfo("john@example.com", "John Doe", "Self Intro", birthday);
+
+        assertEquals("john@example.com", userInfo.getEmail());
+        assertEquals("John Doe", userInfo.getNickname());
+        assertEquals("Self Intro", userInfo.getSelfIntro());
+        assertEquals(birthday, userInfo.getBirthday());
+        assertEquals(false, userInfo.getIsAdmin());
+    }
+    @Test
+    public void testPartArgsConstructor() {
+        Date birthday = new Date(System.currentTimeMillis());
+        UserInfo userInfo = new UserInfo(1, "password", "john@example.com", "John Doe", "Self Intro", birthday, true, "avatar.jpg", roomInfo);
 
         assertEquals(1, userInfo.getUserID());
         assertEquals("password", userInfo.getPassword());
@@ -28,8 +38,8 @@ public class UserInfoTest {
         assertEquals(birthday, userInfo.getBirthday());
         assertEquals(true, userInfo.getIsAdmin());
         assertEquals("avatar.jpg", userInfo.getAvatarUrl());
+        assertEquals(roomInfo, userInfo.getRoomInfo());
     }
-
     @Test
     public void testSettersAndGetters() {
         UserInfo userInfo = new UserInfo();
