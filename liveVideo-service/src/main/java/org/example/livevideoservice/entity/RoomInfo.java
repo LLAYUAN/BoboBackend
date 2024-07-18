@@ -50,4 +50,9 @@ public class RoomInfo {
         this.entertain = false;
         this.other = false;
     }
+
+    public void setRoomID(int i) {
+        this.roomID = i;
+    }
+
 }

@@ -1,6 +1,7 @@
 package org.example.recordvideoservice.entity;
 
 import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 
 class UserInfoTest {
 
@@ -17,6 +19,7 @@ class UserInfoTest {
     void setUp() {
         userInfoUnderTest = new UserInfo();
     }
+
 
     @Test
     void testGettersAndSetters() {
@@ -105,4 +108,5 @@ class UserInfoTest {
         assertThat(userInfo.getIsAdmin()).isEqualTo(isAdmin);
         assertThat(userInfo.getRecordVideo()).isEqualTo(recordVideos);
     }
+
 }

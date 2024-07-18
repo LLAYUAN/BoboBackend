@@ -1,6 +1,7 @@
 package org.example.recordvideoservice.dto;
 
 import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ class UsersAllRecordVideoTest {
     void setUp() {
         usersAllRecordVideoUnderTest = new UsersAllRecordVideo();
     }
+
 
     @Test
     void testGettersAndSetters() {

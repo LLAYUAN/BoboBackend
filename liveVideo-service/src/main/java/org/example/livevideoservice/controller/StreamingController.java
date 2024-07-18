@@ -1,5 +1,6 @@
 package org.example.livevideoservice.controller;
 
+import org.example.livevideoservice.Feign.Feign;
 import org.example.livevideoservice.entity.Result;
 import org.example.livevideoservice.entity.StreamRequest;
 import org.example.livevideoservice.entity.RoomInfo;
@@ -16,15 +17,18 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 public class StreamingController {
-    public final Map<String, Process> processMap = new ConcurrentHashMap<>();
+    public static final Map<String, Process> processMap = new ConcurrentHashMap<>();
 
     @Autowired
     private RoomInfoRepository roomInfoRepository;
 
+    @Autowired
+    Feign feign;
+
     @GetMapping("/camera-devices")
-    public Result getCameraDevices() {
+    public Result getCameraDevices() throws IOException, InterruptedException {
         List<String> devices = new ArrayList<>();
-        try {
+//        try {
             ProcessBuilder builder = new ProcessBuilder("ffmpeg", "-list_devices", "true", "-f", "dshow", "-i", "dummy");
             builder.redirectErrorStream(true);
             Process process = builder.start();
@@ -44,25 +48,26 @@ public class StreamingController {
             }
 
             int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                return Result.success(devices);
-            } else {
-                return Result.error("exitCode error!!!");
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-            return Result.error("IO error!!!");
-        }
+            return Result.success(devices);
+//            if (exitCode == 0) {
+//                return Result.success(devices);
+//            } else {
+//                return Result.error("exitCode error!!!");
+//            }
+//        } catch (IOException | InterruptedException e) {
+//            e.printStackTrace();
+//            return Result.error("IO error!!!");
+//        }
     }
 
     @PostMapping("/camera-live")
-    public Result startCameraStream(@RequestBody StreamRequest request) {
-        String command = String.format("ffmpeg -f dshow -rtbufsize 100M -i video=\"%s\" -vcodec libx264 -preset ultrafast -maxrate 2000k -bufsize 4000k -f flv %s", request.getCameraDevice(), request.getRtmpUrl());
+    public Result startCameraStream(@RequestBody StreamRequest request) throws IOException {
+        String command = String.format("ffmpeg -f dshow -rtbufsize 50M -i video=\"%s\" -vcodec libx264 -preset ultrafast -maxrate 2000k -bufsize 4000k -f flv %s", request.getCameraDevice(), request.getRtmpUrl());
         return startStream(command, request.getRoomId());
     }
 
     @PostMapping("/desktop-live")
-    public Result startDesktopStream(@RequestBody StreamRequest request) {
+    public Result startDesktopStream(@RequestBody StreamRequest request) throws IOException {
         String command = String.format("ffmpeg -f gdigrab -i desktop -c:v libx264 -pix_fmt yuv420p -f flv %s", request.getRtmpUrl());
         return startStream(command, request.getRoomId());
     }
@@ -79,26 +84,37 @@ public class StreamingController {
             processMap.remove(request.getRoomId());
 
             // Update room status to 0
-            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(request.getRoomId()));
-            if (roomInfo != null) {
-                roomInfo.setStatus(false);
-                roomInfoRepository.save(roomInfo);
-            }
+            Map<String,Object> result = new HashMap<>();
+            result.put("roomID",request.getRoomId());
+            result.put("status",false);
+            feign.setStatus(result);
+//            // Update room status to 0
+//            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(request.getRoomId()));
+//            if (roomInfo != null) {
+//                roomInfo.setStatus(false);
+//                roomInfoRepository.save(roomInfo);
+//            }
             return Result.success();
         } else {
-            return Result.error("No stream found for the given roomId");
+            Map<String,Object> result = new HashMap<>();
+            result.put("roomID",request.getRoomId());
+            result.put("status",false);
+            feign.setStatus(result);
+
+            return Result.success();
         }
+        return Result.success();
     }
 
     @PostMapping("/record")
-    public Result startRecord(@RequestBody StreamRequest request) {
+    public Result startRecord(@RequestBody StreamRequest request) throws IOException {
         System.out.println("RTMP URL: " + request.getRtmpUrl());
         System.out.println("Local File Path: " + request.getLocalFilePath());
         String rtmpUrl = request.getRtmpUrl();
         String command = String.format("ffmpeg -y -i %s -vcodec copy -t 500 -f mp4 %s", rtmpUrl, request.getLocalFilePath());
 
 
-        try {
+//        try {
             Process process = Runtime.getRuntime().exec(command);
 
             new Thread(() -> {
@@ -110,14 +126,15 @@ public class StreamingController {
             }).start();
 
             return Result.success();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Result.error("Failed to start desktop record");
-        }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return Result.error("Failed to start desktop record");
+//        }
     }
 
-    private Result startStream(String command, String roomId) {
-        try {
+
+    public Result startStream(String command, String roomId) throws IOException {
+
             Logger log = org.slf4j.LoggerFactory.getLogger(StreamingController.class);
             log.info("Start stream for roomId: " + roomId);
             Process process = processMap.get(roomId);
@@ -130,11 +147,16 @@ public class StreamingController {
             log.info("Process map: " + processMap);
 
             // Update room status to 1
-            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(roomId));
-            if (roomInfo != null) {
-                roomInfo.setStatus(true);
-                roomInfoRepository.save(roomInfo);
-            }
+            Map<String,Object> result = new HashMap<>();
+            result.put("roomID",roomId);
+            result.put("status",true);
+            feign.setStatus(result);
+
+//            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(roomId));
+//            if (roomInfo != null) {
+//                roomInfo.setStatus(true);
+//                roomInfoRepository.save(roomInfo);
+//            }
 
             Process finalProcess = process;
             new Thread(() -> {
@@ -148,9 +170,11 @@ public class StreamingController {
             }).start();
 
             return Result.success();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Result.error("Failed to start stream");
-        }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return Result.error("Failed to start stream");
+//        }
     }
+
+
 }

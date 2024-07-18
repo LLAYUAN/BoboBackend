@@ -119,5 +119,12 @@ public class UserService {
         return roomInfo.getRoomID();
     }
 
-
+    public void setStatus(Integer roomID, Boolean status){
+        RoomInfo roomInfo = roomDao.findRoomInfoByRoomID(roomID);
+        if(roomInfo.getStatus() == status){
+            return;
+        }
+        roomInfo.setStatus(status);
+        roomDao.saveRoomInfo(roomInfo);
+    }
 }
