@@ -103,7 +103,7 @@ public class StreamingController {
             feign.deleteRoomMessages(Integer.parseInt(request.getRoomId()));
 
         }
-        //return Result.success();
+        return Result.success();
     }
 
     @PostMapping("/record")
