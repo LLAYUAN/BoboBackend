@@ -88,6 +88,7 @@ public class StreamingController {
             result.put("roomID",request.getRoomId());
             result.put("status",false);
             feign.setStatus(result);
+            feign.deleteRoomMessages(Integer.parseInt(request.getRoomId()));
 //            // Update room status to 0
 //            RoomInfo roomInfo = roomInfoRepository.findByRoomID(Integer.parseInt(request.getRoomId()));
 //            if (roomInfo != null) {
@@ -100,10 +101,11 @@ public class StreamingController {
             result.put("roomID",request.getRoomId());
             result.put("status",false);
             feign.setStatus(result);
+            feign.deleteRoomMessages(Integer.parseInt(request.getRoomId()));
 
             return Result.success();
         }
-        return Result.success();
+        //return Result.success();
     }
 
     @PostMapping("/record")
