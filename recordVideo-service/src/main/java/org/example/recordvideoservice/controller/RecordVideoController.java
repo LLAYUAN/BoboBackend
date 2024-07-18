@@ -73,6 +73,8 @@ public class RecordVideoController {
         return result;
     }
 
+
+
     @PostMapping("/uploadFile")
     //@RequestParam("file") MultipartFile file
     public String uploadFile(@RequestParam("file") MultipartFile file) {
