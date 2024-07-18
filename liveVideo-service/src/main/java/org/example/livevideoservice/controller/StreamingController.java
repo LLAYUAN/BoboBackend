@@ -94,14 +94,12 @@ public class StreamingController {
 //                roomInfo.setStatus(false);
 //                roomInfoRepository.save(roomInfo);
 //            }
-            return Result.success();
         } else {
             Map<String,Object> result = new HashMap<>();
             result.put("roomID",request.getRoomId());
             result.put("status",false);
             feign.setStatus(result);
 
-            return Result.success();
         }
         return Result.success();
     }
