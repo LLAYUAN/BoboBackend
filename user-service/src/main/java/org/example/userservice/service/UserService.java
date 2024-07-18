@@ -102,20 +102,20 @@ public class UserService {
         if(status){
             return roomInfo.getRoomID();
         }
-        List<RoomHotIndex> roomHotIndexList = new ArrayList<>();
-        RoomHotIndex roomHotIndex = new RoomHotIndex();
-        roomHotIndex.setRoomId(roomInfo.getRoomID());
-        roomHotIndex.setDuration(0);
-        roomHotIndex.setViewCount(0);
-        roomHotIndex.setLikeCount(0);
-        roomHotIndex.setShareCount(0);
-        roomHotIndex.setConsumptionCount(0);
-        roomHotIndex.setMessageCount(0);
-        roomHotIndex.setNewFollowerCount(0);
-        roomHotIndex.setSumViewTime(0);
-        roomHotIndexList.add(roomHotIndex);
-        //保存直播间信息
-        feign.saveRoomHotIndex(roomHotIndexList);
+//        List<RoomHotIndex> roomHotIndexList = new ArrayList<>();
+//        RoomHotIndex roomHotIndex = new RoomHotIndex();
+//        roomHotIndex.setRoomId(roomInfo.getRoomID());
+//        roomHotIndex.setDuration(0);
+//        roomHotIndex.setViewCount(0);
+//        roomHotIndex.setLikeCount(0);
+//        roomHotIndex.setShareCount(0);
+//        roomHotIndex.setConsumptionCount(0);
+//        roomHotIndex.setMessageCount(0);
+//        roomHotIndex.setNewFollowerCount(0);
+//        roomHotIndex.setSumViewTime(0);
+//        roomHotIndexList.add(roomHotIndex);
+//        //保存直播间信息
+//        feign.saveRoomHotIndex(roomHotIndexList);
         return roomInfo.getRoomID();
     }
 
