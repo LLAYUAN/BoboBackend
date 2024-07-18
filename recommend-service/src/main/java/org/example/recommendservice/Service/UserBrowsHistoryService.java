@@ -70,12 +70,18 @@ public class UserBrowsHistoryService {
 
     public List<RoomCardInfo> recommendRooms(String userId) {
         List<Integer> popularityBased = PopularityBasedRecommendation();
+        List<Integer> randomBased = RandomBasedRecommendation();
         List<Integer> UserBased = UserBasedCF(userId);
         List<Integer> HistoryBased = HistoryBasedRecommendation(userId);
         Map<Integer, Integer> rankMap = new HashMap<>();
 
         System.out.println("popularityBased: "+popularityBased);
         for (Integer integer : popularityBased) {
+            rankMap.compute(integer, (k, v) -> (v == null) ? 2 : v + 2);
+        }
+
+        System.out.println("randomBased: "+randomBased);
+        for (Integer integer : randomBased) {
             rankMap.compute(integer, (k, v) -> (v == null) ? 2 : v + 2);
         }
 
@@ -128,6 +134,22 @@ public class UserBrowsHistoryService {
                 .limit(5)
                 .map(Map.Entry::getKey)
                 .toList();
+    }
+    public List<Integer> RandomBasedRecommendation() {
+        List<RoomInfo> roomInfos = roomDao.findAll();
+        List<Integer> roomNumbers = new ArrayList<>();
+
+        // 假设你想要选择5个随机房间号
+        int numberOfRoomsToSelect = 3;
+        Random random = new Random();
+
+        // 如果房间数少于要选择的数量，可以使用Math.min()确保不会超出索引
+        for (int i = 0; i < numberOfRoomsToSelect && i < roomInfos.size(); i++) {
+            RoomInfo roomInfo = roomInfos.get(random.nextInt(roomInfos.size()));
+            roomNumbers.add(roomInfo.getRoomID()); // 假设这里获取房间号的方法为getRoomID()
+        }
+
+        return roomNumbers;
     }
     public List<Integer> HistoryBasedRecommendation(String userId) {
         UserBrowsHistory userHistory = browsHistoryDao.getUserBrowsHistory(userId);
@@ -195,7 +217,7 @@ public class UserBrowsHistoryService {
         List<BrowsingRecord> userRecords = userHistory.getBrowsingHistory();
         Set<Integer> watchedRoomIds = userRecords.stream().
                 map(BrowsingRecord::getRoomId).collect(Collectors.toSet());
-        System.out.println("userHistory: ");
+        System.out.println("user "+ userId+ " History: ");
         userRecords.forEach(System.out::println);
 
         Map<Integer, Integer> userMap = userRecords.stream()
