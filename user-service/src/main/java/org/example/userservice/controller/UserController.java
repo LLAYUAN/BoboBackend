@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 //@RefreshScope
 @RestController
@@ -124,6 +125,13 @@ public class UserController {
                                        @RequestBody UserInfoDTO userInfoDTO) {
         Integer userID = Integer.parseInt(authorizationHeader);
         UserInfo userInfo = userInfoService.findUserInfoByUserID(userID);
+        UserInfo tmpUserInfo = userInfoService.findUserInfoByEmail(userInfoDTO.getEmail());
+        if(tmpUserInfo !=null) {
+            //如果邮箱已经修改且修改后的邮箱已经存在
+            if(!Objects.equals(tmpUserInfo.getUserID(), userID))
+                return CommonResult.failed("该邮箱已经被注册");
+        }
+        // 更新用户信息
         userInfo.setNickname(userInfoDTO.getNickname());
         userInfo.setAvatarUrl(userInfoDTO.getAvatarUrl());
         userInfo.setBirthday(CommonUtil.stringToDate(userInfoDTO.getBirthday()));
