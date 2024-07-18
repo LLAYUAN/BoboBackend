@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ChatService {
     List<ChatMessage> getHistoryMessages(Integer roomID, Instant timestamp);
-
-    public void deleteOldMessages(Instant cutoffTime);
+    void deleteOldMessages(Instant cutoffTime);
+    void deleteRoomMessages(Integer roomID);
 }
