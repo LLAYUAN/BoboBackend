@@ -29,11 +29,11 @@ public class MessageBroadcastListener {
         messageQueue.offer(message);
     }
 
-    @Scheduled(fixedRate = 500) // 每0.5秒执行一次
+    @Scheduled(fixedRate = 200) // 每0.2秒执行一次
     public void broadcastMessages() {
         try {
             List<ChatMessage> messages = new ArrayList<>();
-            messageQueue.drainTo(messages, 100); // 批量获取最多100条消息
+            messageQueue.drainTo(messages, 200); // 批量获取最多100条消息
 
             if (!messages.isEmpty()) {
                 // 按照roomID分组并批量发送
@@ -42,6 +42,13 @@ public class MessageBroadcastListener {
                         .forEach((roomID, roomMessages) ->
                                 messagingTemplate.convertAndSend("/topic/public/" + roomID, roomMessages));
             }
+
+            //动态调整发送频率
+            if (messages.size() < 100) {
+                Thread.sleep(500);
+            }
+
+
         } catch (Exception e) {
             // 处理异常
             e.printStackTrace();
