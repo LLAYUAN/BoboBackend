@@ -20,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app");
         SimpleBrokerRegistration simpleBroker = registry.enableSimpleBroker("/topic");
-        simpleBroker.setHeartbeatValue(new long[]{20000, 20000}); // 设置心跳间隔为10秒
+        simpleBroker.setHeartbeatValue(new long[]{20000, 20000}); // 设置心跳间隔为20秒
         simpleBroker.setTaskScheduler(heartBeatTaskScheduler());
     }
 
