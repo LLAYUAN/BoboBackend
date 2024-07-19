@@ -63,6 +63,7 @@ public class MessageConsumer {
         }
         map.forEach((roomId, hotIndex) -> addRoomHotIndex(hotIndex));
     }
+
     public void addRoomHotIndex(AddHotIndex addHotIndex){
         RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(addHotIndex.getRoomId());
         if (roomHotIndex == null) {
