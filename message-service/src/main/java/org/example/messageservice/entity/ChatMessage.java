@@ -8,7 +8,6 @@ import lombok.Data;
 import java.time.Instant;
 
 //自动补充get set
-@Document(collection = "messages")
 @Data
 public class ChatMessage {
     @Id
