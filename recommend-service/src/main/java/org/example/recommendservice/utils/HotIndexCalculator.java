@@ -1,8 +1,12 @@
 package org.example.recommendservice.utils;
 
 import org.example.recommendservice.entity.RoomHotIndex;
+import org.example.recommendservice.entity.RoomInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class HotIndexCalculator {
+
+
     private static final double VIEW_COUNT_WEIGHT = 1.5;
     private static final double AVERAGE_VIEW_COUNT_WEIGHT = 1.0;
     private static final double LIKE_COUNT_WEIGHT = 1.0;
@@ -12,7 +16,15 @@ public class HotIndexCalculator {
     private static final double CONSUMPTION_COUNT_WEIGHT = 10.0;
     public static int calculateHotIndex(RoomHotIndex roomHotIndex) {
         double hotIndex = 0.0;
-        double averageViewCount = (double) roomHotIndex.getSumViewTime() / roomHotIndex.getDuration();
+        double averageViewCount = 0.0;
+        if(roomHotIndex.getDuration()!=0) {
+            averageViewCount = (double) roomHotIndex.getSumViewTime() / roomHotIndex.getDuration();
+        }
+        else{
+            averageViewCount = (double) roomHotIndex.getSumViewTime() / 2000;
+        }
+        System.out.println("roomHotIndex: "+ roomHotIndex);
+        System.out.println("initial hotIndex: " + hotIndex);
 
         hotIndex += roomHotIndex.getViewCount() * VIEW_COUNT_WEIGHT;
         hotIndex += averageViewCount * AVERAGE_VIEW_COUNT_WEIGHT;
