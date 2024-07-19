@@ -8,28 +8,46 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.index.Index;
+import org.springframework.data.mongodb.core.index.IndexInfo;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class ChatServiceImpl implements ChatService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    private void ensureTimestampIndex(String collectionName) {
+        List<IndexInfo> indexInfoList = mongoTemplate.indexOps(collectionName).getIndexInfo();
+        boolean hasTimestampIndex = indexInfoList.stream()
+                .anyMatch(indexInfo -> indexInfo.getIndexFields().stream()
+                        .anyMatch(indexField -> "timestamp".equals(indexField.getKey())));
+
+        if (!hasTimestampIndex) {
+            mongoTemplate.indexOps(collectionName).ensureIndex(new Index().on("timestamp", Sort.Direction.DESC));
+        }
+    }
+
     @Override
-    public List<ChatMessage> getHistoryMessages(Integer roomID, Instant timestamp){
+    @Async
+    public CompletableFuture<List<ChatMessage>> getHistoryMessages(Integer roomID, Instant timestamp){
         Pageable pageable = PageRequest.of(0, 20);  // 查询时指定一页的大小
         String collectionName = "messages_room_" + roomID;
+        ensureTimestampIndex(collectionName);
         Query query = new Query(Criteria.where("timestamp").lt(timestamp));
         query.with(pageable);
-        query.with(Sort.by(Sort.Direction.DESC, "timestamp"));
         List<ChatMessage> messages = mongoTemplate.find(query, ChatMessage.class, collectionName);
-        return messages;
+//        //反转
+//        messages.sort((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()));
+        return CompletableFuture.completedFuture(messages);
     }
 
 
