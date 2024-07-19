@@ -37,8 +37,6 @@ public class UserBrowsHistoryService {
         List<BrowsingRecord> browsingHistory = userHistory.getBrowsingHistory();
         browsingHistory.add(browsingRecord);
 
-        System.out.println(browsingRecord.getStartTime());
-
         browsingHistory.sort(Comparator.comparing(BrowsingRecord::getStartTime).reversed());
         if (browsingHistory.size() > MAX_HISTORY_SIZE) {
             browsingHistory = browsingHistory.subList(0, MAX_HISTORY_SIZE);
