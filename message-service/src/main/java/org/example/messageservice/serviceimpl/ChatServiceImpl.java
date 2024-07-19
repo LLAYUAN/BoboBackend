@@ -12,11 +12,13 @@ import org.springframework.data.mongodb.core.index.Index;
 import org.springframework.data.mongodb.core.index.IndexInfo;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class ChatServiceImpl implements ChatService {
@@ -35,7 +37,8 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public List<ChatMessage> getHistoryMessages(Integer roomID, Instant timestamp){
+    @Async
+    public CompletableFuture<List<ChatMessage>> getHistoryMessages(Integer roomID, Instant timestamp){
         Pageable pageable = PageRequest.of(0, 20);  // 查询时指定一页的大小
         String collectionName = "messages_room_" + roomID;
         ensureTimestampIndex(collectionName);
@@ -44,7 +47,7 @@ public class ChatServiceImpl implements ChatService {
         List<ChatMessage> messages = mongoTemplate.find(query, ChatMessage.class, collectionName);
 //        //反转
 //        messages.sort((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()));
-        return messages;
+        return CompletableFuture.completedFuture(messages);
     }
 
 
