@@ -23,6 +23,9 @@ public class UserActivity {
     @Field("roomId")
     private String roomId;
 
+    @Field("nickname")
+    private String nickname;
+
     @Field("enterTime")
     private LocalDateTime enterTime;
 

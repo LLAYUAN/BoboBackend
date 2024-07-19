@@ -24,8 +24,9 @@ public class UserActivityController {
     public Result userEnter(@RequestBody Map<String, String> payload) {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
+        String nickname = payload.get("nickname");
 
-        System.out.println("User entered room: " + roomId);
+        System.out.println("User"+nickname+ "entered room: " + roomId);
 
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(userId).and("roomId").is(roomId).and("exitTime").is(null));
@@ -40,6 +41,7 @@ public class UserActivityController {
         UserActivity activity = new UserActivity();
         activity.setUserId(userId);
         activity.setRoomId(roomId);
+        activity.setNickname(nickname);
         activity.setEnterTime(LocalDateTime.now());
         activity.setExitTime(null);
 
@@ -80,7 +82,8 @@ public class UserActivityController {
         // 使用 Aggregation 框架按照 userId 分组，选择每个分组的第一个活动记录
         Aggregation aggregation = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("roomId").is(roomId).and("exitTime").is(null)),
-                Aggregation.group("userId").first("$$ROOT").as("activeUser"),
+                Aggregation.group("userId")
+                        .first("$$ROOT").as("activeUser"),
                 Aggregation.replaceRoot("activeUser")
         );
 
