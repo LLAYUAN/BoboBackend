@@ -23,8 +23,9 @@ public class UserActivityController {
     public Result userEnter(@RequestBody Map<String, String> payload) {
         String userId = payload.get("userId");
         String roomId = payload.get("roomId");
+        String nickname = payload.get("nickname");
 
-        System.out.println("User entered room: " + roomId);
+        System.out.println("User"+nickname+ "entered room: " + roomId);
 
         // 查找该用户在该房间的所有活动记录
         Query query = new Query();
@@ -48,7 +49,7 @@ public class UserActivityController {
             userActivity.setEnter(true);
             userActivity.setRoomId(roomId);
             userActivity.setUserId(userId);
-
+            userActivity.setNickname(nickname);
             mongoTemplate.save(userActivity);
         }
         return Result.success("User entered");
