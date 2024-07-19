@@ -23,10 +23,7 @@ public class UserActivity {
     @Field("roomId")
     private String roomId;
 
-    @Field("enterTime")
-    private LocalDateTime enterTime;
-
-    @Field("exitTime")
-    private LocalDateTime exitTime;
+    @Field("isEnter")
+    private boolean isEnter;
 
 }
