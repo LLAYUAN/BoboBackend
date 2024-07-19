@@ -33,7 +33,7 @@ public class ChatController {
     @MessageMapping("/chat.addUser")
     public void addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
         System.out.println( ": " + chatMessage.getSender());
-        chatMessage.setContent(chatMessage.getSender() + " joined");
+        chatMessage.setContent(chatMessage.getSender() + "加入直播间");
         rabbitTemplate.convertAndSend("chatExchange", "", chatMessage);
     }
 }

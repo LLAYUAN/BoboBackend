@@ -13,7 +13,7 @@ public class ScheduledTasks {
     @Autowired
     ChatService chatService;
 
-    @Scheduled(fixedRate = 86400000) // 每24小时执行一次
+    @Scheduled(cron = "0 0 5 * * ?") // 每天凌晨5点执行一次
     public void deleteOldMessages() {
         Instant twentyFourHoursAgo = Instant.now().minus(24, ChronoUnit.HOURS);
         chatService.deleteOldMessages(twentyFourHoursAgo);

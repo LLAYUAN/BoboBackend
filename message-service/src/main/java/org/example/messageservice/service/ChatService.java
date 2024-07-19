@@ -4,9 +4,10 @@ import org.example.messageservice.entity.ChatMessage;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public interface ChatService {
-    List<ChatMessage> getHistoryMessages(Integer roomID, Instant timestamp);
-
-    public void deleteOldMessages(Instant cutoffTime);
+    CompletableFuture<List<ChatMessage>> getHistoryMessages(Integer roomID, Instant timestamp);
+    void deleteOldMessages(Instant cutoffTime);
+    void deleteRoomMessages(Integer roomID);
 }
