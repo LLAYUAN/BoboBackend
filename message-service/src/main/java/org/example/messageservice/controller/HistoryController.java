@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/history")
@@ -17,9 +18,9 @@ public class HistoryController {
     private ChatService chatService;
 
     @GetMapping("/{roomID}")
-    public ResponseEntity<List<ChatMessage>> getHistoryMessages(@PathVariable Integer roomID, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant timestamp) {
+    public CompletableFuture<ResponseEntity<List<ChatMessage>>> getHistoryMessages(@PathVariable Integer roomID, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant timestamp) {
         //System.out.println("roomID: " + roomID + ", timestamp: " + timestamp);
-        List<ChatMessage> messages = chatService.getHistoryMessages(roomID, timestamp);
-        return ResponseEntity.ok(messages);
+        return chatService.getHistoryMessages(roomID, timestamp)
+                .thenApply(ResponseEntity::ok);
     }
 }

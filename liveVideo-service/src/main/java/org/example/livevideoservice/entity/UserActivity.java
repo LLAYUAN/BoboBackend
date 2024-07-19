@@ -26,10 +26,6 @@ public class UserActivity {
     @Field("nickname")
     private String nickname;
 
-    @Field("enterTime")
-    private LocalDateTime enterTime;
-
-    @Field("exitTime")
-    private LocalDateTime exitTime;
-
+    @Field("isEnter")
+    private boolean isEnter;
 }
