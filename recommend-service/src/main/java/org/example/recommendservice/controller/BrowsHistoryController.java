@@ -16,11 +16,14 @@ public class BrowsHistoryController {
     UserBrowsHistoryService userBrowsHistoryService;
 
     @PostMapping("/add")
-    public void addBrowsingRecord(
+    public ResponseEntity<Void> addBrowsingRecord(
             @RequestHeader("Authorization") String userId,
             @RequestBody BrowsingRecord browsingRecord) {
+//        System.out.println("addBrowsingRecord: " + browsingRecord);
         userBrowsHistoryService.addBrowsingRecord(userId, browsingRecord);
+        return ResponseEntity.noContent().build();
     }
+
     @PostMapping("/set")
     public void setBrowsingRecord(
             @RequestHeader("Authorization") String userId,
