@@ -4,8 +4,6 @@ import org.example.recommendservice.DTO.RoomCardInfo;
 import org.example.recommendservice.Dao.BrowsHistoryDao;
 import org.example.recommendservice.Dao.RoomDao;
 import org.example.recommendservice.entity.*;
-import org.example.recommendservice.utils.HotIndexCalculator;
-import org.example.recommendservice.utils.SimilarIndexCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,17 +11,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -127,7 +119,7 @@ public class UserBrowsHistoryServiceTest {
         // 准备房间热度索引数据
         roomHotIndex = new RoomHotIndex();
         roomHotIndex.setRoomId(111111);
-        roomHotIndex.setDuration(100);
+        roomHotIndex.setStartTime(LocalDateTime("2021-08-31T20:00:04.000Z"));
         roomHotIndex.setViewCount(50);
         roomHotIndex.setLikeCount(5);
         roomHotIndex.setShareCount(2);

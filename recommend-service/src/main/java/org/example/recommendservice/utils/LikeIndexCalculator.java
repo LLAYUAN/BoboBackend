@@ -2,7 +2,7 @@ package org.example.recommendservice.utils;
 
 import org.example.recommendservice.entity.BrowsingRecord;
 
-public class SimilarIndexCalculator {
+public class LikeIndexCalculator {
     private static final double VIEW_COUNT_WEIGHT = 1.5;
     private static final double VIEW_MINUTE_COUNT_WEIGHT  = 1.0 / 30;
     private static final double LIKE_COUNT_WEIGHT = 1.0;
@@ -11,7 +11,7 @@ public class SimilarIndexCalculator {
     private static final double MESSAGE_COUNT_WEIGHT = 0.1;
     private static final double CONSUMPTION_COUNT_WEIGHT = 10.0;
 
-    public static int calculateSimilarIndex(BrowsingRecord browsingRecord) {
+    public static int calculateLikeIndex(BrowsingRecord browsingRecord) {
         double hotIndex = 0.0;
 
         hotIndex += VIEW_COUNT_WEIGHT;

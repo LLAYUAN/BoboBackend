@@ -3,6 +3,7 @@ package org.example.recommendservice.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.recommendservice.entity.RoomHotIndex;
 import org.example.recommendservice.entity.RoomInfo;
 import org.example.recommendservice.entity.UserInfo;
 
@@ -24,7 +25,7 @@ public class RoomCardInfo {
     private List<Boolean> tags;
     private int hotIndex;
 
-    public RoomCardInfo(RoomInfo roomInfo) {
+    public RoomCardInfo(RoomInfo roomInfo, RoomHotIndex roomHotIndex) {
         this.id = roomInfo.getRoomID();
         this.userID = roomInfo.getUserInfo().getUserID();
         this.roomName = roomInfo.getRoomName();
@@ -33,9 +34,7 @@ public class RoomCardInfo {
         this.userName = roomInfo.getUserInfo().getNickname();
         this.userDescription = roomInfo.getUserInfo().getSelfIntro();
         this.avatarUrl = roomInfo.getUserInfo().getAvatarUrl();
-        this.tags = new ArrayList<>(3);
-        this.tags.add(roomInfo.getStudy());
-        this.tags.add(roomInfo.getEntertain());
-        this.tags.add(roomInfo.getOther());
+        this.tags = roomHotIndex.getTags();
+        this.hotIndex = roomHotIndex.getHotIndex();
     }
 }

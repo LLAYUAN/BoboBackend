@@ -68,11 +68,11 @@ public class LoginController {
         Logger log = LoggerFactory.getLogger(LoginController.class);
         String email = (String) loginRequest.get("email");
         String password = (String) loginRequest.get("password");
-        log.info("email: " + email+ " password: " + password+" is going to login");
+//        log.info("email: " + email+ " password: " + password+" is going to login");
         // 通过用户名和密码获取token
         UserInfo userInfo = null;
         String token = userInfoService.login(email, password,userInfo);
-        log.info("token: " + token);
+//        log.info("token: " + token);
         // 如果token为空，返回错误信息
         if (token == null) {
             return CommonResult.failed("用户名或密码错误");
