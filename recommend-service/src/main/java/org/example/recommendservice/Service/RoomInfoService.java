@@ -28,7 +28,10 @@ public class RoomInfoService {
         RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(id);
         return new RoomCardInfo(roomInfo, roomHotIndex);
     }
-    public List<RoomCardInfo> getRank(Integer tag) {
+    public int getRoomCount(){
+        return roomDao.getRoomCount();
+    }
+    public List<RoomCardInfo> getRank(Integer tag, Integer page, Integer size) {
         System.out.println("tag: " + tag);
 
         // 从数据库获取所有RoomHotIndex，并过滤出符合标签的记录
@@ -37,7 +40,11 @@ public class RoomInfoService {
                 .filter(roomHotIndex -> tag < 0 || roomHotIndex.getTags().get(tag))
                 .sorted(Comparator.comparing(RoomHotIndex::getHotIndex).reversed())
                 .toList();
+
         roomHotIndexList.forEach(System.out::println);
+
+        roomHotIndexList = roomHotIndexList.subList((page - 1) * size, Math.min(page * size, roomHotIndexList.size()));
+
 
         // 返回RoomCardInfo列表
         return roomHotIndexList.stream()

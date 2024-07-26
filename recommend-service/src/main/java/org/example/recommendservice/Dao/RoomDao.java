@@ -52,4 +52,7 @@ public class RoomDao {
         return roomInfoRepo.findAll();
     }
 
+    public int getRoomCount() {
+        return mongoTemplate.findAll(RoomHotIndex.class).size();
+    }
 }

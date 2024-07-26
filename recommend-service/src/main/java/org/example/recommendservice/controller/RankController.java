@@ -20,11 +20,14 @@ public class RankController {
 
     @Autowired
     private UserBrowsHistoryService userBrowsHistoryService;
-    @GetMapping("/{tag}")
-    public List<RoomCardInfo> getRank(@PathVariable Integer tag) {
-        return roomInfoService.getRank(tag);
+    @GetMapping("/{tag}/{page}/{size}")
+    public List<RoomCardInfo> getRank(@PathVariable Integer tag, @PathVariable Integer page, @PathVariable Integer size) {
+        return roomInfoService.getRank(tag, page, size);
     }
-
+    @GetMapping("/count")
+    public int getRoomCount() {
+        return roomInfoService.getRoomCount();
+    }
     @GetMapping("/recommend")
     public JSONObject recommendRooms(@RequestHeader("Authorization") String userId) {
         System.out.println("personal recommend userId: " + userId);
