@@ -36,7 +36,7 @@ public class UserInfoService {
 
     public String login(String email, String password,UserInfo userInfo) {
         Logger log = Logger.getLogger(UserInfoService.class.getName());
-        log.info("用户"+email+"进行登录");
+//        log.info("用户"+email+"进行登录");
         String token = null;
         // 密码需要客户端加密后传递
         try{
@@ -62,7 +62,7 @@ public class UserInfoService {
             // 生成 token
             token = feign.generateToken(userInfo.getUserID());
             // 添加登录记录
-            log.info("用户"+email+"进行登录");
+//            log.info("用户"+email+"进行登录");
         }catch (Exception e){
             log.info("登录异常:"+e.getMessage());
         }

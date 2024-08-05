@@ -17,7 +17,7 @@ public class SimilarIndexCalculatorTest {
         browsingRecord.setMessageCount(50);
         browsingRecord.setFollowStatus(1); // Followed
 
-        int similarIndex = SimilarIndexCalculator.calculateSimilarIndex(browsingRecord);
+        int similarIndex = LikeIndexCalculator.calculateLikeIndex(browsingRecord);
 
         double expectedSimilarIndex = 0.0;
         expectedSimilarIndex += 1.5; // VIEW_COUNT_WEIGHT
@@ -41,7 +41,7 @@ public class SimilarIndexCalculatorTest {
         browsingRecord.setMessageCount(0);
         browsingRecord.setFollowStatus(0); // Not followed
 
-        int similarIndex = SimilarIndexCalculator.calculateSimilarIndex(browsingRecord);
+        int similarIndex = LikeIndexCalculator.calculateLikeIndex(browsingRecord);
 
         double expectedSimilarIndex = 0.0;
         expectedSimilarIndex += 1.5; // VIEW_COUNT_WEIGHT
@@ -65,7 +65,7 @@ public class SimilarIndexCalculatorTest {
         browsingRecord.setMessageCount(-50);
         browsingRecord.setFollowStatus(-1); // Unfollowed
 
-        int similarIndex = SimilarIndexCalculator.calculateSimilarIndex(browsingRecord);
+        int similarIndex = LikeIndexCalculator.calculateLikeIndex(browsingRecord);
 
         double expectedSimilarIndex = 0.0;
         expectedSimilarIndex += 1.5; // VIEW_COUNT_WEIGHT
@@ -89,7 +89,7 @@ public class SimilarIndexCalculatorTest {
         browsingRecord.setMessageCount(5000);
         browsingRecord.setFollowStatus(1); // Followed
 
-        int similarIndex = SimilarIndexCalculator.calculateSimilarIndex(browsingRecord);
+        int similarIndex = LikeIndexCalculator.calculateLikeIndex(browsingRecord);
 
         double expectedSimilarIndex = 0.0;
         expectedSimilarIndex += 1.5; // VIEW_COUNT_WEIGHT

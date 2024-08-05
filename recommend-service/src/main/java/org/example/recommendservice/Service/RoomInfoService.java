@@ -1,72 +1,57 @@
 package org.example.recommendservice.Service;
 
-import org.example.recommendservice.DTO.AddHotIndex;
 import org.example.recommendservice.DTO.RoomCardInfo;
 import org.example.recommendservice.Dao.RoomDao;
 import org.example.recommendservice.entity.RoomHotIndex;
 import org.example.recommendservice.entity.RoomInfo;
-import org.example.recommendservice.utils.HotIndexCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomInfoService {
     @Autowired
     private RoomDao roomDao;
 
-//    public RoomHotIndex saveRoomHotIndex(RoomHotIndex roomHotIndex) {
-//        return roomDao.saveRoomHotIndex(roomHotIndex);
-//    }
     public void saveRoomHotIndexList(List<RoomHotIndex> roomHotIndexList) {
         roomDao.saveRoomHotIndexList(roomHotIndexList);
     }
-
-//    public void  addRoomHotIndex(AddHotIndex addHotIndex){
-//        roomDao.addRoomHotIndex(addHotIndex);
-//    }
-
-    public List<RoomCardInfo> getRank(Integer tag){
+    public void createRoomHotIndex(int roomId, List<Boolean> tags) {
+        RoomHotIndex roomHotIndex = new RoomHotIndex(roomId, tags);
+        roomDao.saveRoomHotIndex(roomHotIndex);
+    }
+    public RoomCardInfo getRoomInfo(Integer id){
+        RoomInfo roomInfo = roomDao.getRoomInfo(id);
+        RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(id);
+        return new RoomCardInfo(roomInfo, roomHotIndex);
+    }
+    public int getRoomCount(){
+        return roomDao.getRoomCount();
+    }
+    public List<RoomCardInfo> getRank(Integer tag, Integer page, Integer size) {
         System.out.println("tag: " + tag);
 
-        List<RoomInfo> roomInfos = roomDao.getAllRoomInfo();
-        List<RoomCardInfo> roomCardInfos = new java.util.ArrayList<>(roomInfos.stream()
-                .filter(RoomInfo::getStatus)
-                .map(RoomCardInfo::new)
-                .filter(roomCardInfo -> tag < 0 || roomCardInfo.getTags().get(tag))
-                .toList());
-        System.out.println(roomCardInfos);
+        // 从数据库获取所有RoomHotIndex，并过滤出符合标签的记录
+        List<RoomHotIndex> roomHotIndexList = roomDao.getAllRoomHotIndex()
+                .stream()
+                .filter(roomHotIndex -> tag < 0 || roomHotIndex.getTags().get(tag))
+                .sorted(Comparator.comparing(RoomHotIndex::getHotIndex).reversed())
+                .toList();
 
-        roomCardInfos.forEach(roomCardInfo -> {
-            RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(roomCardInfo.getId());
-            if (roomHotIndex != null) {
-                roomCardInfo.setHotIndex(HotIndexCalculator.calculateHotIndex(roomHotIndex));
-            }
-        });
-        System.out.println(roomCardInfos);
+        roomHotIndexList.forEach(System.out::println);
 
-        roomCardInfos.sort(Comparator.comparing(RoomCardInfo::getHotIndex).reversed());
+        roomHotIndexList = roomHotIndexList.subList((page - 1) * size, Math.min(page * size, roomHotIndexList.size()));
 
-        return roomCardInfos;
-    }
 
-    public RoomCardInfo getRoomInfo(Integer id){
-        System.out.println("id: " + id);
-
-        RoomInfo roomInfo = roomDao.getRoomInfo(id);
-        RoomCardInfo roomCardInfo = new RoomCardInfo(roomInfo);
-        RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(id);
-
-        System.out.println("roomHotIndex" + roomHotIndex);
-        if (roomHotIndex != null) {
-            System.out.println("Hot Index: " + HotIndexCalculator.calculateHotIndex(roomHotIndex));
-            roomCardInfo.setHotIndex(HotIndexCalculator.calculateHotIndex(roomHotIndex));
-        }
-
-        return roomCardInfo;
+        // 返回RoomCardInfo列表
+        return roomHotIndexList.stream()
+                .map(roomHotIndex -> {
+                    RoomInfo roomInfo = roomDao.findById(roomHotIndex.getRoomId());
+                    return new RoomCardInfo(roomInfo, roomHotIndex);
+                })
+                .collect(Collectors.toList());
     }
 }

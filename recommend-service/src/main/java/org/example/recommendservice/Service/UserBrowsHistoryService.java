@@ -1,15 +1,13 @@
 package org.example.recommendservice.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import org.example.recommendservice.DTO.RoomCardInfo;
 import org.example.recommendservice.Dao.BrowsHistoryDao;
 import org.example.recommendservice.Dao.RoomDao;
 import org.example.recommendservice.entity.*;
-import org.example.recommendservice.utils.HotIndexCalculator;
-import org.example.recommendservice.utils.SimilarIndexCalculator;
+import org.example.recommendservice.utils.LikeIndexCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -68,85 +66,78 @@ public class UserBrowsHistoryService {
 
     }
 
-    public List<RoomCardInfo> recommendRooms(String userId) {
-        List<Integer> popularityBased = PopularityBasedRecommendation();
-        List<Integer> randomBased = RandomBasedRecommendation();
-        List<Integer> UserBased = UserBasedCF(userId);
-        List<Integer> HistoryBased = HistoryBasedRecommendation(userId);
+    public JSONObject recommendRooms(String userId) {
         Map<Integer, Integer> rankMap = new HashMap<>();
 
+        List<Integer> popularityBased = PopularityBasedRecommendation();
         System.out.println("popularityBased: "+popularityBased);
         for (Integer integer : popularityBased) {
             rankMap.compute(integer, (k, v) -> (v == null) ? 2 : v + 2);
         }
 
+        List<Integer> randomBased = RandomBasedRecommendation();
         System.out.println("randomBased: "+randomBased);
         for (Integer integer : randomBased) {
             rankMap.compute(integer, (k, v) -> (v == null) ? 2 : v + 2);
         }
 
+        List<Integer> HistoryBased = HistoryBasedRecommendation(userId);
+        System.out.println("HistoryBased: "+HistoryBased);
+        for (Integer integer : HistoryBased) {
+            rankMap.compute(integer, (k, v) -> (v == null) ? 2 : v + 2);
+        }
+
+        List<Integer> UserBased = UserBasedCF(userId);
         System.out.println("UserBased: "+UserBased);
         for (int i = 0; i < UserBased.size(); i++) {
             int finalI = i;
             rankMap.compute(UserBased.get(i), (k, v) -> (v == null) ? 5 - finalI : v + 5 - finalI);
         }
 
-        System.out.println("HistoryBased: "+HistoryBased);
-        for (Integer integer : HistoryBased) {
-            rankMap.compute(integer, (k, v) -> (v == null) ? 2 : v + 2);
-        }
+        System.out.println("rankMap: " + rankMap);
 
-        System.out.println(rankMap);
-
-        List<Integer> recommendedRoomsID = rankMap.entrySet().stream()
-                .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
-                .limit(3)
-                .map(Map.Entry::getKey)
+        List<RoomCardInfo> popularityRoomList = popularityBased
+                .stream()
+                .map(roomId -> {
+                    RoomInfo roomInfo = roomDao.findById(roomId);
+                    RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(roomId);
+                    return new RoomCardInfo(roomInfo, roomHotIndex);
+                })
                 .toList();
-        List<RoomCardInfo> roomCardInfos = recommendedRoomsID.stream()
-                .map(roomDao::findById)
-                .map(RoomCardInfo::new)
-                .toList();
-        roomCardInfos.forEach(roomCardInfo -> {
-            RoomHotIndex roomHotIndex = mongoTemplate.findOne(Query.query(Criteria.where("_id").is(roomCardInfo.getId())), RoomHotIndex.class);
-            if (roomHotIndex != null) {
-                roomCardInfo.setHotIndex(HotIndexCalculator.calculateHotIndex(roomHotIndex));
-            }
-        });
-        return roomCardInfos;
-    }
-    public List<Integer> PopularityBasedRecommendation() {
-        List<RoomInfo> roomInfos = roomDao.findAll();
 
-        Map<Integer, Integer> roomHotIndexMap = new HashMap<>();
-        for (RoomInfo roomInfo : roomInfos) {
-            if (!roomInfo.getStatus()) continue;
-            RoomHotIndex roomHotIndex = mongoTemplate.findOne(
-                    Query.query(Criteria.where("_id").is(roomInfo.getRoomID())), RoomHotIndex.class);
-            if (roomHotIndex != null) {
-                int hotIndex = HotIndexCalculator.calculateHotIndex(roomHotIndex);
-                roomHotIndexMap.put(roomInfo.getRoomID(), hotIndex);
-            }
-        }
-
-        return roomHotIndexMap.entrySet().stream()
+        List<RoomCardInfo> recommendRoomList = rankMap.entrySet().stream()
                 .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
                 .limit(5)
-                .map(Map.Entry::getKey)
+                .map(entry -> {
+                    RoomInfo roomInfo = roomDao.findById(entry.getKey());
+                    RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(entry.getKey());
+                    return new RoomCardInfo(roomInfo, roomHotIndex);
+                })
+                .toList();
+
+        JSONObject response = new JSONObject();
+        response.put("popularityRoomList", popularityRoomList);
+        response.put("recommendRoomList", recommendRoomList);
+        return response;
+    }
+    public List<Integer> PopularityBasedRecommendation() {
+        return roomDao.getAllRoomHotIndex()
+                .stream()
+                .sorted(Comparator.comparing(RoomHotIndex::getHotIndex).reversed())
+                .limit(5)
+                .map(RoomHotIndex::getRoomId)
                 .toList();
     }
     public List<Integer> RandomBasedRecommendation() {
-        List<RoomInfo> roomInfos = roomDao.findAll();
+        List<RoomHotIndex> roomHotIndexList = roomDao.getAllRoomHotIndex();
         List<Integer> roomNumbers = new ArrayList<>();
 
-        // 假设你想要选择5个随机房间号
-        int numberOfRoomsToSelect = 3;
         Random random = new Random();
 
-        // 如果房间数少于要选择的数量，可以使用Math.min()确保不会超出索引
-        for (int i = 0; i < numberOfRoomsToSelect && i < roomInfos.size(); i++) {
-            RoomInfo roomInfo = roomInfos.get(random.nextInt(roomInfos.size()));
-            roomNumbers.add(roomInfo.getRoomID()); // 假设这里获取房间号的方法为getRoomID()
+        int numberOfRoomsToSelect = 3;
+        for (int i = 0; i < numberOfRoomsToSelect && i < roomHotIndexList.size(); i++) {
+            RoomHotIndex roomInfo = roomHotIndexList.get(random.nextInt(roomHotIndexList.size()));
+            roomNumbers.add(roomInfo.getRoomId());
         }
 
         return roomNumbers;
@@ -157,38 +148,35 @@ public class UserBrowsHistoryService {
             System.out.println("userHistory is null or empty");
             return new ArrayList<>();
         }
-        Map<Integer, Long> categoryDurationMap = new HashMap<>();
+        Map<Integer, Long> TagDurationMap = new HashMap<>();
 
         // 遍历用户浏览历史，统计每个分类的总观看时长
         for (BrowsingRecord record : userHistory.getBrowsingHistory()) {
-            List<Boolean> category = getCategoryFromRecord(record); // 获取观看记录的分类
+            RoomInfo roomInfo = roomDao.findById(record.getRoomId());
+            List<Boolean> tags = new ArrayList<>();
+            tags.add(roomInfo.getStudy());
+            tags.add(roomInfo.getEntertain());
+            tags.add(roomInfo.getOther());
+
             long duration = record.getWatchDuration(); // 获取观看时长
-            for (int i = 0; i<category.size();++i){
-                if (category.get(i)){
-                    categoryDurationMap.merge(i, duration, Long::sum); // 将观看时长累加到对应分类
+            for (int i = 0; i<tags.size();++i){
+                if (tags.get(i)){
+                    TagDurationMap.merge(i, duration, Long::sum); // 将观看时长累加到对应分类
                 }
             }
         }
-        int maxTag = categoryDurationMap.entrySet()
+        int maxTag = TagDurationMap.entrySet()
                 .stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
                 .orElse(-1);
 
-
-        List<RoomInfo> roomInfos = roomDao.findAll();
         Map<Integer, Integer> roomHotIndexMap = new HashMap<>();
-        for (RoomInfo roomInfo : roomInfos) {
-            if (!roomInfo.getStatus()) continue;
-            if (maxTag == 0 && !roomInfo.getStudy()) continue;
-            if (maxTag == 1 && !roomInfo.getEntertain()) continue;
-            if (maxTag == 2 && !roomInfo.getOther()) continue;
-            RoomHotIndex roomHotIndex = mongoTemplate.findOne(
-                    Query.query(Criteria.where("_id").is(roomInfo.getRoomID())), RoomHotIndex.class);
-            if (roomHotIndex != null) {
-                int hotIndex = HotIndexCalculator.calculateHotIndex(roomHotIndex);
-                roomHotIndexMap.put(roomInfo.getRoomID(), hotIndex);
-            }
+
+        List<RoomHotIndex> roomHotIndexList = roomDao.getAllRoomHotIndex();
+        for (RoomHotIndex roomHotIndex : roomHotIndexList) {
+            if(!roomHotIndex.getTags().get(maxTag)) continue;
+            roomHotIndexMap.put(roomHotIndex.getRoomId(), roomHotIndex.getHotIndex());
         }
 
         return roomHotIndexMap.entrySet().stream()
@@ -197,15 +185,6 @@ public class UserBrowsHistoryService {
                 .map(Map.Entry::getKey)
                 .toList();
     }
-    public List<Boolean> getCategoryFromRecord(BrowsingRecord record) {
-        RoomInfo roomInfo = roomDao.findById(record.getRoomId());
-        List<Boolean> category = new ArrayList<>();
-        category.add(roomInfo.getStudy());
-        category.add(roomInfo.getEntertain());
-        category.add(roomInfo.getOther());
-        return category;
-    }
-
     public List<Integer> UserBasedCF(String userId) {
         // 获取当前用户的浏览记录
         UserBrowsHistory userHistory = browsHistoryDao.getUserBrowsHistory(userId);
@@ -223,65 +202,49 @@ public class UserBrowsHistoryService {
         Map<Integer, Integer> userMap = userRecords.stream()
                 .collect(Collectors.toMap(
                         BrowsingRecord::getRoomId,
-                        SimilarIndexCalculator::calculateSimilarIndex,
+                        LikeIndexCalculator::calculateLikeIndex,
                         Integer::sum
                 ));
-        System.out.println("UserMap:");
-        System.out.println(userMap);
-
-        // 获取所有用户的浏览记录
-        List<UserBrowsHistory> allUserHistories = browsHistoryDao.getAllUserBrowsHistory();
+        System.out.println("UserMap:" + userMap);
 
         // 计算用户之间的相似度
         Map<String, Double> userSimilarityMap = new HashMap<>();
+        List<UserBrowsHistory> allUserHistories = browsHistoryDao.getAllUserBrowsHistory();
+        Map<String, Map<Integer, Integer>> compareUserMapList = new HashMap<>();
         for (UserBrowsHistory history : allUserHistories) {
             if (!history.getUserId().equals(userId)) {
-                double similarity = calculateSimilarity(userMap, history.getBrowsingHistory());
-                userSimilarityMap.put(history.getUserId(), similarity);
+                Map<Integer, Integer> compareUserMap = history.getBrowsingHistory().stream()
+                        .collect(Collectors.toMap(
+                                BrowsingRecord::getRoomId,
+                                LikeIndexCalculator::calculateLikeIndex,
+                                Integer::sum
+                        ));
+                compareUserMapList.put(history.getUserId(), compareUserMap);
+                userSimilarityMap.put(history.getUserId(), calculateSimilarity(userMap, compareUserMap));
             }
         }
-        System.out.println("SimilarityMap:");
-        System.out.println(userSimilarityMap);
+        System.out.println("SimilarityMap:" + userSimilarityMap);
 
         // 获取相似用户的观看记录
-        List<Integer> recommendedRooms = new ArrayList<>();
-        userSimilarityMap.entrySet().stream()
+        return userSimilarityMap.entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
                 .limit(3) // 选择最相似的前3个用户
-                .forEach(entry -> {
-                    UserBrowsHistory similarUserHistory = browsHistoryDao.getUserBrowsHistory(entry.getKey());
-
-                    Map<Integer, Integer> tempUserMap = similarUserHistory.getBrowsingHistory().stream()
-                            .collect(Collectors.toMap(
-                                    BrowsingRecord::getRoomId,
-                                    SimilarIndexCalculator::calculateSimilarIndex,
-                                    Integer::sum
-                            ));
+                .flatMap(entry -> {
+                    Map<Integer, Integer> compareUserMap = compareUserMapList.get(entry.getKey());
                     System.out.println("相似用户id " + entry.getKey() + " UserMap:");
-                    System.out.println(tempUserMap);
+                    System.out.println(compareUserMap);
 
-                    similarUserHistory.getBrowsingHistory().stream()
-                            .filter(record -> !watchedRoomIds.contains(record.getRoomId()))
-                            .filter(record -> {
-                                RoomInfo roomInfo = roomDao.findById(record.getRoomId());
-                                return roomInfo != null && roomInfo.getStatus();
-                            })
-                            .max(Comparator.comparing(SimilarIndexCalculator::calculateSimilarIndex))
-                            .ifPresent(topRecord -> recommendedRooms.add(topRecord.getRoomId()));
-                });
-
-        return recommendedRooms;
+                    return compareUserMap.entrySet().stream()
+                            .filter(entry1 -> !watchedRoomIds.contains(entry1.getKey())) // 过滤掉已经观看过的
+                            .filter(entry1 -> roomDao.getRoomHotIndex(entry1.getKey()) != null) // 过滤掉已经下线的
+                            .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
+                            .limit(1); // 每个相似用户最多选择1个推荐房间
+                })
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
-    public double calculateSimilarity(Map<Integer, Integer> userMap,
-                                      List<BrowsingRecord> compareUserRecords) {
+    public double calculateSimilarity(Map<Integer, Integer> userMap, Map<Integer, Integer> compareUserMap) {
         // 实现余弦相似度计算逻辑
-        Map<Integer, Integer> compareUserMap = compareUserRecords.stream()
-                .collect(Collectors.toMap(
-                        BrowsingRecord::getRoomId,
-                        SimilarIndexCalculator::calculateSimilarIndex,
-                        Integer::sum
-                ));
-
         Set<Integer> allRooms = new HashSet<>();
         allRooms.addAll(userMap.keySet());
         allRooms.addAll(compareUserMap.keySet());
@@ -291,12 +254,12 @@ public class UserBrowsHistoryService {
         double normB = 0;
 
         for (Integer roomId : allRooms) {
-            double userSimilarIndex = userMap.getOrDefault(roomId, 0);
-            double compareUserSimilarIndex = compareUserMap.getOrDefault(roomId, 0);
+            double userLikeIndex = userMap.getOrDefault(roomId, 0);
+            double compareUserLikeIndex = compareUserMap.getOrDefault(roomId, 0);
 
-            dotProduct += userSimilarIndex * compareUserSimilarIndex;
-            normA += userSimilarIndex * userSimilarIndex;
-            normB += compareUserSimilarIndex * compareUserSimilarIndex;
+            dotProduct += userLikeIndex * compareUserLikeIndex;
+            normA += userLikeIndex * userLikeIndex;
+            normB += compareUserLikeIndex * compareUserLikeIndex;
         }
 
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
