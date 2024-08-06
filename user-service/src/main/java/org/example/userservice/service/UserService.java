@@ -1,5 +1,6 @@
 package org.example.userservice.service;
 
+import cn.hutool.json.JSONObject;
 import org.example.userservice.Feign.Feign;
 import org.example.userservice.dao.CompleteUserDao;
 import org.example.userservice.dao.FollowerDao;
@@ -83,25 +84,36 @@ public class UserService {
     public Integer createRoom(Integer userID, String roomName, String coverUrl, List<Integer> tags) {
         UserInfo userInfo = completeUserDao.findUserInfoByUserID(userID);
         RoomInfo roomInfo = userInfo.getRoomInfo();
-        Boolean status = roomInfo.getStatus();
+//        Boolean status = roomInfo.getStatus();
         roomInfo.setRoomName(roomName);
         roomInfo.setCoverUrl(coverUrl);
         // 如果tags中有0，study为true，如果有1，entertain为true，如果有2，other为true
         roomInfo.setStudy(tags.contains(0));
         roomInfo.setEntertain(tags.contains(1));
         roomInfo.setOther(tags.contains(2));
-        if(!status){
-            roomInfo.setStartTime(java.time.LocalDateTime.now());
-        }
+//        if(!status){
+//            roomInfo.setStartTime(java.time.LocalDateTime.now());
+//        }
         //调整为开播
-        roomInfo.setStatus(true);
+//        roomInfo.setStatus(true);
         roomDao.saveRoomInfo(roomInfo);
+        // 为开播直播间创建一个roomHotIndex
+        JSONObject request = new JSONObject();
+        request.put("roomId", roomInfo.getRoomID());
+        Boolean[] tagsArray = new Boolean[3];
+        tagsArray[0] = tags.contains(0);
+        tagsArray[1] = tags.contains(1);
+        tagsArray[2] = tags.contains(2);
+        request.put("tags", tagsArray);
+
+        // 为开播直播间创建一个 roomHotIndex
+        feign.createRoomHotIndex(request);
         // 为开播直播间创建一个roomHotIndexList
         System.out.println("roomID = " + roomInfo.getRoomID());
         // 如果当前已经开播，则不会创建hotindex，也不会将所有值设为0
-        if(status){
-            return roomInfo.getRoomID();
-        }
+//        if(status){
+//            return roomInfo.getRoomID();
+//        }
 //        List<RoomHotIndex> roomHotIndexList = new ArrayList<>();
 //        RoomHotIndex roomHotIndex = new RoomHotIndex();
 //        roomHotIndex.setRoomId(roomInfo.getRoomID());
@@ -119,12 +131,12 @@ public class UserService {
         return roomInfo.getRoomID();
     }
 
-    public void setStatus(Integer roomID, Boolean status){
-        RoomInfo roomInfo = roomDao.findRoomInfoByRoomID(roomID);
-        if(roomInfo.getStatus() == status){
-            return;
-        }
-        roomInfo.setStatus(status);
-        roomDao.saveRoomInfo(roomInfo);
-    }
+//    public void setStatus(Integer roomID, Boolean status){
+//        RoomInfo roomInfo = roomDao.findRoomInfoByRoomID(roomID);
+//        if(roomInfo.getStatus() == status){
+//            return;
+//        }
+//        roomInfo.setStatus(status);
+//        roomDao.saveRoomInfo(roomInfo);
+//    }
 }

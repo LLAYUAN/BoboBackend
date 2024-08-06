@@ -23,11 +23,13 @@ public class RoomInfoController {
     private RabbitTemplate rabbitTemplate;
     @Autowired
     private ObjectMapper objectMapper;
+
     @PostMapping("/saveRoomHotIndex")
     public void saveRoomHotIndex(@RequestBody List<RoomHotIndex> roomHotIndexList) {
         roomHotIndexList.forEach(System.out::println);
         roomInfoService.saveRoomHotIndexList(roomHotIndexList);
     }
+
     @PostMapping("/createRoomHotIndex")
     public void createRoomHotIndex(@RequestBody JSONObject request) {
         int roomId = request.getInt("roomId");
@@ -35,6 +37,7 @@ public class RoomInfoController {
         System.out.println("createRoomHotIndex::  roomId: " + roomId + " ,  tags: " + tags);
         roomInfoService.createRoomHotIndex(roomId, tags);
     }
+
     @PostMapping("/addRoomHotIndex")
     public ResponseEntity<Void> addRoomHotIndex(@RequestBody AddHotIndex addHotIndex) throws JsonProcessingException {
         System.out.println("addRoomHotIndex:: AddHotIndex: " + addHotIndex.getRoomId());
@@ -43,6 +46,7 @@ public class RoomInfoController {
 //        roomInfoService.addRoomHotIndex(addHotIndex);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping("/{id}")
     public RoomCardInfo getRank(@PathVariable Integer id) {
         System.out.println("getRoomInfo: " + id);

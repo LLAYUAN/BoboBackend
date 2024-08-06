@@ -51,14 +51,14 @@ public class UserController {
         return CommonResult.success(result);
     }
 
-    @PostMapping("/setStatus")
-    public void setStatus(@RequestBody Map<String,Object>requestBody) {
-        Integer roomID =  Integer.parseInt((String) requestBody.get("roomID"));
-        Boolean status = (Boolean) requestBody.get("status");
-        Logger log = Logger.getLogger(UserController.class.getName());
-        log.info("setStatus: " + roomID + " " + status);
-        userService.setStatus(roomID,status);
-    }
+//    @PostMapping("/setStatus")
+//    public void setStatus(@RequestBody Map<String,Object>requestBody) {
+//        Integer roomID =  Integer.parseInt((String) requestBody.get("roomID"));
+//        Boolean status = (Boolean) requestBody.get("status");
+//        Logger log = Logger.getLogger(UserController.class.getName());
+//        log.info("setStatus: " + roomID + " " + status);
+//        userService.setStatus(roomID,status);
+//    }
 
     @GetMapping(value = "/getUserInfo")
     public CommonResult getUserInfo(@RequestHeader("Authorization") String authorizationHeader) {

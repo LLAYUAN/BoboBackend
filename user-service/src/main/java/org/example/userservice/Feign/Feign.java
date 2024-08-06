@@ -1,5 +1,6 @@
 package org.example.userservice.Feign;
 
+import cn.hutool.json.JSONObject;
 import org.example.userservice.entity.RoomHotIndex;
 import org.example.userservice.model.PasswordRequest;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -31,4 +32,7 @@ public interface Feign {
 
     @PostMapping("/internal/gateway/generateToken")
     String generateToken(@RequestBody Integer userID);
+
+    @PostMapping("/internal/recommend/roomInfo/createRoomHotIndex")
+    void createRoomHotIndex(@RequestBody JSONObject request);
 }
