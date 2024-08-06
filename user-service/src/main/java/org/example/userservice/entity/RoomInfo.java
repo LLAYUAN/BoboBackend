@@ -24,8 +24,8 @@ public class RoomInfo {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "status")
-    private Boolean status;
+//    @Column(name = "status")
+//    private Boolean status;
 
     @Column(name = "cover_url")
     private String coverUrl;
@@ -53,7 +53,7 @@ public class RoomInfo {
         this.roomName = roomName;
         this.description = description;
         this.coverUrl = coverUrl;
-        this.status = false;
+//        this.status = false;
         this.study = false;
         this.entertain = false;
         this.other = false;
@@ -64,7 +64,7 @@ public class RoomInfo {
         this.roomName = roomName;
         this.description = description;
         this.coverUrl = coverUrl;
-        this.status = false;
+//        this.status = false;
         this.study = study;
         this.entertain = entertain;
         this.other = other;
