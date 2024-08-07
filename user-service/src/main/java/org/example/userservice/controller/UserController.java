@@ -1,7 +1,7 @@
 package org.example.userservice.controller;
 
 import lombok.Data;
-import org.example.userservice.Feign.Feign;
+import org.example.userservice.Feign.RecordFeign;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.dto.BasicRoomDTO;
 import org.example.userservice.dto.BasicUserDTO;
@@ -32,7 +32,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private Feign feign;
+    private RecordFeign recordFeign;
 
     // 汇总的接口
     @GetMapping(value = "/personalProfile")

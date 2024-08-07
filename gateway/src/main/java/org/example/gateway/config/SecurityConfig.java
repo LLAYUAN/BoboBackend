@@ -17,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
@@ -59,6 +60,9 @@ public class SecurityConfig {
 //    @Bean
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        System.out.println("Configuring security web filter chain...");
+        System.out.println("White-listed URLs: " + ignoreUrlsConfig.getUrls());
+
         return http
                 .authorizeExchange(exchanges ->
                         exchanges
@@ -72,6 +76,13 @@ public class SecurityConfig {
                         .authenticationEntryPoint(restAuthenticationEntryPoint) // 未认证或 token 过期的处理器
                 )
                 .addFilterAt(jwtAuthenticationTokenFilter, SecurityWebFiltersOrder.AUTHENTICATION) // 添加 JWT 拦截器到过滤链的指定位置
+//                .cors(cors -> cors.configurationSource(request -> {
+//                    CorsConfiguration config = new CorsConfiguration();
+//                    config.addAllowedOriginPattern("http://localhost:3000");
+//                    config.addAllowedMethod("OPTIONS,GET,POST,HEAD,PUT,DELETE,PATCH,TRACE");
+//                    config.addAllowedHeader("*");
+//                    return config;
+//                }))
                 .build();
     }
 

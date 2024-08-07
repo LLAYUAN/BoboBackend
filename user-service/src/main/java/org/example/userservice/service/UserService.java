@@ -1,7 +1,8 @@
 package org.example.userservice.service;
 
 import cn.hutool.json.JSONObject;
-import org.example.userservice.Feign.Feign;
+import org.example.userservice.Feign.RecommendFeign;
+import org.example.userservice.Feign.RecordFeign;
 import org.example.userservice.dao.CompleteUserDao;
 import org.example.userservice.dao.FollowerDao;
 import org.example.userservice.dao.RoomDao;
@@ -33,7 +34,10 @@ public class UserService {
     CompleteUserDao completeUserDao;
 
     @Autowired
-    Feign feign;
+    private RecommendFeign recommendFeign;
+
+    @Autowired
+    private RecordFeign recordFeign;
 
     @Autowired
     RoomInfoRepo roomInfoRepo;
@@ -107,7 +111,7 @@ public class UserService {
         request.put("tags", tagsArray);
 
         // 为开播直播间创建一个 roomHotIndex
-        feign.createRoomHotIndex(request);
+        recommendFeign.createRoomHotIndex(request);
         // 为开播直播间创建一个roomHotIndexList
         System.out.println("roomID = " + roomInfo.getRoomID());
         // 如果当前已经开播，则不会创建hotindex，也不会将所有值设为0
