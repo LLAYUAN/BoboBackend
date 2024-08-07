@@ -68,7 +68,8 @@ public class LoginController {
         Logger log = LoggerFactory.getLogger(LoginController.class);
         String email = (String) loginRequest.get("email");
         String password = (String) loginRequest.get("password");
-//        log.info("email: " + email+ " password: " + password+" is going to login");
+
+        log.info("email: " + email+ " password: " + password+" is going to login");
         // 通过用户名和密码获取token
         UserInfo userInfo = null;
         String token = userInfoService.login(email, password,userInfo);

@@ -37,6 +37,8 @@ public class EncoderController {
         // 这里实现你的编码逻辑
         System.out.println("plainPassword: " + passwordRequest.getPlainPassword());
         System.out.println("encodedPassword: " + passwordRequest.getEncodedPassword());
+        Boolean result = passwordEncoder.matches(passwordRequest.getPlainPassword(), passwordRequest.getEncodedPassword());
+        System.out.println("result: " + result);
         return passwordEncoder.matches(passwordRequest.getPlainPassword(), passwordRequest.getEncodedPassword());
     }
 
@@ -51,6 +53,9 @@ public class EncoderController {
 
     @PostMapping("/internal/gateway/encode")
     public String encode(@RequestBody String password) {
+        System.out.println("password: " + password);
+        String encodedPassword = passwordEncoder.encode(password);
+        System.out.println("encodedPassword: " + encodedPassword);
         return passwordEncoder.encode(password);
     }
 }

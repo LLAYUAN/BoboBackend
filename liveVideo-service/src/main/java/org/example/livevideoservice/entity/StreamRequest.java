@@ -6,6 +6,7 @@ public class StreamRequest {
     private String cameraDevice;
     private String localFilePath;
     private String roomId;
+    private Boolean[] tags;
 
     // Getters and setters
 
@@ -47,5 +48,13 @@ public class StreamRequest {
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
+    }
+
+    public Boolean[] getTags() {
+        return tags;
+    }
+
+    public void setTags(Boolean[] tags) {
+        this.tags = tags;
     }
 }
