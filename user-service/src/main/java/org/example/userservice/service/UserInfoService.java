@@ -2,7 +2,9 @@ package org.example.userservice.service;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
-import org.example.userservice.Feign.Feign;
+import org.example.userservice.Feign.PasswordFeign;
+import org.example.userservice.Feign.RecommendFeign;
+import org.example.userservice.Feign.RecordFeign;
 import org.example.userservice.dao.CompleteUserDao;
 import org.example.userservice.entity.RoomInfo;
 import org.example.userservice.entity.UserInfo;
@@ -32,7 +34,7 @@ public class UserInfoService {
     private RoomInfoRepo roomInfoRepo;
 
     @Autowired
-    private Feign feign;
+    private PasswordFeign passwordFeign;
 
     public String login(String email, String password,UserInfo userInfo) {
         Logger log = Logger.getLogger(UserInfoService.class.getName());
@@ -49,7 +51,7 @@ public class UserInfoService {
             }
 //            System.out.println("feign encoder: "+feign.encode(password));
 //            System.out.println("local encoder: "+passwordEncoder.encode(password));
-            if(!feign.matchPassword(new PasswordRequest(password,userInfo.getPassword()))){
+            if(!passwordFeign.matchPassword(new PasswordRequest(password,userInfo.getPassword()))){
                 throw new Exception("密码不正确");
             }
 //            if (!passwordEncoder.matches(password,userInfo.getPassword())){
@@ -60,7 +62,7 @@ public class UserInfoService {
 //            // 将用户信息存储到 Security 上下文中，以便于 Security 进行权限验证
 //            SecurityContextHolder.getContext().setAuthentication(authentication);
             // 生成 token
-            token = feign.generateToken(userInfo.getUserID());
+            token = passwordFeign.generateToken(userInfo.getUserID());
             // 添加登录记录
 //            log.info("用户"+email+"进行登录");
         }catch (Exception e){
@@ -99,7 +101,7 @@ public class UserInfoService {
             return null;
         }
 //        UserInfo userInfo = new UserInfo(email,passwordEncoder.encode(password));
-        UserInfo userInfo = new UserInfo(email,feign.encode(password));
+        UserInfo userInfo = new UserInfo(email,passwordFeign.encode(password));
         return completeUserDao.save(userInfo);
     }
 
@@ -114,8 +116,8 @@ public class UserInfoService {
 //            completeUserDao.save(userInfo);
 //            return true;
 //        }
-        if(feign.matchPassword(new PasswordRequest(oldPassword,userInfo.getPassword()))){
-            userInfo.setPassword(feign.encode(newPassword));
+        if(passwordFeign.matchPassword(new PasswordRequest(oldPassword,userInfo.getPassword()))){
+            userInfo.setPassword(passwordFeign.encode(newPassword));
             completeUserDao.save(userInfo);
             return true;
         }

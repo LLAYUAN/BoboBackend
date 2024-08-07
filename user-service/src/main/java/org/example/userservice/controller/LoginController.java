@@ -1,6 +1,6 @@
 package org.example.userservice.controller;
 
-import org.example.userservice.Feign.Feign;
+import org.example.userservice.Feign.RecordFeign;
 import org.example.userservice.common.CommonResult;
 import org.example.userservice.dto.UserInfoDTO;
 import org.example.userservice.entity.UserInfo;
@@ -38,8 +38,9 @@ public class LoginController {
 //    @Autowired
 //    private JwtTokenUtil jwtTokenUtil;
 
+
     @Autowired
-    private Feign feign;
+    private RecordFeign recordFeign;
 
     @GetMapping(value = "/publicKey")
     public CommonResult getPublicKey(@RequestHeader("Authorization") String authorizationHeader) {
@@ -51,7 +52,8 @@ public class LoginController {
 
     @GetMapping(value = "/test")
     public CommonResult test() {
-        String test = feign.test();
+//        String test = feign.test();
+        String test = recordFeign.test();
         return CommonResult.success(test);
 //        String port = environment.getProperty("local.server.port");
 //        if ("8082".equals(port)) {

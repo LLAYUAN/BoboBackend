@@ -101,6 +101,7 @@
         <module>recommend-service</module>
         <module>recordVideo-service</module>
         <module>user-service</module>
+        <module>password-service</module>
     </modules>
 
     <build>

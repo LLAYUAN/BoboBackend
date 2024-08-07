@@ -57,6 +57,11 @@ public class RecordVideoController {
         return result;
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "recordVideoService test success!";
+    }
+
     @GetMapping("/getPlayingRecordVideo")
     public VideoPagePlayingRecordVideo getPlayingRecordVideo(@RequestParam(name = "videoID") String string_videoID) {
         Integer videoID = Integer.parseInt(string_videoID);
