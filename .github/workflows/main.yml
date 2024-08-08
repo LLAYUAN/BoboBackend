@@ -61,8 +61,8 @@ jobs:
 
       - name: Start services on server
         run: |
-          export SSHPASS=${{ secrets.SERVER_PASSWORD }}
-          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'cd /opt/livestream/backend && ./start_services.sh'
+          export SSHPASS=${{ secrets.REMOTE_PASSWORD }}
+          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'cd /opt/livestream/backend && ./start_services.sh'
 
 
       
