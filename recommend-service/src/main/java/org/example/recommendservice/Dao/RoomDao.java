@@ -31,6 +31,12 @@ public class RoomDao {
         }
     }
 
+    public void deleteRoomHotIndex(int roomId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("roomId").is(roomId));
+        mongoTemplate.remove(query, RoomHotIndex.class);
+    }
+
     public RoomInfo getRoomInfo(Integer id) {
         return roomInfoRepo.findById(id).orElse(null);
     }

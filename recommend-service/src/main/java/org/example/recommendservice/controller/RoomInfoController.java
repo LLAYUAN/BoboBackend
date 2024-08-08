@@ -47,6 +47,13 @@ public class RoomInfoController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/deleteRoomHotIndex")
+    public void deleteRoomHotIndex(@RequestBody JSONObject request) {
+        int roomId = request.getInt("roomId");
+        System.out.println("deleteRoomHotIndex::  roomId: " + roomId);
+        roomInfoService.deleteRoomHotIndex(roomId);
+    }
+
     @GetMapping("/{id}")
     public RoomCardInfo getRank(@PathVariable Integer id) {
         System.out.println("getRoomInfo: " + id);

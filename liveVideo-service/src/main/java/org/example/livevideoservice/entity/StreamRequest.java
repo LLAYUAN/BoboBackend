@@ -7,6 +7,7 @@ public class StreamRequest {
     private String localFilePath;
     private String roomId;
     private Boolean[] tags;
+    private Boolean isStreaming;
 
     // Getters and setters
 
@@ -56,5 +57,13 @@ public class StreamRequest {
 
     public void setTags(Boolean[] tags) {
         this.tags = tags;
+    }
+
+    public Boolean getIsStreaming() {
+        return isStreaming;
+    }
+
+    public void setIsStreaming(Boolean isStreaming) {
+        this.isStreaming = isStreaming;
     }
 }

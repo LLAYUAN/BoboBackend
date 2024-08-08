@@ -2,6 +2,8 @@ package org.example.livevideoservice.controller;
 
 import cn.hutool.json.JSONObject;
 import org.example.livevideoservice.Feign.Feign;
+import org.example.livevideoservice.Feign.MessageFeign;
+import org.example.livevideoservice.Feign.RecommendFeign;
 import org.example.livevideoservice.entity.Result;
 import org.example.livevideoservice.entity.StreamRequest;
 import org.example.livevideoservice.entity.RoomInfo;
@@ -20,7 +22,10 @@ public class StreamingController {
     public static final Map<String, Process> processMap = new ConcurrentHashMap<>();
 
     @Autowired
-    Feign feign;
+    RecommendFeign feign1;
+
+    @Autowired
+    MessageFeign feign2;
 
 //    @Autowired
 //    private RoomInfoRepository roomInfoRepository;
@@ -37,6 +42,7 @@ public class StreamingController {
 //        feign.setStatus(result);
         String roomId = request.getRoomId();
         Boolean[] tagsArray = request.getTags();
+        Boolean isStreaming = request.getIsStreaming();
         JSONObject json = new JSONObject();
         json.put("roomId",roomId);
 //        Boolean[] tagsArray = new Boolean[3];
@@ -45,8 +51,11 @@ public class StreamingController {
 //        tagsArray[1] = roomInfo.getEntertain();
 //        tagsArray[2] = roomInfo.getOther();
         json.put("tags", tagsArray);
+        json.put("isStreaming", isStreaming);
         log.info("json: " + json);
-        feign.createRoomHotIndex(json);
+        if (!isStreaming){
+            feign1.createRoomHotIndex(json);
+        }
         return Result.success();
     }
 
@@ -59,6 +68,12 @@ public class StreamingController {
         result.put("status", false);
 //        feign.setStatus(result);
 
+        String roomId = request.getRoomId();
+        Boolean isStreaming = request.getIsStreaming();
+
+        if (isStreaming){
+            feign2.deleteRoomMessages(Integer.parseInt(roomId));
+        }
 
         // Clear user activities for the room
         userActivityRepository.deleteByRoomId(request.getRoomId());

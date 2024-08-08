@@ -20,7 +20,7 @@ public class CorsFilter implements Filter {
         System.out.println("CorsFilter is invoked");
         HttpServletResponse res = (HttpServletResponse) response;
         res.addHeader("Access-Control-Allow-Credentials", "true");
-        res.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        res.addHeader("Access-Control-Allow-Origin", "https://123.60.73.77");
         res.addHeader("Access-Control-Allow-Methods", "OPTIONS,GET,POST,DELETE,PUT");
         res.addHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Accept");
 
