@@ -106,7 +106,7 @@ public class RecordVideoController {
             System.out.println(filePath);
             file.transferTo(filePath);
             // 返回文件的访问路径
-            return "http://localhost:9999/recordvideo/resources/" + newFilename;
+            return "https://localhost:9999/recordvideo/resources/" + newFilename;
         } catch (IOException e) {
             e.printStackTrace();
             return "uploadFail";
