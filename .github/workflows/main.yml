@@ -1,0 +1,52 @@
+name: CI
+on: # 定义触发事件，push 推送到 main 分支或 pull request
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest # 定义运行的环境
+    steps: # 定义步骤
+      - name: Checkout code
+        uses: actions/checkout@v4.1.7
+        
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4.2.2
+        with:
+          java-version: '17'
+          
+      - name: Build and package gateway
+        run: |
+          cd gateway
+          mvn clean package -DskipTests
+          
+      - name: Build and package other services
+        run: |
+          cd ..
+          mvn clean package -DskipTests
+
+      - name: Copy JAR files # 将构建生成的 JAR 文件复制到一个临时目录 ./jar-files 中。
+        run: |
+          mkdir -p ./jar-files
+          cp gateway/target/*.jar ./jar-files/
+          cp liveVideo-service/target/*.jar ./jar-files/
+          cp message-service/target/*.jar ./jar-files/
+          cp password-service/target/*.jar ./jar-files/
+          cp recommend-service/target/*.jar ./jar-files/
+          cp recordVideo-service/target/*.jar ./jar-files/
+          cp user-service/target/*.jar ./jar-files/
+
+      - name: Stop services on server
+        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.REMOTE_SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'cd /opt/livestream/backend && ./stop_services.sh'
+        
+      - name: Upload JAR files to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
+          source: "./jar-files/*"
+          target: "/opt/livestream/backend/"
+
+
+      
