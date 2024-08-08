@@ -67,7 +67,25 @@ jobs:
       - name: Start services on server
         run: |
           export SSHPASS=${{ secrets.REMOTE_PASSWORD }}
-          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'cd /opt/livestream/backend && ./start_services.sh' #这里start命令没用？
+          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
+            cd /opt/livestream/backend
+            echo "Starting gateway service..."
+            nohup java -jar gateway-0.0.1-SNAPSHOT.jar > nohup.out.gateway.log 2>&1 &
+            echo "Starting liveVideo-service..."
+            nohup java -jar liveVideo-service-0.0.1-SNAPSHOT.jar > nohup.out.liveVideo.log 2>&1 &
+            echo "Starting message-service..."
+            nohup java -jar message-service-0.0.1-SNAPSHOT.jar > nohup.out.message.log 2>&1 &
+            echo "Starting recordvideo-service..."
+            nohup java -jar recordvideo-service-0.0.1-SNAPSHOT.jar > nohup.out.recordvideo.log 2>&1 &
+            echo "Starting recommend-service..."
+            nohup java -jar recommend-service-0.0.1-SNAPSHOT.jar > nohup.out.recommend.log 2>&1 &
+            echo "Starting user-service..."
+            nohup java -jar user-service-0.0.1-SNAPSHOT.jar > nohup.out.user.log 2>&1 &
+            echo "Starting password-service..."
+            nohup java -jar password-service-0.0.1-SNAPSHOT.jar > nohup.out.password.log 2>&1 &
+            echo "Services started."
+            jps -l
+          EOF
 
 
       
