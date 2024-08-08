@@ -44,7 +44,9 @@ jobs:
         run: sudo apt-get install -y sshpass
 
       - name: Stop services on server
-        run: sshpass -p ${{ secrets.SERVER_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'cd /opt/livestream/backend && ./stop_services.sh'
+        run: |
+          export SSHPASS=${{ secrets.REMOTE_PASSWORD }}
+          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'cd /opt/livestream/backend && ./stop_services.sh'
         
       - name: Upload JAR files to server
         uses: appleboy/scp-action@v0.1.7
