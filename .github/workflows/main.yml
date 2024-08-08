@@ -40,15 +40,19 @@ jobs:
           cp recordVideo-service/target/*.jar ./jar-files/
           cp user-service/target/*.jar ./jar-files/
 
+      - name: Install sshpass # 用密码登ssh
+        run: sudo apt-get install -y sshpass
+
       - name: Stop services on server
-        run: ssh -o StrictHostKeyChecking=no -i ${{ secrets.REMOTE_SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'cd /opt/livestream/backend && ./stop_services.sh'
+        run: sshpass -p ${{ secrets.SERVER_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'cd /opt/livestream/backend && ./stop_services.sh'
         
       - name: Upload JAR files to server
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.REMOTE_HOST }} # ip或者域名
+          username: ${{ secrets.REMOTE_USER }} # root
+          password: ${{ secrets.REMOTE_PASSWORD}}
+          port: 22
           source: "./jar-files/*"
           target: "/opt/livestream/backend/"
 
