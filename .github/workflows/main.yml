@@ -16,16 +16,19 @@ jobs:
           java-version: '17'
           distribution: 'adopt' # 指定使用 AdoptOpenJDK 发行版
           
-      - name: Build and package gateway
-        run: |
-          cd gateway
-          mvn clean package -DskipTests
+      #- name: Build and package gateway
+      #  run: |
+      #    cd gateway
+      #    mvn clean package -DskipTests
           
-      - name: Build and package other services
+      - name: Build and package services
         run: |
-          cd ..
-          mvn clean package -DskipTests
-
+          for service in gateway liveVideo-service message-service password-service recommend-service recordVideo-service user-service; do
+            cd $service
+            mvn clean package -DskipTests -q
+            cd ..
+          done
+          
       - name: Copy JAR files # 将构建生成的 JAR 文件复制到一个临时目录 ./jar-files 中。
         run: |
           mkdir -p ./jar-files
