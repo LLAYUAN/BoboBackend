@@ -13,7 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/chat").setAllowedOrigins("https://123.60.73.77:3000").withSockJS();
+        registry.addEndpoint("/chat").setAllowedOrigins("https://123.60.73.77").withSockJS();
     }
 
     @Override
