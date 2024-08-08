@@ -59,6 +59,10 @@ jobs:
           target: "/opt/livestream/backend/"
           strip_components: 1 #删掉第一层目录
 
+      - name: Check JAR files on server
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'ls -l /opt/livestream/backend/*.jar'
+
       - name: Start services on server
         run: |
           export SSHPASS=${{ secrets.REMOTE_PASSWORD }}
