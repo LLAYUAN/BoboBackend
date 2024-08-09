@@ -9,10 +9,10 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue addHotIndexQueue() {
-        return new Queue("addHotIndexQueue", false);
+        return new Queue("addHotIndexQueue", true);
     }
     @Bean
     public Queue historyQueue() {
-        return new Queue("historyQueue", false);
+        return new Queue("historyQueue", true);
     }
 }
