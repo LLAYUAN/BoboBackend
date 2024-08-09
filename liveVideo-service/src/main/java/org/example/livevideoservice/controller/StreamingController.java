@@ -62,6 +62,7 @@ public class StreamingController {
     @PostMapping("/stop-stream")
     public Result stopStream(@RequestBody StreamRequest request) {
 
+        System.out.println("request"+request);
         // Update room status to 0
         Map<String, Object> result = new HashMap<>();
         result.put("roomID", request.getRoomId());
@@ -69,10 +70,17 @@ public class StreamingController {
 //        feign.setStatus(result);
 
         String roomId = request.getRoomId();
+        System.out.println("roomId: " + roomId);
         Boolean isStreaming = request.getIsStreaming();
 
         if (isStreaming){
-            feign2.deleteRoomMessages(Integer.parseInt(roomId));
+            Integer roomIdInt = Integer.parseInt(roomId);
+
+            JSONObject dltRequest = new JSONObject();
+            dltRequest.put("roomId", roomIdInt);
+
+            feign2.deleteRoomMessages(roomIdInt);
+            feign1.deleteRoomHotIndex(dltRequest);
         }
 
         // Clear user activities for the room
