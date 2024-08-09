@@ -59,7 +59,7 @@ public class UserBrowsHistoryService {
         System.out.println("UserBased: "+UserBased);
         for (int i = 0; i < UserBased.size(); i++) {
             int finalI = i;
-            rankMap.compute(UserBased.get(i), (k, v) -> (v == null) ? 5 - finalI : v + 5 - finalI);
+            rankMap.compute(UserBased.get(i), (k, v) -> (v == null) ? 6 - finalI : v + 6 - finalI);
         }
 
         System.out.println("rankMap: " + rankMap);
@@ -75,7 +75,7 @@ public class UserBrowsHistoryService {
 
         List<RoomCardInfo> recommendRoomList = rankMap.entrySet().stream()
                 .sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed())
-                .limit(5)
+                .limit(6)
                 .map(entry -> {
                     RoomInfo roomInfo = roomDao.findById(entry.getKey());
                     RoomHotIndex roomHotIndex = roomDao.getRoomHotIndex(entry.getKey());
@@ -92,7 +92,7 @@ public class UserBrowsHistoryService {
         return roomDao.getAllRoomHotIndex()
                 .stream()
                 .sorted(Comparator.comparing(RoomHotIndex::getHotIndex).reversed())
-                .limit(5)
+                .limit(6)
                 .map(RoomHotIndex::getRoomId)
                 .toList();
     }
