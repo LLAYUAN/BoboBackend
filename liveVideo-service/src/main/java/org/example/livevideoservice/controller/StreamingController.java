@@ -75,11 +75,11 @@ public class StreamingController {
 
         if (isStreaming){
             Integer roomIdInt = Integer.parseInt(roomId);
+            feign2.deleteRoomMessages(roomIdInt);
 
             JSONObject dltRequest = new JSONObject();
             dltRequest.put("roomId", roomIdInt);
 
-            feign2.deleteRoomMessages(roomIdInt);
             feign1.deleteRoomHotIndex(dltRequest);
         }
 
