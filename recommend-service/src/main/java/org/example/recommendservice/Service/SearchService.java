@@ -7,6 +7,7 @@ import org.example.recommendservice.DTO.RoomCardInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,10 +43,10 @@ public class SearchService {
                 .collect(Collectors.toList());
     }
 
-    private boolean isMatch(List<String> queryTokens, RoomCardInfo room, LevenshteinDistance levenshtein) {
-        List<String> roomNameTokens = segmentWords(room.getRoomName());
-        List<String> descriptionTokens = segmentWords(room.getDescription());
-        List<String> userNameTokens = segmentWords(room.getUserName());
+    public boolean isMatch(List<String> queryTokens, RoomCardInfo room, LevenshteinDistance levenshtein) {
+        List<String> roomNameTokens = segmentWords(room.getRoomName() != null ? room.getRoomName() : "");
+        List<String> descriptionTokens = segmentWords(room.getDescription() != null ? room.getDescription() : "");
+        List<String> userNameTokens = segmentWords(room.getUserName() != null ? room.getUserName() : "");
 
         // 可以根据需要调整匹配阈值，这里设置为最大允许距离为1
         int threshold = 1;
@@ -58,7 +59,7 @@ public class SearchService {
         );
     }
 
-    private int calculateRelevancy(List<String> queryTokens, RoomCardInfo room, LevenshteinDistance levenshtein) {
+    public int calculateRelevancy(List<String> queryTokens, RoomCardInfo room, LevenshteinDistance levenshtein) {
         List<String> roomNameTokens = segmentWords(room.getRoomName());
         List<String> descriptionTokens = segmentWords(room.getDescription());
         List<String> userNameTokens = segmentWords(room.getUserName());
@@ -91,7 +92,10 @@ public class SearchService {
         return relevancyScore;
     }
 
-    private List<String> segmentWords(String text) {
+    public List<String> segmentWords(String text) {
+        if (text == null) {
+            return Collections.emptyList(); // 如果为null，返回一个空的列表
+        }
         return segmenter.process(text, JiebaSegmenter.SegMode.SEARCH).stream()
                 .map(token -> token.word)
                 .collect(Collectors.toList());
