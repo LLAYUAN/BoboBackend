@@ -13,6 +13,9 @@ public class DeleteController {
 
     @DeleteMapping("/delete/{roomID}")
     public void deleteRoomMessages(@PathVariable Integer roomID) {
+        
+        System.out.println("Received request to delete messages for roomID: " + roomID);
+
         chatService.deleteRoomMessages(roomID);
     }
 }
