@@ -22,38 +22,6 @@ public class UserBrowsHistoryService {
     @Autowired
     RoomDao roomDao;
 
-    private static final int MAX_HISTORY_SIZE = 30; // 最多保存近30条
-
-    public void addBrowsingRecord(String userId, BrowsingRecord browsingRecord) {
-        UserBrowsHistory userHistory = browsHistoryDao.getUserBrowsHistory(userId);
-
-        if (userHistory == null) {
-            System.out.println("not find by userId");
-            userHistory = new UserBrowsHistory(userId, new ArrayList<>());
-        }
-
-        List<BrowsingRecord> browsingHistory = userHistory.getBrowsingHistory();
-        browsingHistory.add(browsingRecord);
-
-        browsingHistory.sort(Comparator.comparing(BrowsingRecord::getStartTime).reversed());
-        if (browsingHistory.size() > MAX_HISTORY_SIZE) {
-            browsingHistory = browsingHistory.subList(0, MAX_HISTORY_SIZE);
-        }
-
-        userHistory.setBrowsingHistory(browsingHistory);
-        browsHistoryDao.saveUserBrowsHistory(userHistory);
-
-        System.out.println("Finished!  userId:  " + userId);
-        System.out.println("new browsingRecord:");
-        System.out.println(browsingRecord);
-        System.out.println("new BrowsingHistory:");
-        browsingHistory.forEach(System.out::println);
-
-//        // 直接存，没有最大限制
-//        Query query = Query.query(Criteria.where("_id").is(userId));
-//        Update update = new Update().push("browsingHistory", browsingRecord);
-//        UpdateResult result = mongoTemplate.upsert(query, update, UserBrowsHistory.class);
-    }
     public void setBrowsingRecord(String userId, List<BrowsingRecord> browsingHistory) {
         UserBrowsHistory userHistory = browsHistoryDao.getUserBrowsHistory(userId);
 

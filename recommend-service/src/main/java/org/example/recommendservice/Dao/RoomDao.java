@@ -25,16 +25,15 @@ public class RoomDao {
     public void saveRoomHotIndex(RoomHotIndex roomHotIndex) {
         mongoTemplate.save(roomHotIndex);
     }
-    public void saveRoomHotIndexList(List<RoomHotIndex> roomHotIndexList) {
-        for (RoomHotIndex roomHotIndex : roomHotIndexList) {
-            mongoTemplate.save(roomHotIndex);
-        }
-    }
-
     public void deleteRoomHotIndex(int roomId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("roomId").is(roomId));
         mongoTemplate.remove(query, RoomHotIndex.class);
+    }
+    public void saveRoomHotIndexList(List<RoomHotIndex> roomHotIndexList) {
+        for (RoomHotIndex roomHotIndex : roomHotIndexList) {
+            mongoTemplate.save(roomHotIndex);
+        }
     }
 
     public RoomInfo getRoomInfo(Integer id) {

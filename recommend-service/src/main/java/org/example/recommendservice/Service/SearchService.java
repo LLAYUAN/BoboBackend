@@ -27,7 +27,7 @@ public class SearchService {
     }
 
     public List<RoomCardInfo> searchByRelevancy(String query, String userId) {
-        List<RoomCardInfo> rankList = roomInfoService.getRank(-1,1,1);
+        List<RoomCardInfo> rankList = roomInfoService.getRank(-1,1,1000);
 
         // Levenshtein距离实例
         LevenshteinDistance levenshtein = new LevenshteinDistance();

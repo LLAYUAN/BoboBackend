@@ -37,7 +37,12 @@ public class RoomInfoController {
         System.out.println("createRoomHotIndex::  roomId: " + roomId + " ,  tags: " + tags);
         roomInfoService.createRoomHotIndex(roomId, tags);
     }
-
+    @PostMapping("/deleteRoomHotIndex")
+    public void deleteRoomHotIndex(@RequestBody JSONObject request) {
+        int roomId = request.getInt("roomId");
+        System.out.println("deleteRoomHotIndex::  roomId: " + roomId);
+        roomInfoService.deleteRoomHotIndex(roomId);
+    }
     @PostMapping("/addRoomHotIndex")
     public ResponseEntity<Void> addRoomHotIndex(@RequestBody AddHotIndex addHotIndex) throws JsonProcessingException {
         System.out.println("addRoomHotIndex:: AddHotIndex: " + addHotIndex.getRoomId());
@@ -45,13 +50,6 @@ public class RoomInfoController {
         rabbitTemplate.convertAndSend("addHotIndexQueue", json);
 //        roomInfoService.addRoomHotIndex(addHotIndex);
         return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/deleteRoomHotIndex")
-    public void deleteRoomHotIndex(@RequestBody JSONObject request) {
-        int roomId = request.getInt("roomId");
-        System.out.println("deleteRoomHotIndex::  roomId: " + roomId);
-        roomInfoService.deleteRoomHotIndex(roomId);
     }
 
     @GetMapping("/{id}")

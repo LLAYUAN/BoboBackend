@@ -23,7 +23,6 @@ public class RoomInfoService {
         RoomHotIndex roomHotIndex = new RoomHotIndex(roomId, tags);
         roomDao.saveRoomHotIndex(roomHotIndex);
     }
-
     public void deleteRoomHotIndex(int roomId) {
         roomDao.deleteRoomHotIndex(roomId);
     }
