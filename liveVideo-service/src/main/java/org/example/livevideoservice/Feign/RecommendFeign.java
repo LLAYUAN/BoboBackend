@@ -11,4 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface RecommendFeign {
     @PostMapping("/roomInfo/createRoomHotIndex")
     void createRoomHotIndex(@RequestBody JSONObject request);
+
+    @PostMapping("/roomInfo/deleteRoomHotIndex")
+    void deleteRoomHotIndex(@RequestBody JSONObject request);
 }
